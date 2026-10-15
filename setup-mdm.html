@@ -78,7 +78,11 @@
     <tr><td><code>showMeetingTitles</code></td><td>boolean</td><td>false shows "Meeting" instead of titles. Private meetings never show their title regardless.</td><td>Your policy.</td></tr>
     <tr><td><code>background</code></td><td>string</td><td><code>midnight</code> <code>slate</code> <code>ocean</code> <code>plum</code> <code>charcoal</code></td><td>Your choice.</td></tr>
     <tr><td><code>font</code></td><td>string</td><td><code>classic</code> <code>rounded</code> <code>serif</code> <code>avenir</code> <code>futura</code> <code>optima</code></td><td>Your choice.</td></tr>
+    <tr><td><code>alwaysOn</code></td><td>boolean</td><td>true keeps the board lit around the clock.</td><td>Your policy. Leave false to use the days and hours below.</td></tr>
+    <tr><td><code>activeDays</code></td><td>string</td><td>Days the board is lit, e.g. <code>Mon,Tue,Wed,Thu,Fri</code></td><td>Three-letter English day names, comma-separated. Any day not listed is dark all day.</td></tr>
+    <tr><td><code>activeHours</code></td><td>string</td><td>Hours the board is lit, e.g. <code>07:00-17:00</code></td><td>24-hour clock, 15-minute steps, <code>24:00</code> allowed as the end. Outside these hours the screen is black at minimum backlight and wakes for a minute on touch; a meeting in progress keeps it lit.</td></tr>
   </table>
+  <p>If you push none of the three hours keys, the default schedule applies: Monday to Friday, 07:00 to 17:00. Any one of them locks the whole Hours section on the device. Turn <strong>auto-brightness off</strong> on the iPads (a Restrictions payload or Settings › Accessibility › Display &amp; Text Size) so iPadOS doesn't fight the after-hours dimming.</p>
   <p>With <code>serviceAccountKey</code>, <code>calendarId</code>, <code>roomName</code>, and <code>pin</code> set, the app skips setup entirely and boots to the board. Setting only some keys is fine; the app asks for the rest on first launch and locks what you pushed.</p>
   <p>An AppConfig Community spec file for consoles that import one is at <a href="BoredRoom.appconfig.xml">BoredRoom.appconfig.xml</a>.</p>
 
@@ -101,6 +105,12 @@
   &lt;string&gt;ocean&lt;/string&gt;
   &lt;key&gt;font&lt;/key&gt;
   &lt;string&gt;classic&lt;/string&gt;
+  &lt;key&gt;alwaysOn&lt;/key&gt;
+  &lt;false/&gt;
+  &lt;key&gt;activeDays&lt;/key&gt;
+  &lt;string&gt;Mon,Tue,Wed,Thu,Fri&lt;/string&gt;
+  &lt;key&gt;activeHours&lt;/key&gt;
+  &lt;string&gt;07:00-18:00&lt;/string&gt;
 &lt;/dict&gt;</pre>
 
   <h3>Example: Intune (iOS app configuration policy, "Use configuration designer")</h3>
@@ -112,6 +122,9 @@
     <tr><td>pin</td><td>String</td><td>4821</td></tr>
     <tr><td>allowBooking</td><td>Boolean</td><td>true</td></tr>
     <tr><td>showMeetingTitles</td><td>Boolean</td><td>true</td></tr>
+    <tr><td>alwaysOn</td><td>Boolean</td><td>false</td></tr>
+    <tr><td>activeDays</td><td>String</td><td>Mon,Tue,Wed,Thu,Fri</td></tr>
+    <tr><td>activeHours</td><td>String</td><td>07:00-18:00</td></tr>
   </table>
   <p>Intune's "Enter XML data" option accepts the property list above verbatim.</p>
 
@@ -123,6 +136,7 @@
     <li>Push the app and the configuration to one iPad. On launch it should go straight to the board for the configured room.</li>
     <li>Hold the bottom-right corner › PIN › Settings. A banner reads "Some settings are managed by your organization" and managed rows are read-only.</li>
     <li>Create a test meeting in the room; it appears within 60 seconds.</li>
+    <li>Push <code>activeHours</code> with an end a few minutes away. The board fades to black at that minute; a touch brings it back for a minute. Push the real hours.</li>
   </ol>
 
   <h2>Security notes</h2>
@@ -138,6 +152,8 @@
     <li><strong>"That file isn't a service account key" at launch.</strong> The <code>serviceAccountKey</code> value is truncated or not valid base64/JSON. Re-paste.</li>
     <li><strong>No rooms / 403.</strong> The room isn't shared with the service account, or the admin sharing setting is still at free/busy.</li>
     <li><strong>Board shows "Can't read this room's calendar anymore."</strong> <code>calendarId</code> is wrong or the share was removed.</li>
+    <li><strong>Board is dark during the day.</strong> <code>activeDays</code> or <code>activeHours</code> is wrong for that iPad's time zone, or the value didn't parse (check the format) and the default Mon–Fri 07:00–17:00 is in effect.</li>
+    <li><strong>Someone forgot the PIN.</strong> Change the <code>pin</code> value in the profile; the app picks it up without a restart. The "Forgot PIN?" button on the device tells them to ask you.</li>
   </ul>
 
   <p style="margin-top:2.5em">Questions, or a console we haven't covered? <a href="mailto:hello@boredroom.space">hello@boredroom.space</a>.</p>

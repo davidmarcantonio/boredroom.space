@@ -49,6 +49,15 @@
     <boolean keyName="showMeetingTitles">
       <defaultValue><value>true</value></defaultValue>
     </boolean>
+    <boolean keyName="alwaysOn">
+      <defaultValue><value>false</value></defaultValue>
+    </boolean>
+    <string keyName="activeDays">
+      <defaultValue><value>Mon,Tue,Wed,Thu,Fri</value></defaultValue>
+    </string>
+    <string keyName="activeHours">
+      <defaultValue><value>07:00-17:00</value></defaultValue>
+    </string>
   </dict>
   <presentation defaultLocale="en-US">
     <field keyName="roomName" type="input">
@@ -93,6 +102,18 @@
     </field>
     <field keyName="showMeetingTitles" type="checkbox">
       <label><language value="en-US">Show meeting titles</language></label>
+    </field>
+    <field keyName="alwaysOn" type="checkbox">
+      <label><language value="en-US">Always on</language></label>
+      <description><language value="en-US">Keep the board lit around the clock. Off: the board goes dark outside the active days and hours and wakes for a minute when touched.</language></description>
+    </field>
+    <field keyName="activeDays" type="input">
+      <label><language value="en-US">Active days</language></label>
+      <description><language value="en-US">Comma-separated three-letter English day names, e.g. Mon,Tue,Wed,Thu,Fri.</language></description>
+    </field>
+    <field keyName="activeHours" type="input">
+      <label><language value="en-US">Active hours</language></label>
+      <description><language value="en-US">24-hour range, e.g. 07:00-17:00. 24:00 is allowed as the end. 15-minute steps.</language></description>
     </field>
   </presentation>
 </managedAppConfiguration>

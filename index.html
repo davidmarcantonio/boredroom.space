@@ -119,6 +119,7 @@
           <li>Free/busy, current meeting, the rest of the day</li>
           <li>Book the room from the door, 15 minutes to 2 hours</li>
           <li>Five backgrounds, six fonts, or your own photo</li>
+          <li>Goes dark after hours and on weekends; wakes with a touch</li>
           <li>English, French, and Spanish</li>
           <li>Full MDM support: push every setting, zero-touch, no "enterprise tier"</li>
           <li>Google Workspace today; Microsoft 365 is on the list</li>
@@ -133,7 +134,7 @@
 <section id="mdm">
   <div class="wrap">
     <h2>MDM is included, not an upsell.</h2>
-    <p class="lede">The room-display platforms charge extra for "enterprise deployment." Bored Room reads Apple's Managed App Configuration out of the box, so Jamf, Mosyle, Kandji, Intune, or any other MDM can configure every iPad before it's even unboxed.</p>
+    <p class="lede">The room-display platforms charge extra for "enterprise deployment." Bored Room reads Apple's Managed App Configuration out of the box, so Jamf, Mosyle, Kandji, Intune, or any other MDM can configure every iPad before it's even unboxed. Ten keys, all optional.</p>
     <div class="grid-2" style="margin-top:28px">
       <div class="card">
         <h3>What an admin can set from the MDM</h3>
@@ -145,6 +146,7 @@
           <li><strong>Booking from the door</strong>: on or off.</li>
           <li><strong>Meeting titles</strong>: show them, or show "Meeting."</li>
           <li><strong>Background and font</strong>: pick from the built-in sets.</li>
+          <li><strong>Hours</strong>: which days and hours the board is lit, or always on.</li>
         </ul>
       </div>
       <div class="card">
@@ -193,6 +195,14 @@
     <details>
       <summary>Why does Google say the app is "unverified" when I sign in?</summary>
       <p>Only the "sign in with Google" path shows that screen; service accounts don't. Google reviews apps that ask for calendar access, and the review takes weeks. Until it's done, tap through the warning, or have your Workspace admin mark Bored Room as trusted.</p>
+    </details>
+    <details>
+      <summary>What happens at night and on weekends?</summary>
+      <p>During setup you pick the days and hours the board should be on (Monday to Friday, 7 AM to 5 PM by default, or always on). Outside those hours the screen goes black and the backlight drops to its minimum, which is as close to off as an iPad app can get. Anyone who walks up and touches it gets the live board for a minute. A meeting that runs late keeps the board lit until it ends. In the morning it comes back on its own; nobody has to press anything. For OLED iPad Pros the board also shifts its layout by a few pixels every few minutes, so nothing sits on the same pixels for hours.</p>
+    </details>
+    <details>
+      <summary>I forgot the PIN.</summary>
+      <p>Tap "Forgot PIN?" on the PIN screen. You prove you're the admin the same way the iPad was set up: choose the service account's key file again, or sign in as the board's Google account. Then pick a new PIN. The iPad stays on the wall. If your MDM pushes the PIN, change it there instead. In a small setup, deleting and reinstalling the app also clears the PIN.</p>
     </details>
     <details>
       <summary>How do I keep people from changing the settings?</summary>
