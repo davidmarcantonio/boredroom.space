@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- AppConfig Community spec for Bored Room. Import into Jamf, Mosyle, Kandji, Intune, etc.
      Every key is optional. A managed key overrides the on-device value and locks it in Settings.
-     Google sign-in still happens once on each iPad. -->
+     With serviceAccountKey set, no sign-in happens on the iPad at all. -->
 <managedAppConfiguration>
   <version>1</version>
   <bundleId>com.dmarcantonio.RoomBoard</bundleId>
@@ -10,6 +10,9 @@
       <defaultValue><value></value></defaultValue>
     </string>
     <string keyName="calendarId">
+      <defaultValue><value></value></defaultValue>
+    </string>
+    <string keyName="serviceAccountKey">
       <defaultValue><value></value></defaultValue>
     </string>
     <string keyName="background">
@@ -55,6 +58,10 @@
     <field keyName="calendarId" type="input">
       <label><language value="en-US">Google calendar ID</language></label>
       <description><language value="en-US">The room resource's calendar ID, e.g. c_abc123@resource.calendar.google.com. Found in Google Admin console under Buildings and resources.</language></description>
+    </field>
+    <field keyName="serviceAccountKey" type="input">
+      <label><language value="en-US">Service account key (JSON)</language></label>
+      <description><language value="en-US">Contents of the service account's key file, raw JSON or base64. The iPad uses it to read the room with no sign-in. Share each room's calendar with the service account's email first.</language></description>
     </field>
     <field keyName="background" type="select">
       <label><language value="en-US">Background</language></label>
