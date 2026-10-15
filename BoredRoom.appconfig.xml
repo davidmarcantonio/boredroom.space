@@ -51,6 +51,11 @@
     <string keyName="activeHours">
       <defaultValue><value>07:00-17:00</value></defaultValue>
     </string>
+    <string keyName="backgroundImageURL"/>
+    <integer keyName="backgroundDimming">
+      <defaultValue><value>55</value></defaultValue>
+      <constraint min="30" max="90" nullable="true"/>
+    </integer>
   </dict>
   <presentation defaultLocale="en-US">
     <field keyName="roomName" type="input">
@@ -107,6 +112,14 @@
     <field keyName="activeHours" type="input">
       <label><language value="en-US">Active hours</language></label>
       <description><language value="en-US">24-hour range, e.g. 07:00-17:00. 24:00 is allowed as the end. 15-minute steps.</language></description>
+    </field>
+    <field keyName="backgroundImageURL" type="input">
+      <label><language value="en-US">Background image URL</language></label>
+      <description><language value="en-US">https:// link to a JPEG, PNG or HEIC of 10 MB or less. Downloaded at most once a day; locks the Background section on the iPad.</language></description>
+    </field>
+    <field keyName="backgroundDimming" type="input">
+      <label><language value="en-US">Photo dimming (%)</language></label>
+      <description><language value="en-US">30 to 90. How much the photo is darkened behind the text. 55 is the default.</language></description>
     </field>
   </presentation>
 </managedAppConfiguration>

@@ -91,6 +91,8 @@
     <tr><td><code>alwaysOn</code></td><td>boolean</td><td>true keeps the board lit around the clock.</td><td>Your policy. Leave false to use the days and hours below.</td></tr>
     <tr><td><code>activeDays</code></td><td>string</td><td>Days the board is lit, e.g. <code>Mon,Tue,Wed,Thu,Fri</code> or <code>Mon-Fri</code></td><td>English day names (full or three-letter), comma-separated; ranges like <code>Mon-Fri</code> work. Misspelled days are ignored. Any day not listed is dark all day.</td></tr>
     <tr><td><code>activeHours</code></td><td>string</td><td>Hours the board is lit, e.g. <code>07:00-17:00</code></td><td>24-hour clock, rounded to the nearest 15 minutes, <code>24:00</code> allowed as the end. Not accepted: am/pm, overnight ranges, or "to" instead of a dash. Outside these hours the screen is black at minimum backlight and wakes for a minute on touch; a meeting in progress keeps it lit.</td></tr>
+    <tr><td><code>backgroundImageURL</code></td><td>string</td><td>An <code>https://</code> link to a JPEG, PNG or HEIC, 10 MB or less.</td><td>Any HTTPS address the iPads can reach without signing in: your intranet, a public bucket, your website. Plain <code>http://</code> is ignored. Locks the whole Background section. The iPad checks hourly and downloads at most once a day, so a new image appears within a day (or right away if you change the address). If the download fails, the last good image stays; until the first one arrives, <code>background</code> (or the current background) shows.</td></tr>
+    <tr><td><code>backgroundDimming</code></td><td>integer</td><td>How much the photo is darkened behind the text, <code>30</code> to <code>90</code> (percent).</td><td>Your choice. 55 is the default. Bright photos need 50 or more to keep the board readable. Values outside 30–90 are clamped.</td></tr>
   </table>
   <p>If you push none of the three hours keys, the default schedule applies: Monday to Friday, 07:00 to 17:00. Any one of them locks the whole Hours section on the device. A value the app can't parse is ignored (the default stays), so check the board after the first push. All string keys must be plist strings; <code>pin</code> as an integer is ignored.</p>
   <p>With <code>serviceAccountKey</code>, <code>calendarId</code>, <code>roomName</code>, and <code>pin</code> set, the app skips setup entirely and boots to the board. Setting only some keys is fine; the app asks for the rest on first launch and locks what you pushed.</p>
@@ -121,6 +123,10 @@
   &lt;string&gt;Mon,Tue,Wed,Thu,Fri&lt;/string&gt;
   &lt;key&gt;activeHours&lt;/key&gt;
   &lt;string&gt;07:00-18:00&lt;/string&gt;
+  &lt;key&gt;backgroundImageURL&lt;/key&gt;
+  &lt;string&gt;https://intranet.example.com/lobby.jpg&lt;/string&gt;
+  &lt;key&gt;backgroundDimming&lt;/key&gt;
+  &lt;integer&gt;55&lt;/integer&gt;
 &lt;/dict&gt;</pre>
 
   <h3>Example: Intune (iOS app configuration policy, "Use configuration designer")</h3>
@@ -135,6 +141,8 @@
     <tr><td>alwaysOn</td><td>Boolean</td><td>false</td></tr>
     <tr><td>activeDays</td><td>String</td><td>Mon,Tue,Wed,Thu,Fri</td></tr>
     <tr><td>activeHours</td><td>String</td><td>07:00-18:00</td></tr>
+    <tr><td>backgroundImageURL</td><td>String</td><td>https://intranet.example.com/lobby.jpg</td></tr>
+    <tr><td>backgroundDimming</td><td>Integer</td><td>55</td></tr>
   </table>
   <p>Intune's "Enter XML data" option accepts the <code>&lt;dict&gt;</code> above verbatim (no <code>&lt;plist&gt;</code> wrapper). Intune substitutes <code>{{serialnumber}}</code> and <code>{{deviceid}}</code> but has no device-name token, so one policy per room is the practical pattern there.</p>
 
