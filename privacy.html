@@ -28,9 +28,9 @@
 
 <main class="wrap article">
   <h1>Privacy policy</h1>
-  <p class="updated">Last updated October 14, 2026. Applies to the Bored Room iPad app and to boredroom.space.</p>
+  <p class="updated">Last updated October 15, 2026. Applies to the Bored Room iPad app and to boredroom.space.</p>
 
-  <p class="lede">Bored Room does not collect, store, transmit, or sell any personal data. There is no Bored Room server. The app runs entirely on your iPad and talks only to Google.</p>
+  <p class="lede">Bored Room does not collect, store, transmit, or sell any personal data. There is no Bored Room server. The app runs entirely on your iPad and talks only to Google, plus, if your organization sets one, the background image address it chose.</p>
 
   <h2>What the app does with your data</h2>
   <p>The app reads the room's calendar in one of two ways, both chosen by you. With a service account, you load a key file your administrator created; the iPad uses it to read only the calendars your administrator shared with that account, and the key never leaves the iPad. With Google sign-in, the app asks for permission to read the room's calendar and optionally to create events so the room can be booked from the iPad; administrators also grant read access to the organization's room list, used only to show the list during setup.</p>
@@ -51,7 +51,7 @@
     <li>No crash reporting services.</li>
     <li>No advertising, no advertising identifiers.</li>
     <li>No third-party SDKs. The app contains only our code and Apple's frameworks.</li>
-    <li>No network connections except to Google's OAuth and Calendar APIs.</li>
+    <li>No network connections except to Google's OAuth and Calendar APIs, and, only when your organization's MDM sets a background image address, a plain download of that image.</li>
     <li>No logging of meeting titles, attendees, or any calendar content, on the device or elsewhere.</li>
   </ul>
 
@@ -65,7 +65,7 @@
   <p>boredroom.space is a static site. It sets no cookies and runs no analytics. If you email us, we keep the email so we can reply.</p>
 
   <h2>Managed deployments</h2>
-  <p>If your organization deploys Bored Room through an MDM, the organization may push settings (service account key, room name, calendar, PIN, theme) to the iPad. Those settings are handled by your organization's MDM under its own privacy terms; Bored Room only reads them from the device.</p>
+  <p>If your organization deploys Bored Room through an MDM, the organization may push settings (service account key, room name, calendar, PIN, theme, background image address) to the iPad. Those settings are handled by your organization's MDM under its own privacy terms; Bored Room only reads them from the device. If a background image address is set, the iPad downloads that image about once a day with a plain request: no cookies, no account, and nothing about the room or its calendar. Like any web request, it reveals the network's IP address to whoever runs that server, which is your organization or a host it chose.</p>
 
   <h2>Children</h2>
   <p>Bored Room is a business tool and is not directed at children.</p>
