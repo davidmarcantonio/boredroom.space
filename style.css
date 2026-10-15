@@ -1,20 +1,23 @@
 /* The Bored Room — boredroom.space
-   Palette: Slate & Signal. Swap the tokens below to re-skin the whole site. */
+   Palette: Ocean. Swap the tokens below to re-skin the whole site. */
 
 :root {
-  --paper: #F3F5F8;
-  --paper-2: #E6EAF0;
-  --ink: #141A26;
-  --ink-2: #4A5468;
-  --midnight: #0D0F1F;
-  --midnight-2: #1C2242;
-  --ocean: #0D4F80;
-  --green: #22A35B;
-  --green-ink: #167A42;
+  --paper: #EEF4F8;
+  --paper-2: #DDE7EF;
+  --ink: #0B2A42;
+  --ink-2: #3E5A72;
+  --midnight: #073B5E;
+  --midnight-2: #0D527F;
+  --ocean: #0D5C8C;
+  --accent: #1C8C6E;        /* buttons, price */
+  --accent-ink: #146B54;
+  --free: #22A35B;          /* the board's Free color, always green */
   --busy: #E24850;
-  --plum: #4A2463;
-  --chrome: #C7CED9;
-  --steel: #8A95A5;
+  --board-a: #052A48;       /* board mock gradient */
+  --board-b: #0D527F;
+  --plum: #0D5C8C;
+  --chrome: #BCCBD8;
+  --steel: #7D94A8;
   --white: #FFFFFF;
 
   --font: "Bricolage Grotesque", "Avenir Next", "Helvetica Neue", system-ui, sans-serif;
@@ -39,7 +42,7 @@ body {
 
 a { color: var(--ocean); text-decoration-thickness: 1px; text-underline-offset: 3px; }
 a:hover { color: var(--ink); }
-:focus-visible { outline: 3px solid var(--green); outline-offset: 3px; border-radius: 4px; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
 
 h1, h2, h3 { line-height: 1.1; letter-spacing: -0.015em; margin: 0 0 0.4em; font-weight: 700; }
 h1 { font-size: clamp(2.4rem, 6vw, 4.4rem); font-weight: 800; letter-spacing: -0.03em; }
@@ -57,7 +60,7 @@ small, .small { font-size: 0.92rem; color: var(--ink-2); }
   padding: 18px 0;
 }
 .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; text-decoration: none; color: inherit; font-size: 1.1rem; white-space: nowrap; }
-.brand .dot { width: 14px; height: 14px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px rgba(34,163,91,.18); }
+.brand img { width: 30px; height: 30px; border-radius: 8px; display: block; }
 .nav { display: flex; gap: 22px; font-weight: 600; }
 .nav a { text-decoration: none; color: var(--ink-2); }
 .nav a:hover, .nav a[aria-current] { color: var(--ink); }
@@ -84,10 +87,10 @@ small, .small { font-size: 0.92rem; color: var(--ink-2); }
   background: var(--midnight-2); border: 1px solid rgba(255,255,255,.12);
   border-radius: 999px; padding: 8px 16px; margin: 6px 0 22px; font-weight: 600;
 }
-.price-tag b { font-size: 1.4rem; font-weight: 800; color: var(--green); }
+.price-tag b { font-size: 1.4rem; font-weight: 800; color: var(--accent); }
 
-.cta { display: inline-flex; align-items: center; gap: 10px; background: var(--green); color: var(--white); font-weight: 700; text-decoration: none; padding: 14px 22px; border-radius: 10px; }
-.cta:hover { background: var(--green-ink); color: var(--white); }
+.cta { display: inline-flex; align-items: center; gap: 10px; background: var(--accent); color: var(--white); font-weight: 700; text-decoration: none; padding: 14px 22px; border-radius: 10px; }
+.cta:hover { background: var(--accent-ink); color: var(--white); }
 .cta.ghost { background: transparent; color: inherit; border: 1.5px solid currentColor; }
 .cta.ghost:hover { background: rgba(255,255,255,.06); }
 .cta-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
@@ -95,7 +98,7 @@ small, .small { font-size: 0.92rem; color: var(--ink-2); }
 /* The board mock. This is the hero: it's what you're buying. */
 .board {
   aspect-ratio: 4 / 3;
-  background: linear-gradient(135deg, #0D0F1F, #1C2242);
+  background: linear-gradient(135deg, var(--board-a), var(--board-b));
   border-radius: 22px;
   border: 10px solid #1B1F2B;
   box-shadow: 0 30px 60px rgba(0,0,0,.45), inset 0 0 0 1px rgba(255,255,255,.06);
@@ -103,13 +106,13 @@ small, .small { font-size: 0.92rem; color: var(--ink-2); }
   display: grid; grid-template-columns: 12px 1fr;
   font-family: var(--font);
 }
-.board .band { background: var(--green); }
+.board .band { background: var(--free); }
 .board.busy .band { background: var(--busy); }
 .board .face { padding: 7% 7% 6%; display: grid; grid-template-rows: auto 1fr auto; color: var(--white); }
 .board .room { display: flex; justify-content: space-between; font-weight: 600; font-size: clamp(.8rem, 1.6vw, 1.1rem); }
 .board .room span:last-child { opacity: .65; font-weight: 400; font-variant-numeric: tabular-nums; }
 .board .state { align-self: center; }
-.board .state b { display: block; font-size: clamp(3rem, 9vw, 6rem); font-weight: 800; letter-spacing: -0.04em; color: var(--green); line-height: 1; }
+.board .state b { display: block; font-size: clamp(3rem, 9vw, 6rem); font-weight: 800; letter-spacing: -0.04em; color: var(--free); line-height: 1; }
 .board.busy .state b { color: var(--busy); }
 .board .state span { display: block; font-size: clamp(1rem, 2.4vw, 1.6rem); font-weight: 600; margin-top: .3em; }
 .board .state small { display: block; opacity: .65; font-size: clamp(.75rem, 1.5vw, 1rem); color: inherit; }
@@ -120,7 +123,7 @@ small, .small { font-size: 0.92rem; color: var(--ink-2); }
 /* Sections */
 section { padding: clamp(48px, 7vw, 88px) 0; }
 section + section { border-top: 1px solid var(--chrome); }
-.eyebrow-free { color: var(--green-ink); font-weight: 700; }
+.eyebrow-free { color: var(--accent-ink); font-weight: 700; }
 
 .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 3vw, 40px); }
 .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(20px, 3vw, 40px); }
@@ -153,7 +156,7 @@ section + section { border-top: 1px solid var(--chrome); }
 /* Pricing */
 .pricing { background: var(--midnight); color: var(--white); border-radius: 24px; padding: clamp(28px, 5vw, 56px); display: grid; grid-template-columns: auto 1fr; gap: clamp(24px, 5vw, 64px); align-items: center; }
 @media (max-width: 760px) { .pricing { grid-template-columns: 1fr; } }
-.pricing .big { font-size: clamp(4rem, 12vw, 8rem); font-weight: 800; line-height: .9; letter-spacing: -0.05em; color: var(--green); }
+.pricing .big { font-size: clamp(4rem, 12vw, 8rem); font-weight: 800; line-height: .9; letter-spacing: -0.05em; color: var(--accent); }
 .pricing .big small { display: block; font-size: 1rem; color: rgba(255,255,255,.7); font-weight: 600; letter-spacing: 0; margin-top: 10px; }
 .pricing ul { margin: 0; padding-left: 1.2em; color: rgba(255,255,255,.85); }
 .pricing li { margin: .3em 0; }
