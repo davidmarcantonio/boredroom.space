@@ -42,7 +42,7 @@
   <ol>
     <li><a href="https://admin.google.com">admin.google.com</a> › left menu <strong>Directory</strong> › <strong>Buildings and resources</strong> › <strong>Manage resources</strong>.</li>
     <li>If there's no building, add one first (<strong>Add building</strong>; the address can be approximate).</li>
-    <li><strong>Add new resource</strong>. Category: <strong>Meeting space</strong>. Type: <strong>Conference room</strong>. Give it the name people use. Save.</li>
+    <li>Add a resource (<strong>+</strong>). Category: the <strong>meeting space</strong> option, so it shows up in Calendar's room finder. Type: <strong>Conference room</strong>. Give it the name people use. Save.</li>
     <li>Repeat per room. They now show up when anyone creates a meeting.</li>
   </ol>
 
@@ -57,8 +57,17 @@
     <li>In the left menu, choose <strong>IAM &amp; Admin</strong> › <strong>Service Accounts</strong>. Click <strong>Create service account</strong>.</li>
     <li>Service account name: <code>room-displays</code>. Click <strong>Create and continue</strong>. On the next two screens (roles, user access) click <strong>Continue</strong> and <strong>Done</strong> without filling anything in.</li>
     <li>You're back at the list. Click the account you just made (it looks like <code>room-displays@room-displays-123456.iam.gserviceaccount.com</code>). <strong>Copy that email address somewhere</strong>; you'll need it in B3.</li>
-    <li>Click the <strong>Keys</strong> tab › <strong>Add key</strong> › <strong>Create new key</strong> › choose <strong>JSON</strong> › <strong>Create</strong>. A file downloads, named something like <code>room-displays-123456-abc123.json</code>.</li>
+    <li>Click the <strong>Keys</strong> tab › <strong>Add key</strong> › <strong>Create new key</strong> › choose <strong>JSON</strong> › <strong>Create</strong>. A file downloads, named something like <code>room-displays-123456-abc123.json</code>. Google won't let you download it a second time, so keep it.</li>
   </ol>
+  <div class="note">
+    <p><strong>If Google says "Service account key creation is disabled":</strong> that's normal. Google blocks key downloads by default for every Google Cloud organization created since May 2024, which is almost everyone following this guide for the first time. To allow it:</p>
+    <p>1. Left menu › <strong>IAM &amp; Admin</strong> › <strong>Organization Policies</strong>. Make sure your <code>Room displays</code> project is selected in the picker at the top.<br>
+    2. In the filter box type <code>key creation</code>. Open <strong>Disable service account key creation</strong> (ID <code>iam.managed.disableServiceAccountKeyCreation</code>).<br>
+    3. <strong>Manage policy</strong> › <strong>Override parent's policy</strong> › <strong>Add a rule</strong> › Enforcement: <strong>Off</strong> › <strong>Done</strong> › <strong>Set policy</strong>.<br>
+    4. If a second policy named <code>iam.disableServiceAccountKeyCreation</code> is also listed as enforced, do the same for it.<br>
+    5. Wait a few minutes, then go back to the Keys tab and try again.</p>
+    <p>If the Manage policy button is greyed out, your admin account needs the <strong>Organization Policy Administrator</strong> role: IAM &amp; Admin › IAM, switch the picker from the project to your <em>organization</em>, find your account › edit › add that role. The Google Workspace super admin who first opened Cloud Console can grant it.</p>
+  </div>
   <div class="note">
     <p><strong>That file is a password.</strong> Anyone who has it can read the rooms you share. Keep it with your other IT passwords, not in a shared drive everyone can see. If it ever leaks, come back to the Keys tab, delete it, and create a new one. You'll also use it to reset a forgotten PIN, so don't lose it.</p>
   </div>
@@ -68,18 +77,18 @@
   <ol>
     <li>Go to <a href="https://admin.google.com">admin.google.com</a>, signed in as the admin.</li>
     <li>Left menu: <strong>Apps</strong> › <strong>Google Workspace</strong> › <strong>Calendar</strong>.</li>
-    <li>Click <strong>Sharing settings</strong>.</li>
-    <li>Find <strong>External sharing options for secondary calendars</strong>. (Room calendars follow this setting.) Choose <strong>Share all information, but outsiders cannot change calendars</strong>. If you'd like people to be able to book the room from the iPad at the door, choose <strong>Share all information, and outsiders can change calendars</strong> instead.</li>
-    <li>Click <strong>Save</strong>. Give it five minutes before B3.</li>
+    <li>Click <strong>Sharing settings</strong>, then scroll down to the <strong>General settings</strong> card.</li>
+    <li>Open <strong>External sharing options for secondary calendars</strong>. (Room calendars follow this setting, not the primary-calendar one above it.) Choose <strong>Share all information, but outsiders cannot change calendars</strong>. If you'd like people to be able to book the room from the iPad at the door, choose <strong>Share all information, and outsiders can change calendars</strong> instead.</li>
+    <li>Click <strong>Save</strong>. It usually applies within minutes, but Google says it can take up to 24 hours. If B3 only offers "free/busy" permissions, that's the sign it hasn't applied yet.</li>
   </ol>
 
   <p><strong>B3. Share each room with the service account</strong></p>
   <ol>
     <li>Go to <a href="https://calendar.google.com">calendar.google.com</a>, signed in as the admin.</li>
-    <li>On the left, under <strong>Other calendars</strong>, find the room. If it isn't there: click the <strong>+</strong> next to "Other calendars" › <strong>Browse resources</strong> › tick the room. It appears in the list.</li>
+    <li>On the left, find the room under <strong>My calendars</strong> or <strong>Other calendars</strong>. If it isn't there: click the <strong>+</strong> next to "Other calendars" › <strong>Browse resources</strong> › pick the building › tick the room. It appears in the list.</li>
     <li>Hover over the room name, click the three dots (⋮) › <strong>Settings and sharing</strong>.</li>
-    <li>Scroll to <strong>Share with specific people or groups</strong> › <strong>Add people and groups</strong>.</li>
-    <li>Paste the service account's email (from B1). For Permissions choose <strong>See all event details</strong>. If you chose the booking option in B2 and want booking from the iPad, choose <strong>Make changes to events</strong> instead. Click <strong>Send</strong>.</li>
+    <li>On the left click <strong>Shared with</strong> (older layouts call it "Share with specific people or groups") › <strong>Add people and groups</strong>.</li>
+    <li>Paste the service account's email (from B1). For Permissions choose <strong>See event details</strong> (older menus: "See all event details"). If you chose the booking option in B2 and want booking from the iPad, choose <strong>Make changes and see event details</strong> (older: "Make changes to events") instead. Click <strong>Send</strong>.</li>
     <li>Do the same for each room. Same email every time.</li>
   </ol>
 
@@ -87,14 +96,14 @@
   <ol>
     <li>Any iPad on iPadOS 17 or newer. Settings › General › Software Update if it's behind.</li>
     <li>Connected to Wi-Fi, and plugged into power where it will hang. The app keeps the screen on, which needs power.</li>
-    <li>Bored Room installed from the App Store (99¢).</li>
+    <li>Bored Room installed from the App Store (99¢). Installing from the App Store needs an Apple ID signed in on the iPad; any Apple ID works, and you can sign out of it afterward (Settings › your name › Sign Out) without losing the app.</li>
     <li>Settings › <strong>Accessibility</strong> › <strong>Display &amp; Text Size</strong> › <strong>Auto-Brightness</strong> off. Otherwise the light sensor undoes the after-hours dimming.</li>
     <li>Settings › <strong>Display &amp; Brightness</strong> › <strong>Auto-Lock</strong> › Never. Belt and braces; the app keeps the screen awake anyway.</li>
     <li>The key file from B1 somewhere the iPad can reach it. Any of these works:
       <ul>
-        <li><strong>AirDrop</strong> from a Mac: right-click the file › Share › AirDrop › pick the iPad. On the iPad, accept it; it lands in Files › On My iPad › <strong>Downloads</strong>.</li>
+        <li><strong>AirDrop</strong> from a Mac: right-click the file › Share › AirDrop › pick the iPad. On the iPad, accept it; it lands in the Files app, normally in <strong>Downloads</strong> (under On My iPad, or under iCloud Drive if the iPad has an Apple ID). If the iPad asks which app should open it, choose Files.</li>
         <li><strong>iCloud Drive or Google Drive</strong>: put the file in a folder you can open from the iPad's Files app. Note which folder.</li>
-        <li><strong>Email it to yourself</strong>, open the mail on the iPad, tap the attachment, tap Share › <strong>Save to Files</strong> › On My iPad › Save. Note which folder.</li>
+        <li><strong>Email it to yourself</strong> (this needs Mail set up on the iPad), open the mail, tap the attachment, tap Share › <strong>Save to Files</strong> › On My iPad › Save. Note which folder.</li>
       </ul>
     </li>
   </ol>
@@ -116,7 +125,7 @@
     <li>Tap <strong>Use a service account</strong>.</li>
     <li>Tap <strong>Choose key file</strong>. The Files app opens. Go to wherever you put the key in section C:
       <ul>
-        <li>AirDropped it: <strong>Browse</strong> › <strong>On My iPad</strong> › <strong>Downloads</strong> (or the Downloads shortcut in the sidebar).</li>
+        <li>AirDropped it: <strong>Browse</strong> › <strong>Downloads</strong> in the sidebar (under On My iPad or iCloud Drive).</li>
         <li>iCloud Drive or Google Drive: <strong>Browse</strong> › that drive › the folder you used.</li>
         <li>Saved from an email: <strong>Browse</strong> › <strong>On My iPad</strong>, or whichever folder you picked in "Save to Files".</li>
       </ul>
@@ -130,7 +139,7 @@
 
   <h2>Mount it and lock it</h2>
   <ol>
-    <li>Recommended: lock the iPad to the app so nobody wanders off to Safari. Settings › <strong>Accessibility</strong> › <strong>Guided Access</strong> › turn it on and set a passcode. Then open Bored Room, press the top button three times quickly, tap <strong>Start</strong>. (To end Guided Access later: triple-click again and enter the passcode.)</li>
+    <li>Recommended: lock the iPad to the app so nobody wanders off to Safari. Settings › <strong>Accessibility</strong> › <strong>Guided Access</strong> › turn it on and set a passcode. Then open Bored Room, press the top button three times quickly, tap <strong>Start</strong>. (To end Guided Access later: triple-click again, enter the passcode, tap <strong>End</strong>. Older iPads with a Home button use that instead of the top button.)</li>
     <li>Any wall mount or stand that holds an iPad works. Landscape or portrait; the board adapts. Route the power cable.</li>
   </ol>
 
@@ -149,11 +158,11 @@
   <h2>If something's off</h2>
   <ul>
     <li><strong>"No rooms are shared with this service account yet."</strong> B3 wasn't done for this room, or B2's setting hasn't applied yet (wait five minutes). Check that you shared with the exact email from B1.</li>
-    <li><strong>Google won't let you share with that email.</strong> B2 again; the setting must allow "Share all information".</li>
+    <li><strong>Google only offers "free/busy" when sharing with that email, or refuses it.</strong> B2 again; the setting must allow "Share all information", and it can take a while to apply.</li>
     <li><strong>"That file isn't a service account key."</strong> You picked a different file. It should be the .json that downloaded in B1, step 7.</li>
-    <li><strong>Meetings show as "Meeting" with no title.</strong> Either "Show meeting titles" is off in Settings, or the share permission is "See only free/busy". Re-share with "See all event details".</li>
+    <li><strong>Meetings show as "Meeting" with no title.</strong> Either "Show meeting titles" is off in Settings, or the share permission is "See only free/busy (hide details)". Re-share with "See event details".</li>
     <li><strong>A meeting shows as "Private meeting".</strong> That's correct: the person who made it marked it private.</li>
-    <li><strong>"Book now" doesn't work.</strong> It needs "Make changes to events" in B3 and the booking option in B2.</li>
+    <li><strong>"Book now" doesn't work.</strong> It needs "Make changes and see event details" in B3 and the booking option in B2.</li>
     <li><strong>The screen is black.</strong> It's outside the hours you set. Touch it to see the board for a minute; hold the corner tab › PIN › Settings › Hours to change the schedule.</li>
     <li><strong>You forgot the PIN.</strong> Hold the corner tab › <strong>Forgot PIN?</strong> › choose the key file again (or sign in as the board's Google account) › new PIN. Or delete the app and install it again; that clears the PIN too, and the key file sets it up again in two minutes.</li>
   </ul>

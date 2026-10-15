@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- AppConfig Community spec for Bored Room. Import into Jamf, Mosyle, Kandji, Intune, etc.
-     Every key is optional. A managed key overrides the on-device value and locks it in Settings.
+<!-- AppConfig Community spec for Bored Room. Consoles that import a spec file: Workspace ONE UEM,
+     Ivanti EPMM, IBM MaaS360, SOTI, ManageEngine. Jamf, Intune, Mosyle and Iru take the <dict> as a
+     plist instead; see setup-mdm.html. Every key is optional. A managed key overrides the on-device value and locks it in Settings.
      With serviceAccountKey set, no sign-in happens on the iPad at all. -->
 <managedAppConfiguration>
   <version>1</version>
   <bundleId>com.dmarcantonio.RoomBoard</bundleId>
   <dict>
-    <string keyName="roomName">
-      <defaultValue><value></value></defaultValue>
-    </string>
-    <string keyName="calendarId">
-      <defaultValue><value></value></defaultValue>
-    </string>
-    <string keyName="serviceAccountKey">
-      <defaultValue><value></value></defaultValue>
-    </string>
+    <string keyName="roomName"/>
+    <string keyName="calendarId"/>
+    <string keyName="serviceAccountKey"/>
     <string keyName="background">
       <defaultValue><value>midnight</value></defaultValue>
       <constraint nullable="true">
@@ -40,9 +35,7 @@
         </values>
       </constraint>
     </string>
-    <string keyName="pin">
-      <defaultValue><value></value></defaultValue>
-    </string>
+    <string keyName="pin"/>
     <boolean keyName="allowBooking">
       <defaultValue><value>true</value></defaultValue>
     </boolean>
