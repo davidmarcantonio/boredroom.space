@@ -27,11 +27,11 @@
       <constraint nullable="true">
         <values>
           <value>classic</value>
-          <value>rounded</value>
-          <value>serif</value>
+          <value>helvetica</value>
           <value>avenir</value>
-          <value>futura</value>
-          <value>optima</value>
+          <value>din</value>
+          <value>verdana</value>
+          <value>gillsans</value>
         </values>
       </constraint>
     </string>
@@ -84,11 +84,11 @@
       <label><language value="en-US">Font</language></label>
       <options>
         <option value="classic"><language value="en-US">Classic</language></option>
-        <option value="rounded"><language value="en-US">Rounded</language></option>
-        <option value="serif"><language value="en-US">Serif</language></option>
+        <option value="helvetica"><language value="en-US">Helvetica</language></option>
         <option value="avenir"><language value="en-US">Avenir</language></option>
-        <option value="futura"><language value="en-US">Futura</language></option>
-        <option value="optima"><language value="en-US">Optima</language></option>
+        <option value="din"><language value="en-US">DIN</language></option>
+        <option value="verdana"><language value="en-US">Verdana</language></option>
+        <option value="gillsans"><language value="en-US">Gill Sans</language></option>
       </options>
     </field>
     <field keyName="pin" type="input">
