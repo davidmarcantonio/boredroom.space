@@ -20,7 +20,7 @@
   --steel: #7D94A8;
   --white: #FFFFFF;
 
-  --font: "Bricolage Grotesque", "Avenir Next", "Helvetica Neue", system-ui, sans-serif;
+  --font: "Instrument Sans", "Avenir Next", "Helvetica Neue", system-ui, sans-serif;
   --measure: 62ch;
   --gutter: clamp(16px, 4vw, 40px);
   --radius: 14px;
