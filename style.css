@@ -204,6 +204,12 @@ footer a:hover { color: var(--white); }
 .note p { margin: 0; }
 .note p + p { margin-top: 8px; }
 .print-hint { color: var(--steel); font-size: .9rem; }
+/* Prerequisite checklist: real boxes, so it prints as a to-do */
+.checklist { list-style: none; padding-left: 0 !important; max-width: 760px; }
+.checklist li { position: relative; padding-left: 32px; margin: .5em 0; }
+.checklist li::before { content: ""; position: absolute; left: 0; top: .2em; width: 16px; height: 16px; border: 2px solid var(--steel); border-radius: 4px; }
+.part { color: var(--accent-ink); font-weight: 600; font-size: .85rem; letter-spacing: .04em; text-transform: uppercase; margin: 2.4em 0 -.6em; }
+.part + h2 { margin-top: .6em; }
 pre { background: var(--midnight); color: #E6EEF5; padding: 16px 18px; border-radius: 10px; overflow-x: auto; font-size: .88rem; line-height: 1.5; max-width: 760px; }
 .article h3 { margin-top: 1.6em; }
 
