@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- AppConfig Community spec for Bored Room. Import into Jamf, Mosyle, Kandji, Intune, etc.
+     Every key is optional. A managed key overrides the on-device value and locks it in Settings.
+     Google sign-in still happens once on each iPad. -->
+<managedAppConfiguration>
+  <version>1</version>
+  <bundleId>com.dmarcantonio.RoomBoard</bundleId>
+  <dict>
+    <string keyName="roomName">
+      <defaultValue><value></value></defaultValue>
+    </string>
+    <string keyName="calendarId">
+      <defaultValue><value></value></defaultValue>
+    </string>
+    <string keyName="background">
+      <defaultValue><value>midnight</value></defaultValue>
+      <constraint nullable="true">
+        <values>
+          <value>midnight</value>
+          <value>slate</value>
+          <value>ocean</value>
+          <value>plum</value>
+          <value>charcoal</value>
+        </values>
+      </constraint>
+    </string>
+    <string keyName="font">
+      <defaultValue><value>classic</value></defaultValue>
+      <constraint nullable="true">
+        <values>
+          <value>classic</value>
+          <value>rounded</value>
+          <value>serif</value>
+          <value>avenir</value>
+          <value>futura</value>
+          <value>optima</value>
+        </values>
+      </constraint>
+    </string>
+    <string keyName="pin">
+      <defaultValue><value></value></defaultValue>
+    </string>
+    <boolean keyName="allowBooking">
+      <defaultValue><value>true</value></defaultValue>
+    </boolean>
+    <boolean keyName="showMeetingTitles">
+      <defaultValue><value>true</value></defaultValue>
+    </boolean>
+  </dict>
+  <presentation defaultLocale="en-US">
+    <field keyName="roomName" type="input">
+      <label><language value="en-US">Room name</language></label>
+      <description><language value="en-US">Shown at the top of the board, e.g. "Boardroom".</language></description>
+    </field>
+    <field keyName="calendarId" type="input">
+      <label><language value="en-US">Google calendar ID</language></label>
+      <description><language value="en-US">The room resource's calendar ID, e.g. c_abc123@resource.calendar.google.com. Found in Google Admin console under Buildings and resources.</language></description>
+    </field>
+    <field keyName="background" type="select">
+      <label><language value="en-US">Background</language></label>
+      <options>
+        <option value="midnight"><language value="en-US">Midnight</language></option>
+        <option value="slate"><language value="en-US">Slate</language></option>
+        <option value="ocean"><language value="en-US">Ocean</language></option>
+        <option value="plum"><language value="en-US">Plum</language></option>
+        <option value="charcoal"><language value="en-US">Charcoal</language></option>
+      </options>
+    </field>
+    <field keyName="font" type="select">
+      <label><language value="en-US">Font</language></label>
+      <options>
+        <option value="classic"><language value="en-US">Classic</language></option>
+        <option value="rounded"><language value="en-US">Rounded</language></option>
+        <option value="serif"><language value="en-US">Serif</language></option>
+        <option value="avenir"><language value="en-US">Avenir</language></option>
+        <option value="futura"><language value="en-US">Futura</language></option>
+        <option value="optima"><language value="en-US">Optima</language></option>
+      </options>
+    </field>
+    <field keyName="pin" type="input">
+      <label><language value="en-US">Settings PIN</language></label>
+      <description><language value="en-US">4 digits. Needed to open Settings on the iPad.</language></description>
+    </field>
+    <field keyName="allowBooking" type="checkbox">
+      <label><language value="en-US">Allow booking from the iPad</language></label>
+    </field>
+    <field keyName="showMeetingTitles" type="checkbox">
+      <label><language value="en-US">Show meeting titles</language></label>
+    </field>
+  </presentation>
+</managedAppConfiguration>
