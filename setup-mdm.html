@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deploy through your MDM — Bored Room</title>
+<meta name="description" content="Zero-touch deployment of Bored Room with Jamf, Mosyle, Kandji, Intune or any MDM: app, kiosk lock, and Managed App Configuration keys with examples.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="wrap">
+  <div class="top">
+    <a class="brand" href="/"><img src="mark.png" alt="" width="30" height="30"> Bored Room</a>
+    <nav class="nav">
+      <a href="/#how">How it works</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="/#mdm">MDM</a>
+      <a href="setup.html" aria-current="page">Setup</a>
+      <a href="/#faq">FAQ</a>
+    </nav>
+  </div>
+</div>
+
+<main class="wrap article">
+  <p class="small"><a href="setup.html">Setup</a> › MDM</p>
+  <h1>Deploy through your MDM</h1>
+  <p class="lede">For IT teams with a device console. Push the app, the kiosk lock, and every setting including the room and the credential. An iPad goes from the box to the board with nobody touching it.</p>
+  <p class="print-hint">Print this page with ⌘P. Links print with their addresses.</p>
+
+  <h2>Overview</h2>
+  <ol>
+    <li>Google: one service account, shared with every room. (Once.)</li>
+    <li>Apple Business Manager: buy N copies of Bored Room, assign to your MDM. (Once.)</li>
+    <li>MDM: app with device-based assignment, a Single App Mode payload, and Managed App Configuration per iPad or per group. (Once per profile; then scoping.)</li>
+  </ol>
+  <p>Bored Room reads the standard Managed App Configuration dictionary (<code>com.apple.configuration.managed</code>). Every key is optional. Any key you set is locked on the device: the matching row in Settings shows the value but can't be changed from the iPad.</p>
+
+  <h2>Part 1: Google</h2>
+  <p>Full click-by-click in the <a href="setup-manual.html">by-hand guide</a>. Summary:</p>
+  <ol>
+    <li><a href="https://console.cloud.google.com">Cloud Console</a> › project › enable <strong>Google Calendar API</strong> › IAM &amp; Admin › Service Accounts › create (no roles) › Keys › Add key › JSON. Keep the file; it's the credential you'll push.</li>
+    <li><a href="https://admin.google.com">Admin console</a> › Apps › Google Workspace › Calendar › Sharing settings › <strong>External sharing options for secondary calendars</strong> › "Share all information, but outsiders cannot change calendars" (or "…and outsiders can change calendars" if you'll enable booking).</li>
+    <li>Share each room with the service account email: <strong>See all event details</strong>, or <strong>Make changes to events</strong> for booking. Do this in Google Calendar (room › Settings and sharing) or with the Calendar API's <code>acl.insert</code> (role <code>reader</code> or <code>writer</code>) if you're scripting many rooms.</li>
+  </ol>
+
+  <h2>Part 2: Apple Business Manager</h2>
+  <ol>
+    <li>Apps and Books › <strong>Bored Room</strong> › quantity › Get. 99¢ per copy.</li>
+    <li>Assign the licenses to the location your MDM server token belongs to.</li>
+    <li>In the MDM, sync Apps and Books so the app appears in your catalog.</li>
+  </ol>
+
+  <h2>Part 3: MDM configuration</h2>
+  <h3>App</h3>
+  <ul>
+    <li>Bundle ID: <code>com.dmarcantonio.RoomBoard</code> (the App Store name is Bored Room; the bundle ID predates the rename).</li>
+    <li>Distribution: <strong>device-based</strong>. The iPads need no Apple ID.</li>
+    <li>Automatic updates: on. Remove app on unenrollment: your policy.</li>
+  </ul>
+
+  <h3>Kiosk lock</h3>
+  <p>Single App Mode requires supervision; use Automated Device Enrollment or Configurator to supervise. Then push a Single App Mode payload (Jamf: Configuration Profile › Single App Mode; Intune: Device restrictions › Kiosk; Mosyle/Kandji: Kiosk/Single App) targeting <code>com.dmarcantonio.RoomBoard</code>. Suggested options: touch on, sleep/wake button off, volume buttons off, auto-lock disabled.</p>
+
+  <h3>Managed App Configuration keys</h3>
+  <table>
+    <tr><th>Key</th><th>Type</th><th>Value</th><th>Where to get it</th></tr>
+    <tr><td><code>serviceAccountKey</code></td><td>string</td><td>The key file's contents, raw JSON or base64.</td><td>The .json from Cloud Console › service account › Keys. Base64 it on a Mac with <code>base64 -i key.json | pbcopy</code>. Same value for every iPad.</td></tr>
+    <tr><td><code>calendarId</code></td><td>string</td><td>The room's calendar ID.</td><td>Admin console › Directory › Buildings and resources › Manage resources › the room › <strong>Resource email</strong>, e.g. <code>c_1882c…@resource.calendar.google.com</code>. Also under the room's Settings and sharing in Google Calendar › Integrate calendar › Calendar ID. One per iPad.</td></tr>
+    <tr><td><code>roomName</code></td><td>string</td><td>Text at the top of the board.</td><td>Whatever people call the room. One per iPad.</td></tr>
+    <tr><td><code>pin</code></td><td>string</td><td>Exactly 4 digits.</td><td>Your choice. One per fleet is fine; it only guards the app's settings.</td></tr>
+    <tr><td><code>allowBooking</code></td><td>boolean</td><td>Show "Book now" when the room is free.</td><td>Requires "Make changes to events" on the share and the "can change calendars" admin setting.</td></tr>
+    <tr><td><code>showMeetingTitles</code></td><td>boolean</td><td>false shows "Meeting" instead of titles. Private meetings never show their title regardless.</td><td>Your policy.</td></tr>
+    <tr><td><code>background</code></td><td>string</td><td><code>midnight</code> <code>slate</code> <code>ocean</code> <code>plum</code> <code>charcoal</code></td><td>Your choice.</td></tr>
+    <tr><td><code>font</code></td><td>string</td><td><code>classic</code> <code>rounded</code> <code>serif</code> <code>avenir</code> <code>futura</code> <code>optima</code></td><td>Your choice.</td></tr>
+  </table>
+  <p>With <code>serviceAccountKey</code>, <code>calendarId</code>, <code>roomName</code>, and <code>pin</code> set, the app skips setup entirely and boots to the board. Setting only some keys is fine; the app asks for the rest on first launch and locks what you pushed.</p>
+  <p>An AppConfig Community spec file for consoles that import one is at <a href="BoredRoom.appconfig.xml">BoredRoom.appconfig.xml</a>.</p>
+
+  <h3>Example: property list (Jamf, Mosyle, Kandji, most consoles)</h3>
+  <p>Paste as the app's configuration dictionary. Use MDM variables for the per-device values if your console supports them (Jamf: <code>$DEVICENAME</code>, Mosyle/Kandji: device attributes or custom fields), so one profile covers every room.</p>
+<pre>&lt;dict&gt;
+  &lt;key&gt;serviceAccountKey&lt;/key&gt;
+  &lt;string&gt;ewogICJ0eXBlIjogInNlcnZpY2VfYWNjb3VudCIsCiAg…&lt;/string&gt;
+  &lt;key&gt;calendarId&lt;/key&gt;
+  &lt;string&gt;c_1882ctscth49aga2n3qo5aaud4m2e@resource.calendar.google.com&lt;/string&gt;
+  &lt;key&gt;roomName&lt;/key&gt;
+  &lt;string&gt;Board Room&lt;/string&gt;
+  &lt;key&gt;pin&lt;/key&gt;
+  &lt;string&gt;4821&lt;/string&gt;
+  &lt;key&gt;allowBooking&lt;/key&gt;
+  &lt;true/&gt;
+  &lt;key&gt;showMeetingTitles&lt;/key&gt;
+  &lt;true/&gt;
+  &lt;key&gt;background&lt;/key&gt;
+  &lt;string&gt;ocean&lt;/string&gt;
+  &lt;key&gt;font&lt;/key&gt;
+  &lt;string&gt;classic&lt;/string&gt;
+&lt;/dict&gt;</pre>
+
+  <h3>Example: Intune (iOS app configuration policy, "Use configuration designer")</h3>
+  <table>
+    <tr><th>Configuration key</th><th>Value type</th><th>Configuration value</th></tr>
+    <tr><td>serviceAccountKey</td><td>String</td><td>(base64 of key.json)</td></tr>
+    <tr><td>calendarId</td><td>String</td><td>c_1882c…@resource.calendar.google.com</td></tr>
+    <tr><td>roomName</td><td>String</td><td>Board Room</td></tr>
+    <tr><td>pin</td><td>String</td><td>4821</td></tr>
+    <tr><td>allowBooking</td><td>Boolean</td><td>true</td></tr>
+    <tr><td>showMeetingTitles</td><td>Boolean</td><td>true</td></tr>
+  </table>
+  <p>Intune's "Enter XML data" option accepts the property list above verbatim.</p>
+
+  <h3>Scoping pattern</h3>
+  <p>One profile per room (or one profile with device variables), scoped to that room's iPad by serial or device group. The service account key and the PIN are identical across rooms; only <code>calendarId</code> and <code>roomName</code> change. A spreadsheet with serial, room name, and calendar ID is all you need to onboard 40 rooms.</p>
+
+  <h2>Verification</h2>
+  <ol>
+    <li>Push the app and the configuration to one iPad. On launch it should go straight to the board for the configured room.</li>
+    <li>Hold the bottom-right corner › PIN › Settings. A banner reads "Some settings are managed by your organization" and managed rows are read-only.</li>
+    <li>Create a test meeting in the room; it appears within 60 seconds.</li>
+  </ol>
+
+  <h2>Security notes</h2>
+  <ul>
+    <li>The service account key grants exactly what you shared: read (or write) on those room calendars, nothing else. It's stored in the iPad's keychain. Rotate it from Cloud Console (new key, delete old, push the new value); the app picks up the change on next launch.</li>
+    <li>No Bored Room servers are involved. The iPad talks to <code>oauth2.googleapis.com</code> and <code>www.googleapis.com</code> only. Allow those if you filter egress.</li>
+    <li>Full details: <a href="privacy.html">privacy policy</a>.</li>
+  </ul>
+
+  <h2>If something's off</h2>
+  <ul>
+    <li><strong>App shows setup instead of the board.</strong> One of the four core keys is missing or the dictionary isn't reaching the app. Check the profile is scoped to the device and the bundle ID matches.</li>
+    <li><strong>"That file isn't a service account key" at launch.</strong> The <code>serviceAccountKey</code> value is truncated or not valid base64/JSON. Re-paste.</li>
+    <li><strong>No rooms / 403.</strong> The room isn't shared with the service account, or the admin sharing setting is still at free/busy.</li>
+    <li><strong>Board shows "Can't read this room's calendar anymore."</strong> <code>calendarId</code> is wrong or the share was removed.</li>
+  </ul>
+
+  <p style="margin-top:2.5em">Questions, or a console we haven't covered? <a href="mailto:hello@boredroom.space">hello@boredroom.space</a>.</p>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>The Bored Room &middot; <a href="mailto:hello@boredroom.space">hello@boredroom.space</a></div>
+    <div><a href="privacy.html">Privacy policy</a> &middot; <a href="setup.html">Setup</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

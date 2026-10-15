@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Setup guide — Bored Room</title>
-<meta name="description" content="Set up Bored Room on an iPad: the Google room, the app, kiosk locking, and bulk deployment.">
+<title>Setup — Bored Room</title>
+<meta name="description" content="Three ways to set up Bored Room: by hand, with Apple Configurator, or through your MDM.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600;700&display=swap" rel="stylesheet">
@@ -20,6 +20,7 @@
     <nav class="nav">
       <a href="/#how">How it works</a>
       <a href="privacy.html">Privacy</a>
+      <a href="/#mdm">MDM</a>
       <a href="setup.html" aria-current="page">Setup</a>
       <a href="/#faq">FAQ</a>
     </nav>
@@ -27,91 +28,39 @@
 </div>
 
 <main class="wrap article">
-  <h1>Setup guide</h1>
-  <p class="lede">Ten minutes for the first room, two for each one after. If you'd rather do it on a call, <a href="mailto:hello@boredroom.space?subject=Free%20setup%20session">book a free setup session</a>.</p>
+  <h1>Set up Bored Room</h1>
+  <p class="lede">Pick the guide that matches how you manage iPads. Each one stands on its own and prints cleanly, so you can hand it to whoever's doing the work.</p>
 
-  <h2>Before you start</h2>
-  <ul>
-    <li>A Google Workspace account. Personal Gmail works for a shared calendar, but rooms as resources need Workspace.</li>
-    <li>An iPad on iPadOS 17 or later, on Wi-Fi.</li>
-    <li>Optional: a Mac with Apple Configurator, if you want the iPad locked to the app with no way out.</li>
-  </ul>
+  <div class="paths">
+    <a class="path" href="setup-manual.html">
+      <h3>By hand</h3>
+      <div class="who">For an office admin, no IT background needed</div>
+      <p>One to five rooms. You'll click through Google's admin pages once, then set up each iPad in about two minutes. Every step spelled out.</p>
+      <div class="time">About 20 minutes the first time</div>
+    </a>
+    <a class="path" href="setup-configurator.html">
+      <h3>With Apple Configurator</h3>
+      <div class="who">For the one-person IT shop</div>
+      <p>Supervise the iPads from a Mac, install the app through Apple Business Manager, and lock each one to the board so it survives reboots.</p>
+      <div class="time">About 30 minutes, then 5 per iPad</div>
+    </a>
+    <a class="path" href="setup-mdm.html">
+      <h3>Through your MDM</h3>
+      <div class="who">For IT teams with Jamf, Mosyle, Kandji, Intune, or similar</div>
+      <p>Push the app, the kiosk lock, and every setting including the room and the credential. iPads go from the box to the board untouched.</p>
+      <div class="time">About 30 minutes, then zero per iPad</div>
+    </a>
+  </div>
 
-  <h2>1. The room in Google</h2>
-  <p>If your room already exists as a Google Calendar resource (the thing people add to a meeting under "Rooms"), skip to step 2.</p>
-  <ol>
-    <li>Google Admin console › Buildings and resources › Resource management.</li>
-    <li>Add a building if you don't have one, then add a resource with type <em>Room</em>. Name it what people call it.</li>
-    <li>Done. Google gives it a calendar automatically.</li>
-  </ol>
-
-  <h2>2. A Google account for the iPad</h2>
-  <p>The iPad signs into Google with a real account. Use a dedicated one, not a person's: something like <code>rooms@yourcompany.com</code>. It needs to be able to see the room's calendar, which is the default for anyone in your Workspace.</p>
-  <p>A dedicated account means private meetings show as "Private meeting" rather than their title, nobody's personal calendar is on a wall, and the iPad keeps working when people leave.</p>
-  <p>Workspace admins can sign in with their own account instead and will see every room in the organization in the picker. Fine for a quick test; use the dedicated account for the wall.</p>
-
-  <h2>3. The app</h2>
-  <ol>
-    <li>Install Bored Room from the App Store on the iPad.</li>
-    <li>Open it. Tap <strong>Sign in with Google</strong> and sign in with the account from step 2.</li>
-    <li>You may see a Google screen saying the app isn't verified. Tap <strong>Continue</strong>. Then allow calendar access.</li>
-    <li>Pick the room. If you only have one, it's already selected.</li>
-    <li>Confirm the room name as it should appear on the board.</li>
-    <li>Set a 4-digit PIN. This protects the settings.</li>
-  </ol>
-  <p>The board appears. To change anything later, press and hold the faint tab in the bottom-right corner for a second, enter the PIN, and you're in Settings: room name, calendar, theme, font, background photo, titles on or off, booking on or off.</p>
-
-  <h2>4. Lock it to the wall</h2>
-  <p>Two ways to keep the iPad on the board and nothing else.</p>
-  <h3>Guided Access (no Mac needed)</h3>
-  <ol>
-    <li>Settings › Accessibility › Guided Access › on. Set a passcode.</li>
-    <li>Open Bored Room, triple-click the top button (or Home button), tap Start.</li>
-  </ol>
-  <p>Good for one or two rooms. Guided Access ends if the iPad fully reboots, so you'd restart it after a power cut.</p>
-  <h3>Single App Mode (survives reboots)</h3>
-  <ol>
-    <li>On a Mac, install Apple Configurator from the Mac App Store.</li>
-    <li>Plug in the iPad. Prepare it with <em>Supervise devices</em> turned on. This erases the iPad, so do it before step 3 or be ready to repeat it.</li>
-    <li>Install the app, sign in, pick the room.</li>
-    <li>In Configurator: Actions › Advanced › Start Single App Mode › Bored Room.</li>
-  </ol>
-  <p>The iPad now boots straight into the board. To get out, plug it back into the Mac and choose Stop Single App Mode.</p>
-
-  <h2>5. Keep the screen on</h2>
-  <p>The app keeps the screen awake while it's running. Plug the iPad in; a wall mount with a hidden cable is the usual setup. Settings › Display &amp; Brightness › Auto-Lock › Never is a good backup.</p>
-
-  <h2>Many rooms</h2>
-  <p>For 10, 20, or 40 rooms, buy the app through <a href="https://business.apple.com">Apple Business Manager</a> and push it from your MDM (Jamf, Mosyle, Kandji, Intune, and others). Apps and Books assigns the app to devices, so the iPads need no Apple ID.</p>
-  <p>Your MDM can also push settings so each iPad arrives configured. Bored Room reads these keys from Managed App Configuration:</p>
-  <table>
-    <tr><th>Key</th><th>Type</th><th>Value</th></tr>
-    <tr><td><code>roomName</code></td><td>string</td><td>What the board shows at the top</td></tr>
-    <tr><td><code>calendarId</code></td><td>string</td><td>The room's Google calendar ID, e.g. <code>c_abc…@resource.calendar.google.com</code>, from the Admin console resource page</td></tr>
-    <tr><td><code>background</code></td><td>string</td><td><code>midnight</code>, <code>slate</code>, <code>ocean</code>, <code>plum</code>, <code>charcoal</code></td></tr>
-    <tr><td><code>font</code></td><td>string</td><td><code>classic</code>, <code>rounded</code>, <code>serif</code>, <code>avenir</code>, <code>futura</code>, <code>optima</code></td></tr>
-    <tr><td><code>pin</code></td><td>string</td><td>4 digits</td></tr>
-    <tr><td><code>allowBooking</code></td><td>boolean</td><td>Show "Book now" when the room is free</td></tr>
-    <tr><td><code>showMeetingTitles</code></td><td>boolean</td><td>Off shows "Meeting" instead of titles</td></tr>
-  </table>
-  <p>An AppConfig spec file you can import into Jamf and most other MDMs is at <a href="BoredRoom.appconfig.xml">BoredRoom.appconfig.xml</a>. Anything you set from the MDM is locked on the device.</p>
-  <p>Google sign-in is still done once on each iPad. With a dedicated account and saved password, it's under a minute each.</p>
-
-  <h2>If something's off</h2>
-  <ul>
-    <li><strong>The room isn't in the list.</strong> The signed-in account can't see it. In Google Calendar on a desktop, as that account, add the room under "Other calendars › Browse resources". Or check the resource's sharing in the Admin console.</li>
-    <li><strong>Titles show as "Busy".</strong> The account has limited access to the room's calendar. In the Admin console, give it "See all event details". Private meetings will still show as "Private meeting", which is the point.</li>
-    <li><strong>"Book now" says to sign in again.</strong> Booking needs a permission that wasn't granted at sign-in. Settings › Sign out of Google, sign in again, allow both.</li>
-    <li><strong>It signed itself out after a week.</strong> We're still waiting on Google's app verification; until it completes, sign-ins on some accounts expire weekly. Sign in again. This goes away when verification lands.</li>
-  </ul>
-
-  <p style="margin-top:2.5em">Stuck? <a href="mailto:hello@boredroom.space">hello@boredroom.space</a>. A real person answers.</p>
+  <div class="note" style="margin-top:36px">
+    <p><strong>All three use the same Google setup.</strong> A free service account that your admin shares each room with. It's covered in full in the by-hand guide and summarized in the other two. If you'd rather do it on a call, <a href="mailto:hello@boredroom.space?subject=Free%20setup%20session">book a free setup session</a>.</p>
+  </div>
 </main>
 
 <footer>
   <div class="wrap">
     <div>The Bored Room &middot; <a href="mailto:hello@boredroom.space">hello@boredroom.space</a></div>
-    <div><a href="privacy.html">Privacy policy</a> &middot; <a href="setup.html">Setup guide</a></div>
+    <div><a href="privacy.html">Privacy policy</a> &middot; <a href="setup.html">Setup</a></div>
   </div>
 </footer>
 
