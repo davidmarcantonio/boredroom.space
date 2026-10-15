@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Deploy through your MDM — Bored Room</title>
-<meta name="description" content="Zero-touch deployment of Bored Room with Jamf, Mosyle, Kandji, Intune or any MDM: app, kiosk lock, and Managed App Configuration keys with examples.">
+<meta name="description" content="Zero-touch deployment of Bored Room with Jamf, Mosyle, Iru (formerly Kandji), Intune or any MDM: app, kiosk lock, and Managed App Configuration keys with examples.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600;700&display=swap" rel="stylesheet">
@@ -39,10 +39,10 @@
   <h3>A. Google: one service account, shared with every room</h3>
   <p>Full click-by-click in the <a href="setup-manual.html">by-hand guide</a>, sections A and B. Summary:</p>
   <ol>
-    <li><a href="https://console.cloud.google.com">Cloud Console</a> › project › enable <strong>Google Calendar API</strong> › IAM &amp; Admin › Service Accounts › create (no roles) › Keys › Add key › JSON. Keep the file; it's the credential you'll push.</li>
-    <li><a href="https://admin.google.com">Admin console</a> › Apps › Google Workspace › Calendar › Sharing settings › <strong>External sharing options for secondary calendars</strong> › "Share all information, but outsiders cannot change calendars" (or "…and outsiders can change calendars" if you'll enable booking).</li>
-    <li>Share each room with the service account email: <strong>See all event details</strong>, or <strong>Make changes to events</strong> for booking. Do this in Google Calendar (room › Settings and sharing) or with the Calendar API's <code>acl.insert</code> (role <code>reader</code> or <code>writer</code>) if you're scripting many rooms.</li>
-    <li>Collect each room's calendar ID: Admin console › Directory › Buildings and resources › Manage resources › the room › <strong>Resource email</strong>, e.g. <code>c_1882c…@resource.calendar.google.com</code>. A spreadsheet of serial, room name, calendar ID is all the per-device data you'll need.</li>
+    <li><a href="https://console.cloud.google.com">Cloud Console</a> › project › enable <strong>Google Calendar API</strong> › IAM &amp; Admin › Service Accounts › create (no roles) › Keys › Add key › JSON. Keep the file; it's the credential you'll push. Google Cloud organizations created since May 2024 block key creation by default (<code>iam.managed.disableServiceAccountKeyCreation</code>); override it on the project under IAM &amp; Admin › Organization Policies, as the <a href="setup-manual.html">by-hand guide</a> shows.</li>
+    <li><a href="https://admin.google.com">Admin console</a> › Apps › Google Workspace › Calendar › Sharing settings › General settings card › <strong>External sharing options for secondary calendars</strong> › "Share all information, but outsiders cannot change calendars" (or "…and outsiders can change calendars" if you'll enable booking). Can take up to 24 hours to apply.</li>
+    <li>Share each room with the service account email: <strong>See event details</strong>, or <strong>Make changes and see event details</strong> for booking (older labels: "See all event details" / "Make changes to events"). Do this in Google Calendar (room › Settings and sharing › Shared with) or with the Calendar API's <code>acl.insert</code> (role <code>reader</code> or <code>writer</code>; <code>writerWithoutPrivateAccess</code> also works for booking) if you're scripting many rooms.</li>
+    <li>Collect each room's calendar ID: in Google Calendar, the room › Settings and sharing › <strong>Integrate calendar</strong> › <strong>Calendar ID</strong>, e.g. <code>c_1882c…@resource.calendar.google.com</code> (the Admin console shows the same value as the resource's email). A spreadsheet of serial, room name, calendar ID is all the per-device data you'll need.</li>
   </ol>
 
   <h3>B. Apple Business Manager: licenses</h3>
@@ -75,12 +75,12 @@
   </ul>
 
   <h3>Kiosk lock</h3>
-  <p>Push a Single App Mode payload (Jamf: Configuration Profile › Single App Mode; Intune: Device restrictions › Kiosk; Mosyle/Kandji: Kiosk/Single App) targeting <code>com.dmarcantonio.RoomBoard</code>. Suggested options: touch on, sleep/wake button off, volume buttons off, auto-lock disabled.</p>
+  <p>Push Apple's App Lock payload, which consoles name differently: Jamf: Configuration Profiles › <strong>Single App Mode</strong>, by bundle ID. Intune: Device restrictions › <strong>Kiosk</strong> › App to run: <strong>Managed App</strong> › pick Bored Room (Intune doesn't take a bundle ID here). Iru: the <strong>App Lock</strong> library item, by bundle ID. Mosyle: Profiles › <strong>Single App Mode</strong>. Suggested options: leave touch on; disable the sleep/wake button, volume buttons, and auto-lock (Intune words these as "Block …").</p>
 
   <h3>Managed App Configuration keys</h3>
   <table>
     <tr><th>Key</th><th>Type</th><th>Value</th><th>Where to get it</th></tr>
-    <tr><td><code>serviceAccountKey</code></td><td>string</td><td>The key file's contents, raw JSON or base64.</td><td>The .json from Cloud Console › service account › Keys. Base64 it on a Mac with <code>base64 -i key.json | pbcopy</code>. Same value for every iPad.</td></tr>
+    <tr><td><code>serviceAccountKey</code></td><td>string</td><td>The key file's contents, raw JSON or base64.</td><td>The .json from Cloud Console › service account › Keys. Base64 it on a Mac with <code>base64 -i key.json | pbcopy</code> (one line, no wrapping). Linux's <code>base64</code> wraps lines; the app tolerates that, and missing <code>=</code> padding. Same value for every iPad.</td></tr>
     <tr><td><code>calendarId</code></td><td>string</td><td>The room's calendar ID.</td><td>Admin console › Directory › Buildings and resources › Manage resources › the room › <strong>Resource email</strong>, e.g. <code>c_1882c…@resource.calendar.google.com</code>. Also under the room's Settings and sharing in Google Calendar › Integrate calendar › Calendar ID. One per iPad.</td></tr>
     <tr><td><code>roomName</code></td><td>string</td><td>Text at the top of the board.</td><td>Whatever people call the room. One per iPad.</td></tr>
     <tr><td><code>pin</code></td><td>string</td><td>Exactly 4 digits.</td><td>Your choice. One per fleet is fine; it only guards the app's settings.</td></tr>
@@ -89,15 +89,15 @@
     <tr><td><code>background</code></td><td>string</td><td><code>midnight</code> <code>slate</code> <code>ocean</code> <code>plum</code> <code>charcoal</code></td><td>Your choice.</td></tr>
     <tr><td><code>font</code></td><td>string</td><td><code>classic</code> <code>rounded</code> <code>serif</code> <code>avenir</code> <code>futura</code> <code>optima</code></td><td>Your choice.</td></tr>
     <tr><td><code>alwaysOn</code></td><td>boolean</td><td>true keeps the board lit around the clock.</td><td>Your policy. Leave false to use the days and hours below.</td></tr>
-    <tr><td><code>activeDays</code></td><td>string</td><td>Days the board is lit, e.g. <code>Mon,Tue,Wed,Thu,Fri</code></td><td>Three-letter English day names, comma-separated. Any day not listed is dark all day.</td></tr>
-    <tr><td><code>activeHours</code></td><td>string</td><td>Hours the board is lit, e.g. <code>07:00-17:00</code></td><td>24-hour clock, 15-minute steps, <code>24:00</code> allowed as the end. Outside these hours the screen is black at minimum backlight and wakes for a minute on touch; a meeting in progress keeps it lit.</td></tr>
+    <tr><td><code>activeDays</code></td><td>string</td><td>Days the board is lit, e.g. <code>Mon,Tue,Wed,Thu,Fri</code> or <code>Mon-Fri</code></td><td>English day names (full or three-letter), comma-separated; ranges like <code>Mon-Fri</code> work. Misspelled days are ignored. Any day not listed is dark all day.</td></tr>
+    <tr><td><code>activeHours</code></td><td>string</td><td>Hours the board is lit, e.g. <code>07:00-17:00</code></td><td>24-hour clock, rounded to the nearest 15 minutes, <code>24:00</code> allowed as the end. Not accepted: am/pm, overnight ranges, or "to" instead of a dash. Outside these hours the screen is black at minimum backlight and wakes for a minute on touch; a meeting in progress keeps it lit.</td></tr>
   </table>
-  <p>If you push none of the three hours keys, the default schedule applies: Monday to Friday, 07:00 to 17:00. Any one of them locks the whole Hours section on the device.</p>
+  <p>If you push none of the three hours keys, the default schedule applies: Monday to Friday, 07:00 to 17:00. Any one of them locks the whole Hours section on the device. A value the app can't parse is ignored (the default stays), so check the board after the first push. All string keys must be plist strings; <code>pin</code> as an integer is ignored.</p>
   <p>With <code>serviceAccountKey</code>, <code>calendarId</code>, <code>roomName</code>, and <code>pin</code> set, the app skips setup entirely and boots to the board. Setting only some keys is fine; the app asks for the rest on first launch and locks what you pushed.</p>
   <p>An AppConfig Community spec file for consoles that import one is at <a href="BoredRoom.appconfig.xml">BoredRoom.appconfig.xml</a>.</p>
 
-  <h3>Example: property list (Jamf, Mosyle, Kandji, most consoles)</h3>
-  <p>Paste as the app's configuration dictionary. Use MDM variables for the per-device values if your console supports them (Jamf: <code>$DEVICENAME</code>, Mosyle/Kandji: device attributes or custom fields), so one profile covers every room.</p>
+  <h3>Example: property list (Jamf, Mosyle, Iru, most consoles)</h3>
+  <p>Paste as the app's configuration dictionary: Jamf: Mobile Device Apps › the app › App Configuration › Preferences. Mosyle: Apps › the app › Managed App Configuration. Iru: the App Store app library item › Set app configuration. Where the console supports variables, one profile can cover every room: Jamf substitutes <code>$DEVICENAME</code>, <code>$SERIALNUMBER</code>, <code>$ROOM</code> and <code>$EXTENSIONATTRIBUTE_n</code> (put the calendar ID in an extension attribute); Mosyle has <code>%DeviceName%</code> and <code>%SerialNumber%</code>. Iru has no variables, so it's one library item per room. Test a calendar ID through a variable once; the <code>@</code> has to come through unescaped.</p>
 <pre>&lt;dict&gt;
   &lt;key&gt;serviceAccountKey&lt;/key&gt;
   &lt;string&gt;ewogICJ0eXBlIjogInNlcnZpY2VfYWNjb3VudCIsCiAg…&lt;/string&gt;
@@ -136,10 +136,10 @@
     <tr><td>activeDays</td><td>String</td><td>Mon,Tue,Wed,Thu,Fri</td></tr>
     <tr><td>activeHours</td><td>String</td><td>07:00-18:00</td></tr>
   </table>
-  <p>Intune's "Enter XML data" option accepts the property list above verbatim.</p>
+  <p>Intune's "Enter XML data" option accepts the <code>&lt;dict&gt;</code> above verbatim (no <code>&lt;plist&gt;</code> wrapper). Intune substitutes <code>{{serialnumber}}</code> and <code>{{deviceid}}</code> but has no device-name token, so one policy per room is the practical pattern there.</p>
 
   <h3>Scoping pattern</h3>
-  <p>One profile per room (or one profile with device variables), scoped to that room's iPad by serial or device group. The service account key and the PIN are identical across rooms; only <code>calendarId</code> and <code>roomName</code> change. A spreadsheet with serial, room name, and calendar ID is all you need to onboard 40 rooms.</p>
+  <p>One profile per room (or one profile with device variables on Jamf or Mosyle), scoped to that room's iPad by serial or device group. The service account key and the PIN are identical across rooms; only <code>calendarId</code> and <code>roomName</code> change. A spreadsheet with serial, room name, and calendar ID is all you need to onboard 40 rooms.</p>
 
   <h2>Verification</h2>
   <ol>
@@ -151,7 +151,7 @@
 
   <h2>Security notes</h2>
   <ul>
-    <li>The service account key grants exactly what you shared: read (or write) on those room calendars, nothing else. It's stored in the iPad's keychain. Rotate it from Cloud Console (new key, delete old, push the new value); the app picks up the change on next launch.</li>
+    <li>The service account key grants exactly what you shared: read (or write) on those room calendars, nothing else. It's stored in the iPad's keychain. Rotate it from Cloud Console (new key, delete old, push the new value); the app picks up the change within a minute while it's on screen, and on next launch otherwise.</li>
     <li>No Bored Room servers are involved. The iPad talks to <code>oauth2.googleapis.com</code> and <code>www.googleapis.com</code> only. Allow those if you filter egress.</li>
     <li>Full details: <a href="privacy.html">privacy policy</a>.</li>
   </ul>
@@ -163,7 +163,7 @@
     <li><strong>No rooms / 403.</strong> The room isn't shared with the service account, or the admin sharing setting is still at free/busy.</li>
     <li><strong>Board shows "Can't read this room's calendar anymore."</strong> <code>calendarId</code> is wrong or the share was removed.</li>
     <li><strong>Board is dark during the day.</strong> <code>activeDays</code> or <code>activeHours</code> is wrong for that iPad's time zone, or the value didn't parse (check the format) and the default Mon–Fri 07:00–17:00 is in effect.</li>
-    <li><strong>Someone forgot the PIN.</strong> Change the <code>pin</code> value in the profile; the app picks it up without a restart. The "Forgot PIN?" button on the device tells them to ask you.</li>
+    <li><strong>Someone forgot the PIN.</strong> Change the <code>pin</code> value in the profile; the app picks it up within a minute while it's on screen. The "Forgot PIN?" button on the device tells them to ask you.</li>
   </ul>
 
   <p style="margin-top:2.5em">Questions, or a console we haven't covered? <a href="mailto:hello@boredroom.space">hello@boredroom.space</a>.</p>
