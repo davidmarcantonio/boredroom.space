@@ -33,56 +33,73 @@
   <p class="lede">For the one-person IT shop with a handful of iPads and a Mac. You get supervised devices, app installs without an Apple ID on the iPad, and a kiosk lock that survives reboots. No MDM subscription.</p>
   <p class="print-hint">Print this page with ⌘P. Links print with their addresses.</p>
 
-  <h2>What you need</h2>
-  <ul>
-    <li>A Mac with <a href="https://apps.apple.com/app/apple-configurator/id1037126344">Apple Configurator</a> (free, Mac App Store) and a USB-C cable.</li>
-    <li>An <a href="https://business.apple.com">Apple Business Manager</a> account (free). Takes a day or two to approve if you don't have one; it needs your D-U-N-S number.</li>
-    <li>Google Workspace admin access for the one-time Google steps.</li>
-    <li>iPads you're willing to erase. Supervision wipes them.</li>
-  </ul>
+  <h2>Before you start</h2>
+  <p>Four prerequisites, each done once. The slowest is Apple Business Manager approval, so start with that. Nothing below touches an iPad.</p>
 
-  <h2>Part 1: Google (once)</h2>
-  <p>Create a free service account, allow room sharing with it, share each room, download its JSON key. The <a href="setup-manual.html">by-hand guide</a> walks through every click; the short version:</p>
+  <h3>A. Apple Business Manager</h3>
+  <ol>
+    <li>Enroll at <a href="https://business.apple.com">business.apple.com</a>. Free. Needs your D-U-N-S number and a verification phone call; allow a day or two.</li>
+    <li>Once approved: <strong>Apps and Books</strong> › search <strong>Bored Room</strong> › quantity = number of iPads › Get. 99¢ per copy, billed to the payment method on the account.</li>
+    <li>Still in Apps and Books, assign the licenses to the location Configurator will use (the default location is fine).</li>
+  </ol>
+
+  <h3>B. Google: a service account shared with every room</h3>
+  <p>The <a href="setup-manual.html">by-hand guide</a>, sections A and B, walks through every click. The short version:</p>
   <ol>
     <li><a href="https://console.cloud.google.com">Cloud Console</a>: new project › enable <strong>Google Calendar API</strong> › IAM &amp; Admin › Service Accounts › create one (no roles) › Keys › Add key › JSON. Keep the file and the account's email.</li>
     <li><a href="https://admin.google.com">Admin console</a>: Apps › Google Workspace › Calendar › Sharing settings › <strong>External sharing options for secondary calendars</strong> › "Share all information, but outsiders cannot change calendars" (or "…can change" for booking from the door).</li>
     <li><a href="https://calendar.google.com">Google Calendar</a>: each room › Settings and sharing › Share with specific people › the service account's email › <strong>See all event details</strong> (or <strong>Make changes to events</strong> for booking).</li>
   </ol>
 
-  <h2>Part 2: buy the app in Apple Business Manager</h2>
+  <h3>C. Apple Configurator with an organization</h3>
   <ol>
-    <li>business.apple.com › <strong>Apps and Books</strong> › search <strong>Bored Room</strong> › quantity = number of iPads › Get. It's 99¢ per copy, billed to the payment method on the account.</li>
-    <li>Still in Apps and Books: assign the licenses to the location your Configurator will use (the default location is fine).</li>
-    <li>Apple Configurator › Settings (⌘,) › <strong>Organizations</strong> › <strong>+</strong>. Sign in with your Business Manager account (this links Configurator to your licenses; you can Skip it if you'll install the app another way). Enter the organization name; the rest is optional. Choose <strong>Generate a new supervision identity</strong> › Done.</li>
+    <li>Install <a href="https://apps.apple.com/app/apple-configurator/id1037126344">Apple Configurator</a> from the Mac App Store (free). Have a USB-C cable; a direct port works better than a hub.</li>
+    <li>Configurator › Settings (⌘,) › <strong>Organizations</strong> › <strong>+</strong>. Sign in with your Business Manager account from A (this is what lets Configurator install the app without an Apple ID). Enter the organization name; the rest is optional. Choose <strong>Generate a new supervision identity</strong> › Done.</li>
+    <li>Organizations › select yours › <strong>Export</strong>. Save the file with your other IT passwords.</li>
   </ol>
   <div class="note">
-    <p><strong>The supervision identity is a certificate Configurator makes for you.</strong> No certificate to request or install beforehand. It's what ties these iPads to this Mac: starting or stopping Single App Mode later, or updating the app, needs the same identity. Export it now (Organizations › select yours › Export) and keep the file with your other IT passwords. If it's lost, the only way back in is to erase and prepare the iPad again.</p>
+    <p><strong>The supervision identity is a certificate Configurator makes for you.</strong> Nothing to request or install beforehand. It's what ties these iPads to this Mac: starting or stopping Single App Mode later, or updating the app, needs the same identity. If it's lost, the only way back in is to erase and prepare the iPad again. That's why step 3 exports it.</p>
   </div>
 
-  <h2>Part 3: prepare each iPad</h2>
+  <h3>D. iPads you can erase</h3>
+  <ul>
+    <li>Any iPad that runs iPadOS 17 or newer.</li>
+    <li>Supervision wipes the device. Back up anything on used iPads; new ones can stay on the Hello screen.</li>
+    <li>A power source at each mounting spot. The app keeps the screen on, which needs power.</li>
+  </ul>
+
+  <h3>Checklist</h3>
+  <ul class="checklist">
+    <li>Business Manager approved; N copies of Bored Room bought and assigned (A)</li>
+    <li>Service account created; key file and email kept; sharing setting changed; every room shared (B)</li>
+    <li>Configurator installed; organization created with a generated supervision identity; identity exported (C)</li>
+    <li>iPads, cable, power at the mount, backups done where needed (D)</li>
+  </ul>
+
+  <h2>Prepare each iPad</h2>
   <p>Do the first one end to end, then repeat. About five minutes each once you've done one.</p>
   <ol>
-    <li>Plug the iPad into the Mac. If it's brand new, leave it on the Hello screen. If it's been used, it will be erased in the next step; back up anything you care about.</li>
-    <li>In Configurator, select the iPad › <strong>Prepare</strong>.</li>
+    <li>Plug the iPad into the Mac. In Configurator, select it › <strong>Prepare</strong>.</li>
     <li>Configuration: <strong>Manual</strong>. Next.</li>
     <li>Enroll in MDM: <strong>Do not enroll</strong>. Next.</li>
     <li>Supervise devices: <strong>checked</strong>. Allow devices to pair with other computers: your call (unchecked is more locked down). Next.</li>
-    <li>Organization: pick the one from Part 2. Next. (Configurator uses its supervision identity here.)</li>
+    <li>Organization: the one from C. Next.</li>
     <li>Setup Assistant: <strong>Don't show any of these steps</strong>. This skips the Apple ID, Siri, and Screen Time prompts on the iPad. Prepare.</li>
     <li>The iPad erases, restarts, and lands on the Home screen with no Apple ID. Connect it to Wi-Fi (Settings › Wi-Fi).</li>
+    <li>On the iPad: Settings › Accessibility › Display &amp; Text Size › <strong>Auto-Brightness off</strong> (so the light sensor doesn't undo the after-hours dimming), and Settings › Display &amp; Brightness › <strong>Auto-Lock › Never</strong>.</li>
     <li>Back in Configurator, select the iPad › <strong>Add</strong> › <strong>Apps</strong> › pick <strong>Bored Room</strong> from your Business Manager apps › Add. It installs without an Apple ID.</li>
   </ol>
 
-  <h2>Part 4: set up the app</h2>
+  <h2>Set up the app</h2>
   <ol>
-    <li>Get the service account key onto the iPad. Easiest from the same Mac: AirDrop the .json to the iPad; accept it and it lands in Files. (Alternative: Configurator › Add › Documents puts it in a chosen app's folder; Files is simpler.)</li>
+    <li>Get the service account key onto the iPad. Easiest from the same Mac: AirDrop the .json; accept it on the iPad and it lands in Files. (Alternative: Configurator › Add › Documents puts it in a chosen app's folder; Files is simpler.)</li>
     <li>Open Bored Room › <strong>Use a service account</strong> › Choose key file › pick the .json.</li>
     <li>Pick this iPad's room › Continue › confirm the name › Continue › set a 4-digit PIN.</li>
     <li>Pick the days and hours the board is on (Mon–Fri 7–5 by default, or Always on) › Finish. Outside those hours it's black at minimum backlight and wakes on touch.</li>
     <li>Optional: hold the corner tab › PIN › Settings to change the font, background, titles, booking, or hours.</li>
   </ol>
 
-  <h2>Part 5: lock it</h2>
+  <h2>Lock it</h2>
   <ol>
     <li>With Bored Room open on the iPad and the iPad still connected, in Configurator select it › <strong>Actions</strong> › <strong>Advanced</strong> › <strong>Start Single App Mode</strong>.</li>
     <li>Choose <strong>Bored Room</strong>. Click <strong>Options</strong> and consider: Touch: on. Volume buttons: off. Sleep/Wake button: off (the app keeps the screen on; this stops passers-by turning it off). Auto-Lock: Never. Select App.</li>
@@ -92,18 +109,16 @@
     <p><strong>Settings still work inside Single App Mode.</strong> The PIN-protected settings are part of the app, so you can change the room or the look from the wall without unlocking the device.</p>
   </div>
 
-  <h2>Part 6: mount it</h2>
+  <h2>Mount it</h2>
   <ul>
     <li>Power is non-negotiable. A mount with cable routing, or a cable to a nearby outlet.</li>
-    <li>Settings › Display &amp; Brightness › Auto-Lock › Never, as a belt-and-braces (the app disables the idle timer anyway, and Single App Mode's Auto-Lock option covers it).</li>
-    <li>Settings › Accessibility › Display &amp; Text Size › Auto-Brightness off, so the after-hours dimming isn't undone by the light sensor. Do this before starting Single App Mode.</li>
     <li>Landscape is the usual orientation for a door sign; the board handles either.</li>
   </ul>
 
   <h2>Ongoing</h2>
   <ul>
     <li><strong>App updates</strong>: supervised iPads with no Apple ID don't auto-update apps from the App Store. Reconnect to Configurator › Update, or move to an MDM when the count justifies it.</li>
-    <li><strong>Adding a room</strong>: share it with the service account (Part 1, step 3). The next iPad you set up sees it; existing iPads see it under Settings › Calendar.</li>
+    <li><strong>Adding a room</strong>: share it with the service account (B, step 3). The next iPad you set up sees it; existing iPads see it under Settings › Calendar.</li>
     <li><strong>Rotating the key</strong>: Cloud Console › the service account › Keys › add a new key, delete the old one. Each iPad: hold the corner › PIN › Settings › Remove service account, then load the new file.</li>
     <li><strong>Forgotten PIN</strong>: hold the corner › <strong>Forgot PIN?</strong> › choose the key file again › new PIN. The iPad stays on the wall. (If the Files picker won't open under Single App Mode, stop Single App Mode from Configurator first.)</li>
   </ul>
@@ -112,7 +127,7 @@
   <ul>
     <li><strong>Configurator can't see my Business Manager apps.</strong> The organization isn't signed in (Settings › Organizations), or the licenses are assigned to a different location in Apps and Books.</li>
     <li><strong>"Prepare" fails partway.</strong> Usually the cable or a USB hub. Use a direct port and Apple's cable.</li>
-    <li><strong>No rooms appear in the app.</strong> Part 1, steps 2 and 3. The admin sharing setting takes a few minutes to apply.</li>
+    <li><strong>No rooms appear in the app.</strong> B, steps 2 and 3. The admin sharing setting takes a few minutes to apply.</li>
     <li><strong>The board is right but Single App Mode won't start.</strong> The iPad must be supervised by <em>this</em> Mac's organization. If it was supervised elsewhere, re-prepare it.</li>
   </ul>
 
