@@ -53,8 +53,11 @@
   <ol>
     <li>business.apple.com › <strong>Apps and Books</strong> › search <strong>Bored Room</strong> › quantity = number of iPads › Get. It's 99¢ per copy, billed to the payment method on the account.</li>
     <li>Still in Apps and Books: assign the licenses to the location your Configurator will use (the default location is fine).</li>
-    <li>Apple Configurator › Settings (⌘,) › <strong>Organizations</strong> › add your organization and sign in with your Business Manager account. This links Configurator to your licenses and creates a supervision identity.</li>
+    <li>Apple Configurator › Settings (⌘,) › <strong>Organizations</strong> › <strong>+</strong>. Sign in with your Business Manager account (this links Configurator to your licenses; you can Skip it if you'll install the app another way). Enter the organization name; the rest is optional. Choose <strong>Generate a new supervision identity</strong> › Done.</li>
   </ol>
+  <div class="note">
+    <p><strong>The supervision identity is a certificate Configurator makes for you.</strong> No certificate to request or install beforehand. It's what ties these iPads to this Mac: starting or stopping Single App Mode later, or updating the app, needs the same identity. Export it now (Organizations › select yours › Export) and keep the file with your other IT passwords. If it's lost, the only way back in is to erase and prepare the iPad again.</p>
+  </div>
 
   <h2>Part 3: prepare each iPad</h2>
   <p>Do the first one end to end, then repeat. About five minutes each once you've done one.</p>
@@ -64,7 +67,7 @@
     <li>Configuration: <strong>Manual</strong>. Next.</li>
     <li>Enroll in MDM: <strong>Do not enroll</strong>. Next.</li>
     <li>Supervise devices: <strong>checked</strong>. Allow devices to pair with other computers: your call (unchecked is more locked down). Next.</li>
-    <li>Organization: pick yours. Next.</li>
+    <li>Organization: pick the one from Part 2. Next. (Configurator uses its supervision identity here.)</li>
     <li>Setup Assistant: <strong>Don't show any of these steps</strong>. This skips the Apple ID, Siri, and Screen Time prompts on the iPad. Prepare.</li>
     <li>The iPad erases, restarts, and lands on the Home screen with no Apple ID. Connect it to Wi-Fi (Settings › Wi-Fi).</li>
     <li>Back in Configurator, select the iPad › <strong>Add</strong> › <strong>Apps</strong> › pick <strong>Bored Room</strong> from your Business Manager apps › Add. It installs without an Apple ID.</li>
