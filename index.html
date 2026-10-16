@@ -14,6 +14,12 @@
 </head>
 <body>
 
+<!-- TEMPORARY: Google verification notice. Remove this block (and the FAQ's "in progress" sentence) once Google approves the app. -->
+<div style="background: var(--paper-2); color: var(--ink); font-size: .95rem; padding: 10px 0; border-bottom: 1px solid var(--chrome)">
+  <div class="wrap"><strong>Heads-up:</strong> Google's standard review of Bored Room is in progress. The app works fully today; until the review is done, Google's sign-in shows an extra "unverified app" screen. It isn't a security finding, and it doesn't change what the app can access. <a href="#faq-google">What this means for your IT team</a></div>
+</div>
+<!-- /TEMPORARY -->
+
 <header class="hero">
   <div class="wrap" style="display:block">
     <div class="top">
@@ -197,9 +203,11 @@
       <summary>What does the app need from Google?</summary>
       <p>Two permissions: the list of calendars on the account, so you can pick the room, and access to events, so it can show the room's meetings and let people book it from the door. Once set up, it reads one calendar: the room you picked.</p>
     </details>
-    <details>
+    <details id="faq-google">
       <summary>Why does Google say the app is "unverified" when I sign in?</summary>
-      <p>Google reviews every app that asks for calendar access, and the review takes weeks. Until it's done, Google shows a warning at sign-in: tap Advanced, then continue to Bored Room. If your organization blocks unreviewed apps, your Google admin can mark Bored Room as trusted; the <a href="setup-manual.html">by-hand guide</a> shows where. Service accounts never see this screen.</p>
+      <p>Google reviews every app that asks for calendar access, and the review takes weeks. Ours is submitted and in progress. It's a standard step for any calendar app, not a security finding.</p>
+      <p>In the meantime nothing about the app is limited: same features, same permissions, and the iPad still talks only to Google, never to us. The only difference is one extra screen at sign-in: tap Advanced, then continue to Bored Room.</p>
+      <p>For a security-minded organization: if your Google Workspace blocks unreviewed apps, your Google admin can mark Bored Room as trusted in the admin console; the <a href="setup-manual.html">by-hand guide</a> shows where. Or use a free <a href="setup-service-account.html">Google service account</a>, which never sees this screen. Once Google approves the app, the extra screen goes away on its own.</p>
     </details>
     <details>
       <summary>What happens at night and on weekends?</summary>
