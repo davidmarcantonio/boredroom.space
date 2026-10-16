@@ -44,12 +44,12 @@
   </ol>
 
   <h3>B. Google: a service account shared with every room</h3>
-  <p>The <a href="setup-manual.html">by-hand guide</a>, sections A and B, walks through every click. The short version:</p>
-  <ol>
-    <li><a href="https://console.cloud.google.com">Cloud Console</a>: new project › enable <strong>Google Calendar API</strong> › IAM &amp; Admin › Service Accounts › create one (no roles) › Keys › Add key › JSON. Keep the file and the account's email. If key creation is blocked by an organization policy (the default for Google Cloud orgs created since May 2024), the by-hand guide has the fix.</li>
-    <li><a href="https://admin.google.com">Admin console</a>: Apps › Google Workspace › Calendar › Sharing settings › scroll to the General settings card › <strong>External sharing options for secondary calendars</strong> › "Share all information, but outsiders cannot change calendars" (or "…can change" for booking from the door).</li>
-    <li><a href="https://calendar.google.com">Google Calendar</a>: each room › Settings and sharing › <strong>Shared with</strong> › Add people and groups › the service account's email › <strong>See event details</strong> (or <strong>Make changes and see event details</strong> for booking). Older menus say "See all event details" / "Make changes to events".</li>
-  </ol>
+  <p>Configured iPads have no person signed in, so they read the rooms through a free Google service account. Follow <a href="setup-service-account.html">Set up a Google service account</a> (about 20 minutes, once). You come back with:</p>
+  <ul>
+    <li>the key file (a .json)</li>
+    <li>every room shared with the service account's email</li>
+    <li>a list of room names and calendar IDs</li>
+  </ul>
 
   <h3>C. Apple Configurator with an organization</h3>
   <ol>
@@ -72,7 +72,7 @@
   <h3>Checklist</h3>
   <ul class="checklist">
     <li>Business Manager approved; N copies of Bored Room bought and assigned (A)</li>
-    <li>Service account created; key file and email kept; sharing setting changed; every room shared (B)</li>
+    <li>Service account key file in hand; every room shared with it; room names and calendar IDs listed (B)</li>
     <li>Configurator installed; organization created with a generated supervision identity; identity exported; Account › Sign In done for the right location (C)</li>
     <li>iPads, cable, power at the mount, backups done where needed (D)</li>
   </ul>
@@ -97,6 +97,7 @@
   <ol>
     <li>Get the service account key onto the iPad. Easiest from the same Mac: AirDrop the .json; accept it on the iPad and it lands in Files. (Alternative: Configurator › Add › Documents puts it in a chosen app's folder; Files is simpler.)</li>
     <li>Open Bored Room › <strong>Use a service account</strong> › <strong>Choose key file</strong>. Files opens: <strong>Downloads</strong> in the sidebar if you AirDropped it (if the iPad asked which app should open it, you chose Files), or the app's folder if you used Configurator › Add › Documents. Tap the .json.</li>
+    <li>If this iPad's room isn't in the list, paste its calendar ID (from your list in B) into <strong>Add a room by its calendar ID</strong> › <strong>Add</strong>. Only the first iPad for each room needs this; the others see it. Easiest way to get the ID onto the iPad: AirDrop a text file with the IDs from the same Mac, open it in Files, copy the one you need.</li>
     <li>Pick this iPad's room › Continue › confirm the name › Continue › set a 4-digit PIN. Same PIN on every iPad; store it in your password manager next to the key file and the exported supervision identity.</li>
     <li>Pick the days and hours the board is on (Mon–Fri 7–5 by default, or Always on) › Finish. Outside those hours it's black at minimum backlight and wakes on touch.</li>
     <li>Optional: hold the corner tab › PIN › Settings to change the font, background, titles, booking, or hours.</li>
@@ -121,7 +122,7 @@
   <h2>Ongoing</h2>
   <ul>
     <li><strong>App updates</strong>: with no Apple ID and no MDM, nothing updates the app on its own. Reconnect to the Mac, select the iPad, toolbar <strong>Update</strong> › <strong>Apps only</strong> (needs Account › Sign In active). Or move to an MDM when the count justifies it.</li>
-    <li><strong>Adding a room</strong>: share it with the service account (B, step 3). The next iPad you set up sees it; existing iPads see it under Settings › Calendar.</li>
+    <li><strong>Adding a room</strong>: share it with the service account and note its calendar ID (<a href="setup-service-account.html">service account guide</a>, steps 3 and 4). On an iPad: hold the corner › PIN › Settings › Calendar › paste the ID into <strong>Add a room by its calendar ID</strong>. Every other iPad sees it from then on.</li>
     <li><strong>Rotating the key</strong>: Cloud Console › the service account › Keys › add a new key, delete the old one. Each iPad: hold the corner › PIN › Settings › Remove service account, then load the new file.</li>
     <li><strong>Forgotten PIN</strong>: hold the corner › <strong>Forgot PIN?</strong> › choose the key file again › new PIN. The iPad stays on the wall. (If the Files picker won't open under Single App Mode, stop Single App Mode from Configurator first.)</li>
   </ul>
@@ -130,16 +131,16 @@
   <ul>
     <li><strong>Configurator can't see my Business Manager apps.</strong> You're not signed in under <strong>Account › Sign In</strong>, or you picked a different location there than the one you bought the licenses in. Window › Volume Purchasing Assignments shows what Configurator can see.</li>
     <li><strong>"Prepare" fails partway.</strong> Usually the cable or a USB hub. Use a direct port and Apple's cable.</li>
-    <li><strong>No rooms appear in the app.</strong> B, steps 2 and 3. The admin sharing setting usually applies in minutes but can take up to 24 hours.</li>
+    <li><strong>No rooms appear in the app.</strong> Expected the first time: add the room by its calendar ID. If Add says Google won't open the calendar, the room isn't shared with the service account yet, or the sharing setting hasn't applied (it can take up to 24 hours).</li>
     <li><strong>The board is right but Single App Mode won't start.</strong> The iPad must be supervised by <em>this</em> Mac's organization. If it was supervised elsewhere, re-prepare it.</li>
   </ul>
 
-  <p style="margin-top:2.5em">Stuck? <a href="mailto:hello@boredroom.space">hello@boredroom.space</a>. A real person answers.</p>
+  <p style="margin-top:2.5em">Stuck? <a href="mailto:boredroom@bacstech.io">boredroom@bacstech.io</a>. A real person answers.</p>
 </main>
 
 <footer>
   <div class="wrap">
-    <div>The Bored Room &middot; <a href="mailto:hello@boredroom.space">hello@boredroom.space</a></div>
+    <div>Bored Room is a product of <a href="https://www.bacstech.io">BACS Tech, Inc.</a> &middot; <a href="mailto:boredroom@bacstech.io">boredroom@bacstech.io</a></div>
     <div><a href="privacy.html">Privacy policy</a> &middot; <a href="setup.html">Setup</a></div>
   </div>
 </footer>
