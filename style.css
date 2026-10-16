@@ -232,3 +232,6 @@ pre { background: var(--midnight); color: #E6EEF5; padding: 16px 18px; border-ra
 .pdf-embed object { display: block; }
 @media (max-width: 760px) { .pdf-embed { display: none; } }
 @media print { .pdf-embed { display: none !important; } }
+
+/* Long scope URLs and IDs wrap on phones */
+.article td code, .article p code { overflow-wrap: anywhere; }

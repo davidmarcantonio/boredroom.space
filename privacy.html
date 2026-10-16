@@ -35,9 +35,27 @@
   <p class="lede">Bored Room does not collect, store, transmit, or sell any personal data. There is no Bored Room server. The app runs entirely on your iPad and talks only to Google, plus, if your organization sets one, the background image address it chose.</p>
 
   <h2>What the app does with your data</h2>
-  <p>The app reads the room's calendar in one of two ways, both chosen by you. With Google sign-in, the app asks for two permissions: to see the list of calendars the account is subscribed to, so you can pick the room, and to read and create events, so the board can show the room's meetings and the room can be booked from the iPad. With a service account, you load a key file your administrator created; the iPad uses it to read only the calendars your administrator shared with that account, and the key never leaves the iPad.</p>
+  <p>The app reads the room's calendar in one of two ways, both chosen by you. With Google sign-in, the app asks for two calendar permissions (the full list is <a href="#google-permissions">below</a>): to see the list of calendars the account is subscribed to, so you can pick the room, and to read and create events, so the board can show the room's meetings and the room can be booked from the iPad. With a service account, you load a key file your administrator created; the iPad uses it to read only the calendars your administrator shared with that account, and the key never leaves the iPad.</p>
   <p>Calendar data is fetched from Google's servers by the iPad and displayed on the iPad. It is not sent anywhere else. It is not written to disk beyond iPadOS's normal caching. It is refreshed every minute and replaced.</p>
   <p>Your credential, whether a Google sign-in token or a service account key, is stored in the iPad's keychain, protected by the device. It is used only to talk to Google. Removing it in the app deletes it from the iPad; a sign-in token is also revoked with Google.</p>
+
+  <h2 id="google-permissions">Exactly what the app asks Google for</h2>
+  <p>For admins reviewing the app before approving it. These are the complete lists; the app asks for nothing else.</p>
+  <h3>With Google sign-in</h3>
+  <table>
+    <tr><th>Scope</th><th>What Google's consent screen calls it</th><th>Why Bored Room needs it</th></tr>
+    <tr><td><code>https://www.googleapis.com/auth/calendar.calendarlist.readonly</code></td><td>See the list of Google calendars you're subscribed to</td><td>The room picker during setup. Read-only.</td></tr>
+    <tr><td><code>https://www.googleapis.com/auth/calendar.events</code></td><td>View and edit events on all your calendars</td><td>Reading the chosen room's meetings for the board, and creating the event when someone books the room from the iPad. The app only ever reads one calendar: the room you picked.</td></tr>
+    <tr><td><code>openid</code>, <code>email</code></td><td>Basic sign-in: which Google account signed in, and its email address</td><td>Showing which account the iPad is signed in as, and confirming it's the same account when someone uses "Forgot PIN?". "Forgot PIN?" asks for these two and nothing else.</td></tr>
+  </table>
+  <h3>With a service account</h3>
+  <table>
+    <tr><th>Scope</th><th>Why Bored Room needs it</th></tr>
+    <tr><td><code>https://www.googleapis.com/auth/calendar.events</code></td><td>Reading the room's meetings, and booking from the iPad. It only reaches calendars your admin has shared with the service account.</td></tr>
+    <tr><td><code>https://www.googleapis.com/auth/calendar.calendarlist</code></td><td>Adding a shared room to the service account's own calendar list by its ID during setup. A shared room doesn't appear there on its own, because nobody accepts the share for a service account.</td></tr>
+  </table>
+  <p>What it doesn't ask for: Gmail, Drive, Contacts, your directory, or admin access. No access is granted to us; the token stays on the iPad and is used only by the iPad.</p>
+  <p><strong>Approving it in Google Workspace:</strong> in the admin console, Security › Access and data control › API controls › Manage third-party app access, the app appears as Bored Room. You can also add it by its OAuth client ID: <code>208417003492-18onkd8uk3jlrq8ejn0760h3hcp6ls1p.apps.googleusercontent.com</code></p>
 
   <h2>What stays on the iPad</h2>
   <ul>
