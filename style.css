@@ -59,8 +59,9 @@ small, .small { font-size: 0.92rem; color: var(--ink-2); }
   display: flex; align-items: center; justify-content: space-between;
   padding: 18px 0;
 }
-.brand { display: flex; align-items: center; gap: 10px; font-weight: 800; text-decoration: none; color: inherit; font-size: 1.1rem; white-space: nowrap; }
-.brand img { width: 30px; height: 30px; border-radius: 8px; display: block; }
+.brand { display: flex; align-items: center; gap: 12px; font-weight: 800; text-decoration: none; color: inherit; font-size: 1.5rem; letter-spacing: -0.01em; white-space: nowrap; }
+.brand img { width: 42px; height: 42px; border-radius: 10px; display: block; }
+@media (max-width: 560px) { .brand { font-size: 1.25rem; gap: 10px; } .brand img { width: 34px; height: 34px; } }
 .nav { display: flex; gap: 22px; font-weight: 600; }
 .nav a { text-decoration: none; color: var(--ink-2); }
 .nav a:hover, .nav a[aria-current] { color: var(--ink); }
@@ -71,7 +72,7 @@ small, .small { font-size: 0.92rem; color: var(--ink-2); }
 .hero {
   background: var(--midnight);
   color: var(--white);
-  padding: clamp(40px, 8vw, 96px) 0 clamp(48px, 8vw, 100px);
+  padding: clamp(4px, 1vw, 12px) 0 clamp(48px, 8vw, 100px);
   overflow: hidden;
 }
 .hero .wrap { display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(24px, 5vw, 64px); align-items: center; }
