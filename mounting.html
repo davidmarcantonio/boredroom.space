@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mounting and power — Bored Room</title>
+<meta name="description" content="How to mount a conference room iPad and keep it powered: the easy path with an outlet, the clean path with power over Ethernet, which mounts to buy, and where to put it.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="wrap">
+  <div class="top">
+    <a class="brand" href="/"><img src="mark.png" alt="" width="30" height="30"> Bored Room</a>
+    <nav class="nav">
+      <a href="/#how">How it works</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="/#mdm">MDM</a>
+      <a href="setup.html" aria-current="page">Setup</a>
+      <a href="/#faq">FAQ</a>
+    </nav>
+  </div>
+</div>
+
+<main class="wrap article">
+  <p class="small"><a href="setup.html">Setup</a> › Mounting and power</p>
+  <h1>Mounting and powering the iPad</h1>
+  <p class="lede">The app takes five minutes. The wall is where room displays succeed, or quietly die with a dead battery. This page covers how to hang the iPad and, more importantly, how to keep it powered without anyone thinking about it again.</p>
+  <p class="print-hint">Print this page with ⌘P (Mac) or Ctrl+P (Windows). Links print with their addresses.</p>
+
+  <h2>The short version</h2>
+  <ul>
+    <li><strong>Pick a path.</strong> Easy: plug into a nearby outlet. Advanced: one Ethernet cable powers the iPad around the clock with no visible cord.</li>
+    <li><strong>Either way, no charging rituals.</strong> A room display someone has to charge every day, or take down every night, is dead by week two.</li>
+    <li><strong>Several rooms, or renovating anyway?</strong> Go advanced. It looks built in and usually costs less than adding outlets.</li>
+  </ul>
+  <table>
+    <tr><th></th><th>Easy path</th><th>Advanced path</th></tr>
+    <tr><td><strong>Power</strong></td><td>Wall outlet and a USB-C cable</td><td>Power over Ethernet (PoE)</td></tr>
+    <tr><td><strong>Who installs</strong></td><td>You</td><td>A low-voltage cabling installer or an electrician</td></tr>
+    <tr><td><strong>Visible cable</strong></td><td>Yes, unless covered</td><td>No</td></tr>
+    <tr><td><strong>Upfront cost</strong></td><td>Lowest</td><td>Moderate: one Ethernet run per room plus a little gear</td></tr>
+    <tr><td><strong>Best for</strong></td><td>A few rooms with an outlet near the door</td><td>Offices that want a clean, built-in look</td></tr>
+  </table>
+
+  <h2>Easy path: an outlet and a long cable</h2>
+  <ol>
+    <li><strong>Find an outlet near the door</strong> and mount the iPad within cable reach. Make sure the outlet isn't on a light switch, or the board goes dark when the last person leaves.</li>
+    <li><strong>Use a decent charger.</strong> Apple's 20W USB-C adapter or a reputable equivalent. Skip the gas-station specials.</li>
+    <li><strong>Get a 10 ft (3 m) braided USB-C cable.</strong> Long enough to reach, sturdy enough to survive a vacuum cleaner.</li>
+    <li><strong>Hide the cable.</strong> Run it straight down to the outlet in a paintable cord cover and paint it to match the wall. A straight vertical line looks intentional; a dangling cord looks temporary.</li>
+    <li><strong>Plug it in and leave it.</strong> The iPad is fine with that (see the battery question at the bottom).</li>
+  </ol>
+  <p><strong>Avoid:</strong> cables crossing a doorway, extension cords, power strips stuck to the wall, and anyone's plan to "just charge it at night."</p>
+
+  <h2>Advanced path: power over Ethernet</h2>
+  <p>One Ethernet cable in the wall carries power to the iPad. No outlet, no visible cord, no charging. Ever.</p>
+  <p><strong>How it connects:</strong> PoE switch in the network closet › Ethernet cable in the wall › PoE-to-USB-C adapter behind the mount › iPad.</p>
+
+  <h3>What you need</h3>
+  <ol>
+    <li><strong>A PoE+ switch in your network closet.</strong> A plain unmanaged ("dumb") switch is all it takes: plug it in, connect it to your network, done. We like <strong>PoE Texas</strong>; PoE is all they make.</li>
+    <li><strong>One Ethernet run per room.</strong> Cat6 is the standard today; existing Cat5e works fine.</li>
+    <li><strong>One PoE+ to USB-C adapter per iPad.</strong> Look for <strong>802.3at (PoE+)</strong> and USB-C Power Delivery, about 25W.</li>
+    <li><strong>A mount with room behind it</strong> for the adapter. Some mounts include one (see below).</li>
+  </ol>
+  <div class="note">
+    <p><strong>PoE vs. PoE+.</strong> Plain PoE (802.3af) adapters deliver about 10W. That's fine for an iPad mini but slow for a full-size iPad. Buy PoE+ (802.3at) adapters and a PoE+ switch.</p>
+    <p><strong>Power budget.</strong> Plan on about 25W per iPad. A 65W switch handles 2 rooms comfortably; a 120W switch handles 4. More rooms, bigger switch.</p>
+    <p><strong>Bonus:</strong> put the switch on a small battery backup (UPS) and every board stays up through a power blip.</p>
+  </div>
+
+  <h3>What to tell your installer</h3>
+  <p>Call a low-voltage cabling installer or an electrician. Ethernet is low-voltage cabling, so in most places it doesn't need a licensed electrician, but plenty of electricians do it. Say this:</p>
+  <div class="note">
+    <p>"I need to run low-voltage Ethernet (Cat6) from our network closet to [number] conference rooms. Each run should end in a low-voltage bracket next to the door, about 48 inches off the floor, behind a wall-mounted iPad. Please label and test each run."</p>
+  </div>
+  <ul>
+    <li><strong>Ask for a spare run per room</strong> if it's cheap. Pulling two cables costs far less than coming back for one.</li>
+    <li><strong>Ask for a low-voltage bracket</strong> (a "mud ring") instead of a full electrical box. Cheaper, and it sits flat behind the mount.</li>
+    <li><strong>Ask them to label both ends</strong> so "Room 3" in the closet is actually Room 3.</li>
+  </ul>
+
+  <h3>Why it's usually cheaper than adding outlets</h3>
+  <p>A new outlet means new high-voltage wiring through a finished wall, often with a permit. An Ethernet run is low-voltage cable through the ceiling. In practice, running real power to each room often costs two to three times what Ethernet does, and one PoE switch powers every room from a single closet.</p>
+  <table>
+    <tr><th>Item</th><th>Rough cost</th></tr>
+    <tr><td>Ethernet run, installed</td><td>About $100–$250 per room</td></tr>
+    <tr><td>New outlet in a finished wall</td><td>About $400–$2,000 per room</td></tr>
+    <tr><td>PoE+ switch, 4–8 ports</td><td>About $100–$250, once</td></tr>
+    <tr><td>PoE+ to USB-C adapter</td><td>About $40–$150 each</td></tr>
+  </table>
+  <p class="small">Rough numbers from published pricing as of October 2026. Your installer, your building, and your city will have opinions.</p>
+
+  <h2>Mounts</h2>
+  <p>Mounts are made for specific iPad models. <strong>Match your exact iPad model and generation before you order.</strong></p>
+  <div class="note">
+    <p><strong>Our pick: <a href="https://hecklerdesign.com">Heckler Design</a>.</strong> We've installed Heckler mounts in real offices for years and they've been rock solid: slim, sturdy, and built with a spot for a PoE adapter. They're not the cheapest. Your budget may vary.</p>
+  </div>
+  <table>
+    <tr><th>Mount</th><th>Tier</th><th>Why</th><th>Path</th><th>Rough price</th></tr>
+    <tr><td>CTA Digital locking wall enclosure</td><td>Budget</td><td>Lock and key, folds nearly flat, cutout for the charge cable</td><td>Easy</td><td>About $80–$150</td></tr>
+    <tr><td>VidaBox VidaMount enclosure and wall mount</td><td>Mid</td><td>Wraps the whole iPad, locking screws, can mount over a standard electrical box; a glass-adhesive version exists</td><td>Either</td><td>About $150–$250</td></tr>
+    <tr><td>Heckler Wall Mount MX</td><td>Our pick</td><td>Slim and architectural; two screws and one cable hole; sold with or without a PoE adapter</td><td>Advanced</td><td>About $200, plus the PoE adapter</td></tr>
+    <tr><td>Heckler Front Mount</td><td>Our pick, glass walls</td><td>Mounts to the front of glass-wall mullions, with a hidden pocket for a PoE adapter</td><td>Advanced</td><td>About $150, plus the adapter</td></tr>
+    <tr><td>IPORT Surface Mount System</td><td>Premium</td><td>PoE+ adapter included, fits a standard single-gang box</td><td>Advanced</td><td>Higher; sold through AV dealers</td></tr>
+  </table>
+  <p><strong>Skip:</strong> suction-cup holders, consumer tablet stands, and anything without a lock. A mount people can lift the iPad out of will eventually be missing an iPad.</p>
+
+  <h2>Where to put it</h2>
+  <ul>
+    <li><strong>Outside the room, on the handle side of the door.</strong> That's where people look first.</li>
+    <li><strong>About 48 inches (122 cm) to the center of the screen.</strong> Readable standing up, reachable for booking from the door, and within ADA reach guidelines.</li>
+    <li><strong>Landscape</strong> is the usual for a door sign; the board handles portrait too.</li>
+    <li><strong>Check Wi-Fi at the exact spot.</strong> Hallways near elevators and stairwells can be dead zones.</li>
+    <li><strong>Keep it out of direct sun and heat.</strong> Glare kills readability and heat is hard on batteries. Leave airflow behind the iPad; don't box it in.</li>
+    <li><strong>Lock it down twice:</strong> a locking mount for the hardware, Guided Access or Single App Mode for the software.</li>
+  </ul>
+
+  <h2>Is charging around the clock bad for the battery?</h2>
+  <p>No. iPads that stay plugged in for long stretches, like kiosks and point-of-sale iPads, manage their own charging and hold below full most of the time to slow battery wear. Heat is the real enemy, which is why placement matters more than the cable.</p>
+
+  <p style="margin-top:2.5em">Stuck on mounts, power, or which cable goes where? Email <a href="mailto:boredroom@bacstech.io?subject=Mounting%20question">boredroom@bacstech.io</a> with a photo of the wall and we'll talk it through, by email or on a quick remote call.</p>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>Bored Room is a product of <a href="https://www.bacstech.io">BACS Tech, Inc.</a> &middot; <a href="mailto:boredroom@bacstech.io">boredroom@bacstech.io</a></div>
+    <div><a href="privacy.html">Privacy policy</a> &middot; <a href="setup.html">Setup</a></div>
+  </div>
+</footer>
+
+</body>
+</html>
