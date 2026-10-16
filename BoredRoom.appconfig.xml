@@ -27,11 +27,13 @@
       <constraint nullable="true">
         <values>
           <value>classic</value>
-          <value>helvetica</value>
-          <value>avenir</value>
-          <value>din</value>
-          <value>verdana</value>
-          <value>gillsans</value>
+          <value>inter</value>
+          <value>manrope</value>
+          <value>publicsans</value>
+          <value>sourcesans</value>
+          <value>geist</value>
+          <value>hanken</value>
+          <value>archivo</value>
         </values>
       </constraint>
     </string>
@@ -83,12 +85,14 @@
     <field keyName="font" type="select">
       <label><language value="en-US">Font</language></label>
       <options>
-        <option value="classic"><language value="en-US">Classic</language></option>
-        <option value="helvetica"><language value="en-US">Helvetica</language></option>
-        <option value="avenir"><language value="en-US">Avenir</language></option>
-        <option value="din"><language value="en-US">DIN</language></option>
-        <option value="verdana"><language value="en-US">Verdana</language></option>
-        <option value="gillsans"><language value="en-US">Gill Sans</language></option>
+        <option value="classic"><language value="en-US">San Francisco</language></option>
+        <option value="inter"><language value="en-US">Inter</language></option>
+        <option value="manrope"><language value="en-US">Manrope</language></option>
+        <option value="publicsans"><language value="en-US">Public Sans</language></option>
+        <option value="sourcesans"><language value="en-US">Source Sans</language></option>
+        <option value="geist"><language value="en-US">Geist</language></option>
+        <option value="hanken"><language value="en-US">Hanken Grotesk</language></option>
+        <option value="archivo"><language value="en-US">Archivo</language></option>
       </options>
     </field>
     <field keyName="pin" type="input">
