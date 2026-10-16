@@ -30,7 +30,7 @@
   <div class="wrap" style="margin-top: clamp(24px, 5vw, 56px)">
     <div>
       <h1>A room sign that costs 99 cents.</h1>
-      <p class="lede">Bored Room turns any iPad into a free/busy display for a meeting room. Share the room with it, load a key, hang it up. No accounts to buy, nothing to subscribe to.</p>
+      <p class="lede">Bored Room turns any iPad into a free/busy display for a meeting room. Sign in with Google, pick the room, hang it up. No accounts to buy, nothing to subscribe to.</p>
       <div class="price-tag"><b>$0.99</b> once, per iPad. No subscription. No account with us.</div>
       <div class="cta-row">
         <a class="cta" href="#appstore">Get it on the App Store</a>
@@ -62,7 +62,7 @@
       </div>
       <div class="card">
         <h3>No extra licenses</h3>
-        <p>The iPad reads the room through a Google service account, which is free. You don't buy a Workspace seat for a mailbox nobody reads, and nobody's personal account lives on the wall.</p>
+        <p>Sign the iPad in with a Google account you already have. If IT would rather nobody's account lived on the wall, a Google service account does the same job for free. Either way you don't buy a Workspace seat for a room.</p>
       </div>
       <div class="card">
         <h3>No data collected</h3>
@@ -81,8 +81,8 @@
         <p>99¢ on the App Store, or through Apple Business Manager if you deploy iPads in bulk. One copy per iPad.</p>
       </li>
       <li>
-        <h3>Share the room, load the key</h3>
-        <p>Your admin shares each room's calendar with a free Google service account and hands you its key file. Load it on the iPad, pick the room, set a PIN. Or just sign in with Google if you only have a room or two.</p>
+        <h3>Sign in, pick the room</h3>
+        <p>Add the room to your Google Calendar, sign in on the iPad with the same account, pick the room, set a PIN. IT teams can use a free Google service account instead, and push everything from an MDM.</p>
       </li>
       <li>
         <h3>Hang it up</h3>
@@ -118,7 +118,7 @@
         <ul>
           <li>Free/busy, current meeting, the rest of the day</li>
           <li>Book the room from the door, 15 minutes to 2 hours</li>
-          <li>Five backgrounds, six fonts, or your own photo</li>
+          <li>Five backgrounds, eight fonts, or your own photo</li>
           <li>Goes dark after hours and on weekends; wakes with a touch</li>
           <li>English, French, and Spanish</li>
           <li>Full MDM support: push every setting, zero-touch, no "enterprise tier"</li>
@@ -163,8 +163,8 @@
   <div class="wrap grid-2">
     <div>
       <h2>Free setup, if you want it.</h2>
-      <p>If you'd rather not read a guide, book a remote session and we'll set up your first room together over a video call: the service account, the sharing, the iPad, the mount, all of it. It's free. It's remote. We don't send people to your office.</p>
-      <a class="cta" href="mailto:hello@boredroom.space?subject=Free%20setup%20session">Book a free setup session</a>
+      <p>If you'd rather not read a guide, book a remote session and we'll set up your first room together over a video call: the room in Google, the iPad, the mount, all of it. It's free. It's remote. We don't send people to your office.</p>
+      <a class="cta" href="mailto:boredroom@bacstech.io?subject=Free%20setup%20session">Book a free setup session</a>
     </div>
     <div>
       <h2>Or do it yourself in ten minutes.</h2>
@@ -182,19 +182,19 @@
     </details>
     <details>
       <summary>Does it work with Microsoft 365 or Outlook?</summary>
-      <p>Not yet. Version 1 is Google Workspace only. Microsoft 365 is next; if that's you, <a href="mailto:hello@boredroom.space">tell us</a> so we know how many of you there are.</p>
+      <p>Not yet. Version 1 is Google Workspace only. Microsoft 365 is next; if that's you, <a href="mailto:boredroom@bacstech.io">tell us</a> so we know how many of you there are.</p>
     </details>
     <details>
       <summary>Do I need to buy a Google Workspace account for the room?</summary>
-      <p>No. The iPad reads the room through a service account, which Google provides free and which has no mailbox. Your admin shares the room with it like sharing with a person. Nobody's personal account is involved.</p>
+      <p>No. The simplest setup signs the iPad in with an account you already have, ideally a shared one like front desk. If you'd rather no one's account were on the iPad, a Google service account is free, has no mailbox, and reads only the rooms you share with it. The <a href="setup.html">setup guides</a> cover both.</p>
     </details>
     <details>
       <summary>What does the app need from Google?</summary>
-      <p>Read access to the room's calendar you shared, and, if you turn on booking from the door, permission to add events to it. It reads one calendar: the room you picked.</p>
+      <p>Read access to your calendars so you can pick the room, and permission to add events so people can book it from the door. Once set up, it reads one calendar: the room you picked.</p>
     </details>
     <details>
       <summary>Why does Google say the app is "unverified" when I sign in?</summary>
-      <p>Only the "sign in with Google" path shows that screen; service accounts don't. Google reviews apps that ask for calendar access, and the review takes weeks. Until it's done, tap through the warning, or have your Workspace admin mark Bored Room as trusted.</p>
+      <p>Google reviews every app that asks for calendar access, and the review takes weeks. Until it's done, Google shows a warning at sign-in: tap Advanced, then continue to Bored Room. If your organization blocks unreviewed apps, your Google admin can mark Bored Room as trusted; the <a href="setup-manual.html">by-hand guide</a> shows where. Service accounts never see this screen.</p>
     </details>
     <details>
       <summary>What happens at night and on weekends?</summary>
@@ -202,7 +202,7 @@
     </details>
     <details>
       <summary>I forgot the PIN.</summary>
-      <p>Tap "Forgot PIN?" on the PIN screen. You prove you're the admin the same way the iPad was set up: choose the service account's key file again, or sign in as the board's Google account. Then pick a new PIN. The iPad stays on the wall. If your MDM pushes the PIN, change it there instead. In a small setup, deleting and reinstalling the app also clears the PIN.</p>
+      <p>Tap "Forgot PIN?" on the PIN screen. You prove you're the admin the same way the iPad was set up: sign in again as the board's Google account, or choose the service account's key file again. Then pick a new PIN. The iPad stays on the wall. If your MDM pushes the PIN, change it there instead. In a small setup, deleting and reinstalling the app also clears the PIN.</p>
     </details>
     <details>
       <summary>How do I keep people from changing the settings?</summary>
@@ -219,7 +219,7 @@
 
 <footer>
   <div class="wrap">
-    <div>The Bored Room &middot; <a href="mailto:hello@boredroom.space">hello@boredroom.space</a></div>
+    <div>Bored Room is a product of <a href="https://www.bacstech.io">BACS Tech, Inc.</a> &middot; <a href="mailto:boredroom@bacstech.io">boredroom@bacstech.io</a></div>
     <div><a href="privacy.html">Privacy policy</a> &middot; <a href="setup.html">Setup guide</a> &middot; <a href="#appstore">App Store</a></div>
   </div>
 </footer>

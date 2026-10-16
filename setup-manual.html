@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Set up by hand — Bored Room</title>
-<meta name="description" content="Step-by-step setup of Bored Room for an office admin: the Google side, then each iPad.">
+<meta name="description" content="Step-by-step setup of Bored Room for an office admin: add the room to your Google Calendar, sign in on the iPad, hang it up.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600;700&display=swap" rel="stylesheet">
@@ -30,149 +30,112 @@
 <main class="wrap article">
   <p class="small"><a href="setup.html">Setup</a> › By hand</p>
   <h1>Set up Bored Room by hand</h1>
-  <p class="lede">For one to five rooms, no IT background needed. Get the prerequisites sorted first (once, by whoever administers your Google account), then each iPad takes about two minutes.</p>
+  <p class="lede">For an office admin with a few rooms and no IT department. You'll add the room to a Google Calendar, sign in on the iPad with that same Google account, and hang it up. About 15 minutes for the first room, 5 for each one after.</p>
   <p class="print-hint">Print this page with ⌘P (Mac) or Ctrl+P (Windows). Links print with their addresses.</p>
 
   <h2>Before you start</h2>
-  <p>Three things have to exist before you touch the app: your rooms in Google, a <strong>service account</strong> that can see them, and an iPad that's ready. Each is done once. If you're the office admin and someone else holds the Google admin login, sections A and B are the part to hand them.</p>
-  <p>You'll need a Mac or PC for the Google sections; the iPad can't do them.</p>
+  <p>You need three things: the room set up in Google, a Google account that has the room on its calendar, and an iPad that's ready. Use a Mac or PC for sections A and B.</p>
 
-  <h3>A. Your rooms exist in Google</h3>
-  <p>Your meeting rooms should already be "rooms" that people add to meetings in Google Calendar. If they are, skip to B. If they aren't:</p>
+  <h3>A. The room exists in Google</h3>
+  <p>If people already add the room to meetings in Google Calendar, skip to B. If not, someone with access to your Google admin console adds it once:</p>
   <ol>
-    <li><a href="https://admin.google.com">admin.google.com</a> › left menu <strong>Directory</strong> › <strong>Buildings and resources</strong> › <strong>Manage resources</strong>.</li>
-    <li>If there's no building, add one first (<strong>Add building</strong>; the address can be approximate).</li>
-    <li>Add a resource (<strong>+</strong>). Category: the <strong>meeting space</strong> option, so it shows up in Calendar's room finder. Type: <strong>Conference room</strong>. Give it the name people use. Save.</li>
-    <li>Repeat per room. They now show up when anyone creates a meeting.</li>
+    <li>Go to <a href="https://admin.google.com">admin.google.com</a> › left menu <strong>Directory</strong> › <strong>Buildings and resources</strong> › <strong>Manage resources</strong>.</li>
+    <li>If there's no building yet, add one first (<strong>Add building</strong>; the address can be approximate).</li>
+    <li>Add a resource (<strong>+</strong>) and fill in:
+      <ul>
+        <li><strong>Category</strong>: Meeting space</li>
+        <li><strong>Type</strong>: Conference room</li>
+        <li><strong>Building</strong>: where the room is</li>
+        <li><strong>Resource name</strong>: what the room should be called, both in Google Calendar and on the iPad</li>
+      </ul>
+      Save.</li>
+    <li>Repeat for each room. They now show up when anyone creates a meeting.</li>
   </ol>
 
-  <h3>B. A service account that can see the rooms</h3>
-  <p>Think of a service account as a robot user: it has an email address, no inbox, and it's free. You share each room with it, and the iPads read the rooms as that robot. No person's account is involved, and you don't buy a Workspace license for it.</p>
-
-  <p><strong>B1. Create it and download its key</strong></p>
+  <h3>B. Put the room on the calendar of the account the iPad will use</h3>
+  <p>The iPad signs in with a Google account and shows whichever room you pick from that account's calendars. Pick the account first:</p>
+  <ul>
+    <li><strong>Best:</strong> a shared office account, like <code>frontdesk@</code> or <code>office@</code>, if you already have one. It doesn't leave when a person does.</li>
+    <li><strong>Fine:</strong> your own work account. If you ever leave, whoever replaces you signs the iPad in with their account (two minutes).</li>
+  </ul>
+  <p>Then, signed in as that account:</p>
   <ol>
-    <li>In a browser, go to <a href="https://console.cloud.google.com">console.cloud.google.com</a> and sign in with your Google admin account. If it asks you to agree to terms, agree. If it asks about billing, skip it; nothing here costs money.</li>
-    <li>At the top of the page there's a project picker (it may say "Select a project"). Click it, then <strong>New Project</strong>. Name it <code>Room displays</code>. Click <strong>Create</strong>, wait a few seconds, then click the picker again and select it.</li>
-    <li>In the left menu (☰), choose <strong>APIs &amp; Services</strong> › <strong>Library</strong>. Search for <strong>Google Calendar API</strong>, open it, click <strong>Enable</strong>.</li>
-    <li>In the left menu, choose <strong>IAM &amp; Admin</strong> › <strong>Service Accounts</strong>. Click <strong>Create service account</strong>.</li>
-    <li>Service account name: <code>room-displays</code>. Click <strong>Create and continue</strong>. On the next two screens (roles, user access) click <strong>Continue</strong> and <strong>Done</strong> without filling anything in.</li>
-    <li>You're back at the list. Click the account you just made (it looks like <code>room-displays@room-displays-123456.iam.gserviceaccount.com</code>). <strong>Copy that email address somewhere</strong>; you'll need it in B3.</li>
-    <li>Click the <strong>Keys</strong> tab › <strong>Add key</strong> › <strong>Create new key</strong> › choose <strong>JSON</strong> › <strong>Create</strong>. A file downloads, named something like <code>room-displays-123456-abc123.json</code>. Google won't let you download it a second time, so keep it.</li>
+    <li>Go to <a href="https://calendar.google.com">calendar.google.com</a>.</li>
+    <li>On the left, next to <strong>Other calendars</strong>, click <strong>+</strong> › <strong>Browse resources</strong>.</li>
+    <li>Open your building and tick the room. It now appears under Other calendars.</li>
+    <li>Repeat for each room that will get an iPad.</li>
   </ol>
   <div class="note">
-    <p><strong>If Google says "Service account key creation is disabled":</strong> that's normal. Google blocks key downloads by default for every Google Cloud organization created since May 2024, which is almost everyone following this guide for the first time. To allow it:</p>
-    <p>1. Left menu › <strong>IAM &amp; Admin</strong> › <strong>Organization Policies</strong>. Make sure your <code>Room displays</code> project is selected in the picker at the top.<br>
-    2. In the filter box type <code>key creation</code>. Open <strong>Disable service account key creation</strong> (ID <code>iam.managed.disableServiceAccountKeyCreation</code>).<br>
-    3. <strong>Manage policy</strong> › <strong>Override parent's policy</strong> › <strong>Add a rule</strong> › Enforcement: <strong>Off</strong> › <strong>Done</strong> › <strong>Set policy</strong>.<br>
-    4. If a second policy named <code>iam.disableServiceAccountKeyCreation</code> is also listed as enforced, do the same for it.<br>
-    5. Wait a few minutes, then go back to the Keys tab and try again.</p>
-    <p>If the Manage policy button is greyed out, your admin account needs the <strong>Organization Policy Administrator</strong> role: IAM &amp; Admin › IAM, switch the picker from the project to your <em>organization</em>, find your account › edit › add that role. The Google Workspace super admin who first opened Cloud Console can grant it.</p>
+    <p><strong>Google Workspace admins can skip this.</strong> If the account is an admin, the iPad already lists every room in your organization.</p>
   </div>
-  <div class="note">
-    <p><strong>That file is a password.</strong> Anyone who has it can read the rooms you share. Keep it with your other IT passwords, not in a shared drive everyone can see. If it ever leaks, come back to the Keys tab, delete it, and create a new one. You'll also use it to reset a forgotten PIN, so don't lose it.</p>
-  </div>
-
-  <p><strong>B2. Tell Google it's allowed to see your rooms</strong></p>
-  <p>To Google, the service account counts as "outside your company," so one setting has to allow sharing with it.</p>
-  <ol>
-    <li>Go to <a href="https://admin.google.com">admin.google.com</a>, signed in as the admin.</li>
-    <li>Left menu: <strong>Apps</strong> › <strong>Google Workspace</strong> › <strong>Calendar</strong>.</li>
-    <li>Click <strong>Sharing settings</strong>, then scroll down to the <strong>General settings</strong> card.</li>
-    <li>Open <strong>External sharing options for secondary calendars</strong>. (Room calendars follow this setting, not the primary-calendar one above it.) Choose <strong>Share all information, but outsiders cannot change calendars</strong>. If you'd like people to be able to book the room from the iPad at the door, choose <strong>Share all information, and outsiders can change calendars</strong> instead.</li>
-    <li>Click <strong>Save</strong>. It usually applies within minutes, but Google says it can take up to 24 hours. If B3 only offers "free/busy" permissions, that's the sign it hasn't applied yet.</li>
-  </ol>
-
-  <p><strong>B3. Share each room with the service account</strong></p>
-  <ol>
-    <li>Go to <a href="https://calendar.google.com">calendar.google.com</a>, signed in as the admin.</li>
-    <li>On the left, find the room under <strong>My calendars</strong> or <strong>Other calendars</strong>. If it isn't there: click the <strong>+</strong> next to "Other calendars" › <strong>Browse resources</strong> › pick the building › tick the room. It appears in the list.</li>
-    <li>Hover over the room name, click the three dots (⋮) › <strong>Settings and sharing</strong>.</li>
-    <li>On the left click <strong>Shared with</strong> (older layouts call it "Share with specific people or groups") › <strong>Add people and groups</strong>.</li>
-    <li>Paste the service account's email (from B1). For Permissions choose <strong>See event details</strong> (older menus: "See all event details"). If you chose the booking option in B2 and want booking from the iPad, choose <strong>Make changes and see event details</strong> (older: "Make changes to events") instead. Click <strong>Send</strong>.</li>
-    <li>Do the same for each room. Same email every time.</li>
-  </ol>
 
   <h3>C. An iPad that's ready</h3>
   <ol>
     <li>Any iPad on iPadOS 17 or newer. Settings › General › Software Update if it's behind.</li>
     <li>Connected to Wi-Fi, and plugged into power where it will hang. The app keeps the screen on, which needs power.</li>
-    <li>Bored Room installed from the App Store (99¢). Installing from the App Store needs an Apple ID signed in on the iPad; any Apple ID works, and you can sign out of it afterward (Settings › your name › Sign Out) without losing the app.</li>
+    <li>Bored Room installed from the App Store (99¢). Installing needs an Apple ID on the iPad; any Apple ID works, and you can sign out of it afterward (Settings › your name › Sign Out) without losing the app.</li>
     <li>Settings › <strong>Accessibility</strong> › <strong>Display &amp; Text Size</strong> › <strong>Auto-Brightness</strong> off. Otherwise the light sensor undoes the after-hours dimming.</li>
-    <li>Settings › <strong>Display &amp; Brightness</strong> › <strong>Auto-Lock</strong> › Never. Belt and braces; the app keeps the screen awake anyway.</li>
-    <li>The key file from B1 somewhere the iPad can reach it. Any of these works:
-      <ul>
-        <li><strong>AirDrop</strong> from a Mac: right-click the file › Share › AirDrop › pick the iPad. On the iPad, accept it; it lands in the Files app, normally in <strong>Downloads</strong> (under On My iPad, or under iCloud Drive if the iPad has an Apple ID). If the iPad asks which app should open it, choose Files.</li>
-        <li><strong>iCloud Drive or Google Drive</strong>: put the file in a folder you can open from the iPad's Files app. Note which folder.</li>
-        <li><strong>Email it to yourself</strong> (this needs Mail set up on the iPad), open the mail, tap the attachment, tap Share › <strong>Save to Files</strong> › On My iPad › Save. Note which folder.</li>
-      </ul>
-    </li>
+    <li>Settings › <strong>Display &amp; Brightness</strong> › <strong>Auto-Lock</strong> › Never.</li>
   </ol>
 
   <h3>Checklist</h3>
   <ul class="checklist">
-    <li>Rooms exist in Google Calendar (A)</li>
-    <li>Service account created; its email copied; key file downloaded and kept safe (B1)</li>
-    <li>Admin console sharing setting is "Share all information…" (B2)</li>
-    <li>Every room shared with the service account's email (B3)</li>
-    <li>iPad on iPadOS 17+, on Wi-Fi, on power, app installed, auto-brightness off (C)</li>
-    <li>Key file reachable from the iPad's Files app (C)</li>
+    <li>The room exists in Google (A)</li>
+    <li>The room is ticked under Other calendars for the account the iPad will use, and you know that account's password (B)</li>
+    <li>iPad on iPadOS 17+, on Wi-Fi, on power, app installed, Auto-Brightness off (C)</li>
   </ul>
-  <p>All ticked? The rest is two minutes per iPad, and you won't need the Google admin again unless you add a room.</p>
 
-  <h2>Set up each iPad</h2>
+  <h2>Set up the iPad</h2>
   <ol>
-    <li>Open <strong>Bored Room</strong> on the iPad.</li>
-    <li>Tap <strong>Use a service account</strong>.</li>
-    <li>Tap <strong>Choose key file</strong>. The Files app opens. Go to wherever you put the key in section C:
-      <ul>
-        <li>AirDropped it: <strong>Browse</strong> › <strong>Downloads</strong> in the sidebar (under On My iPad or iCloud Drive).</li>
-        <li>iCloud Drive or Google Drive: <strong>Browse</strong> › that drive › the folder you used.</li>
-        <li>Saved from an email: <strong>Browse</strong> › <strong>On My iPad</strong>, or whichever folder you picked in "Save to Files".</li>
-      </ul>
-      It's the file named like <code>room-displays-123456-abc123.json</code>. Tap it once. The app checks the key with Google; this takes a second or two.</li>
-    <li>The rooms you shared appear. Tap the one this iPad is for, then <strong>Continue</strong>.</li>
-    <li>The room name is filled in. Change it if the board should say something different. <strong>Continue</strong>.</li>
-    <li>Choose a 4-digit PIN and enter it twice. This protects the settings; anyone can look at the board, but only someone with the PIN can change it. <strong>Write it down somewhere safe</strong>: a password manager, or wherever you keep the key file and your other IT passwords. Use the same PIN on every iPad so there's one thing to remember, and tell the next person who takes over the iPads. If it's forgotten, you can reset it with the key file, but that's an errand you'd rather skip.</li>
-    <li>Pick when the board should be on. Tap the days, drag the two handles to set the hours (Monday to Friday, 7 AM to 5 PM to start), or switch on <strong>Always on</strong>. Tap <strong>Finish</strong>.</li>
+    <li>Open <strong>Bored Room</strong> and tap <strong>Sign in with Google</strong>, then the <strong>Sign in with Google</strong> button.</li>
+    <li>Sign in with the account from section B.</li>
+    <li>Google may show <strong>"Google hasn't verified this app."</strong> That's expected while Google reviews Bored Room. Tap <strong>Advanced</strong>, then the link to continue to Bored Room.</li>
+    <li>Google lists what Bored Room may do. Tick every box (or <strong>Select all</strong>), then <strong>Continue</strong>. The calendar boxes are what let the board read the room and let people book it from the door.</li>
+    <li>Your rooms appear. Tap the one this iPad is for, then <strong>Continue</strong>.</li>
+    <li>The room name is filled in. Change it if the board should say something different (Google sometimes adds the capacity, like "(4)"). <strong>Continue</strong>.</li>
+    <li>Choose a 4-digit PIN and enter it twice. It protects the settings. <strong>Write it down somewhere safe</strong>, and use the same PIN on every iPad.</li>
+    <li>Pick when the board should be on: tap the days, drag the two handles to set the hours (Monday to Friday, 7 AM to 5 PM to start), or switch on <strong>Always on</strong>. Tap <strong>Finish</strong>.</li>
   </ol>
   <p>The board appears, showing whether the room is free and what's on today. Outside the hours you chose it goes black; touch it and it shows the board for a minute, and a meeting that runs late keeps it on.</p>
 
   <h2>Mount it and lock it</h2>
   <ol>
-    <li>Recommended: lock the iPad to the app so nobody wanders off to Safari. Settings › <strong>Accessibility</strong> › <strong>Guided Access</strong> › turn it on and set a passcode. Then open Bored Room, press the top button three times quickly, tap <strong>Start</strong>. (To end Guided Access later: triple-click again, enter the passcode, tap <strong>End</strong>. Older iPads with a Home button use that instead of the top button.)</li>
+    <li>Recommended: lock the iPad to the app so nobody wanders off to Safari. Settings › <strong>Accessibility</strong> › <strong>Guided Access</strong> › turn it on and set a passcode. Then open Bored Room, press the top button three times quickly, tap <strong>Start</strong>. (To end Guided Access: triple-click again, enter the passcode, tap <strong>End</strong>. iPads with a Home button use that instead of the top button.)</li>
     <li>Any wall mount or stand that holds an iPad works. Landscape or portrait; the board adapts. Route the power cable.</li>
   </ol>
 
   <h2>Changing things later</h2>
   <p>On the board, press and hold the faint rounded tab in the bottom-right corner for one second. Enter the PIN. Settings opens: room name, which room, show or hide meeting titles, font, background (including your own photo), booking on or off, hours, change PIN. Tap <strong>Done</strong> to go back to the board.</p>
-  <p><strong>Forgot the PIN?</strong> Tap <strong>Forgot PIN?</strong> on the PIN screen, choose the key file from B1 again, and pick a new PIN. The iPad stays on the wall.</p>
+  <p><strong>Forgot the PIN?</strong> Tap <strong>Forgot PIN?</strong> on the PIN screen, sign in again with the same Google account, and pick a new PIN. The iPad stays on the wall.</p>
 
-  <h2>Simpler alternative: sign in with Google</h2>
-  <p>If you only have one room and don't want to touch the Google admin pages at all, the iPad can sign in with an existing person's Google account, the way you'd sign into Gmail. It works, and it's free. The trade-offs: that person's account is now on a wall-mounted iPad, their private meetings show their titles if they organized them, and when they leave the company the iPad stops working until someone else signs in. Prerequisites shrink to section A and section C minus the key file.</p>
-  <ol>
-    <li>Open Bored Room › <strong>Sign in with Google instead</strong>.</li>
-    <li>Sign in. If Google says the app isn't verified, tap <strong>Continue</strong>. Then allow calendar access.</li>
-    <li>Pick the room, confirm the name, set a PIN, set the hours. Done.</li>
-  </ol>
+  <h2>Good to know</h2>
+  <ul>
+    <li><strong>The iPad depends on that Google account.</strong> If the account is removed, or Google signs it out after a password change, the board says it can't update. Hold the corner tab › PIN › <strong>Sign out of Google</strong>, then sign in with another account that has the room on its calendar (section B).</li>
+    <li><strong>Bookings from the door go on that account's calendar</strong>, with the room invited, the same way a meeting booked from a laptop does. They're titled "Booked at the door".</li>
+    <li><strong>Private meetings stay private.</strong> A meeting marked private shows as "Private meeting" on the board, whoever is signed in.</li>
+    <li><strong>The sign-in never leaves the iPad.</strong> Bored Room has no server; the sign-in is kept in the iPad's keychain and used only to talk to Google. See the <a href="privacy.html">privacy policy</a>.</li>
+  </ul>
 
   <h2>If something's off</h2>
   <ul>
-    <li><strong>"No rooms are shared with this service account yet."</strong> B3 wasn't done for this room, or B2's setting hasn't applied yet (wait five minutes). Check that you shared with the exact email from B1.</li>
-    <li><strong>Google only offers "free/busy" when sharing with that email, or refuses it.</strong> B2 again; the setting must allow "Share all information", and it can take a while to apply.</li>
-    <li><strong>"That file isn't a service account key."</strong> You picked a different file. It should be the .json that downloaded in B1, step 7.</li>
-    <li><strong>Meetings show as "Meeting" with no title.</strong> Either "Show meeting titles" is off in Settings, or the share permission is "See only free/busy (hide details)". Re-share with "See event details".</li>
-    <li><strong>A meeting shows as "Private meeting".</strong> That's correct: the person who made it marked it private.</li>
-    <li><strong>"Book now" doesn't work.</strong> It needs "Make changes and see event details" in B3 and the booking option in B2.</li>
+    <li><strong>"No rooms found for this account."</strong> Section B wasn't done for this account, or you signed in with a different one. Tick the room under Other calendars, then tap <strong>Try again</strong>.</li>
+    <li><strong>Google says access is blocked, or that your admin hasn't allowed the app.</strong> Your organization only lets approved apps use Google accounts. A Google admin allows it once: admin.google.com › <strong>Security</strong> › <strong>Access and data control</strong> › <strong>API controls</strong> › <strong>Manage third-party app access</strong> › find Bored Room › set it to <strong>Trusted</strong>. Or email us and we'll walk them through it.</li>
+    <li><strong>"Book now" doesn't work.</strong> A calendar box was left unticked at sign-in. Hold the corner tab › PIN › <strong>Sign out of Google</strong>, sign in again, and tick every box.</li>
+    <li><strong>Meetings show as "Meeting" with no title.</strong> "Show meeting titles" is off in Settings.</li>
     <li><strong>The screen is black.</strong> It's outside the hours you set. Touch it to see the board for a minute; hold the corner tab › PIN › Settings › Hours to change the schedule.</li>
-    <li><strong>You forgot the PIN.</strong> Hold the corner tab › <strong>Forgot PIN?</strong> › choose the key file again (or sign in as the board's Google account) › new PIN. Or delete the app and install it again; that clears the PIN too, and the key file sets it up again in two minutes.</li>
+    <li><strong>You forgot the PIN.</strong> Hold the corner tab › <strong>Forgot PIN?</strong> › sign in again with the same Google account › new PIN.</li>
   </ul>
 
-  <p style="margin-top:2.5em">Stuck? <a href="mailto:hello@boredroom.space">hello@boredroom.space</a>, or <a href="mailto:hello@boredroom.space?subject=Free%20setup%20session">book a free setup session</a> and we'll do it together on a call.</p>
+  <div class="note">
+    <p><strong>Have an IT person, or don't want anyone's account on the iPad?</strong> The <a href="setup-configurator.html">Apple Configurator</a> and <a href="setup-mdm.html">MDM</a> guides use a <a href="setup-service-account.html">Google service account</a> instead: no sign-in on the iPad and no extra license, at the cost of a few more steps in Google's admin pages.</p>
+  </div>
+
+  <p style="margin-top:2.5em">Stuck? Email <a href="mailto:boredroom@bacstech.io">boredroom@bacstech.io</a>, or <a href="mailto:boredroom@bacstech.io?subject=Free%20setup%20session">book a free setup session</a> and we'll do it together on a call.</p>
 </main>
 
 <footer>
   <div class="wrap">
-    <div>The Bored Room &middot; <a href="mailto:hello@boredroom.space">hello@boredroom.space</a></div>
+    <div>Bored Room is a product of <a href="https://www.bacstech.io">BACS Tech, Inc.</a> &middot; <a href="mailto:boredroom@bacstech.io">boredroom@bacstech.io</a></div>
     <div><a href="privacy.html">Privacy policy</a> &middot; <a href="setup.html">Setup</a></div>
   </div>
 </footer>

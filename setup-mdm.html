@@ -37,13 +37,12 @@
   <p>Three prerequisites, each done once per organization. Bored Room reads the standard Managed App Configuration dictionary (<code>com.apple.configuration.managed</code>); every key is optional, and any key you set is locked on the device.</p>
 
   <h3>A. Google: one service account, shared with every room</h3>
-  <p>Full click-by-click in the <a href="setup-manual.html">by-hand guide</a>, sections A and B. Summary:</p>
-  <ol>
-    <li><a href="https://console.cloud.google.com">Cloud Console</a> › project › enable <strong>Google Calendar API</strong> › IAM &amp; Admin › Service Accounts › create (no roles) › Keys › Add key › JSON. Keep the file; it's the credential you'll push. Google Cloud organizations created since May 2024 block key creation by default (<code>iam.managed.disableServiceAccountKeyCreation</code>); override it on the project under IAM &amp; Admin › Organization Policies, as the <a href="setup-manual.html">by-hand guide</a> shows.</li>
-    <li><a href="https://admin.google.com">Admin console</a> › Apps › Google Workspace › Calendar › Sharing settings › General settings card › <strong>External sharing options for secondary calendars</strong> › "Share all information, but outsiders cannot change calendars" (or "…and outsiders can change calendars" if you'll enable booking). Can take up to 24 hours to apply.</li>
-    <li>Share each room with the service account email: <strong>See event details</strong>, or <strong>Make changes and see event details</strong> for booking (older labels: "See all event details" / "Make changes to events"). Do this in Google Calendar (room › Settings and sharing › Shared with) or with the Calendar API's <code>acl.insert</code> (role <code>reader</code> or <code>writer</code>; <code>writerWithoutPrivateAccess</code> also works for booking) if you're scripting many rooms.</li>
-    <li>Collect each room's calendar ID: in Google Calendar, the room › Settings and sharing › <strong>Integrate calendar</strong> › <strong>Calendar ID</strong>, e.g. <code>c_1882c…@resource.calendar.google.com</code> (the Admin console shows the same value as the resource's email). A spreadsheet of serial, room name, calendar ID is all the per-device data you'll need.</li>
-  </ol>
+  <p>Follow <a href="setup-service-account.html">Set up a Google service account</a>: create the account and its key, allow external sharing for secondary calendars, share each room, and collect each room's calendar ID. Google Cloud organizations created since May 2024 block key creation by default; the guide covers turning off both <code>iam.managed.disableServiceAccountKeyCreation</code> and the legacy <code>iam.disableServiceAccountKeyCreation</code> for the project. Notes for scripting many rooms:</p>
+  <ul>
+    <li>Sharing can be done with the Calendar API's <code>acl.insert</code>: role <code>reader</code> for the board, <code>writer</code> for booking (<code>writerWithoutPrivateAccess</code> also works for booking).</li>
+    <li>The calendar ID is the resource's email in the Admin console, e.g. <code>c_1882c…@resource.calendar.google.com</code>. Push it as <code>calendarId</code> and the iPad skips the room picker.</li>
+    <li>A spreadsheet of serial number, room name and calendar ID is all the per-device data you need.</li>
+  </ul>
 
   <h3>B. Apple Business Manager: licenses</h3>
   <ol>
@@ -174,12 +173,12 @@
     <li><strong>Someone forgot the PIN.</strong> Change the <code>pin</code> value in the profile; the app picks it up within a minute while it's on screen. The "Forgot PIN?" button on the device tells them to ask you.</li>
   </ul>
 
-  <p style="margin-top:2.5em">Questions, or a console we haven't covered? <a href="mailto:hello@boredroom.space">hello@boredroom.space</a>.</p>
+  <p style="margin-top:2.5em">Questions, or a console we haven't covered? <a href="mailto:boredroom@bacstech.io">boredroom@bacstech.io</a>.</p>
 </main>
 
 <footer>
   <div class="wrap">
-    <div>The Bored Room &middot; <a href="mailto:hello@boredroom.space">hello@boredroom.space</a></div>
+    <div>Bored Room is a product of <a href="https://www.bacstech.io">BACS Tech, Inc.</a> &middot; <a href="mailto:boredroom@bacstech.io">boredroom@bacstech.io</a></div>
     <div><a href="privacy.html">Privacy policy</a> &middot; <a href="setup.html">Setup</a></div>
   </div>
 </footer>
