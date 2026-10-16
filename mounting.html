@@ -82,9 +82,23 @@
   </ol>
   <div class="note">
     <p><strong>PoE vs. PoE+.</strong> Plain PoE (802.3af) adapters deliver about 10W. That's fine for an iPad mini but slow for a full-size iPad. Buy PoE+ (802.3at) adapters and a PoE+ switch.</p>
-    <p><strong>Power budget.</strong> Plan on about 25W per iPad. A 65W switch handles 2 rooms comfortably; a 120W switch handles 4. More rooms, bigger switch.</p>
+    <p><strong>Power budget.</strong> Plan on 30W per iPad at the switch (about 25W reaches the iPad). Check two numbers on the switch: PoE+ ports and total PoE budget. Both have to cover every iPad; see the sizing chart below.</p>
     <p><strong>Bonus:</strong> put the switch on a small battery backup (UPS) and every board stays up through a power blip.</p>
   </div>
+
+  <h3>PoE sizing chart</h3>
+  <p>Count every iPad that will run off one switch, then find your row. The switch needs at least that many PoE+ ports <em>and</em> that much total PoE power. An 8-port switch with a 120W budget powers only 4 iPads; the other ports work for data but stay unpowered.</p>
+  <table>
+    <tr><th>iPads</th><th>PoE+ ports</th><th>Power budget</th><th>Buy a switch with at least</th></tr>
+    <tr><td>1–2</td><td>2</td><td>60W</td><td>4 PoE+ ports, 65W</td></tr>
+    <tr><td>3–4</td><td>4</td><td>120W</td><td>4–8 PoE+ ports, 120W</td></tr>
+    <tr><td>5–6</td><td>6</td><td>180W</td><td>8 PoE+ ports, 180W</td></tr>
+    <tr><td>7–8</td><td>8</td><td>240W</td><td>8 PoE+ ports, 240W</td></tr>
+    <tr><td>9–12</td><td>12</td><td>360W</td><td>16 PoE+ ports, 370W</td></tr>
+    <tr><td>13–16</td><td>16</td><td>480W</td><td>16–24 PoE+ ports, 480W</td></tr>
+    <tr><td>17–24</td><td>24</td><td>720W</td><td>24 PoE+ ports, 740W, or two smaller switches</td></tr>
+  </table>
+  <p class="small">30W per iPad: PoE+ (802.3at) reserves up to 30W per port. Every port powering an iPad must be PoE+ or PoE++ (802.3bt); plain PoE (802.3af) is too slow. The switch also needs one regular port to connect to your network. The same chart is on the last page of the <a href="mounting-checklist.pdf">checklist</a>.</p>
 
   <h3>What to tell your installer</h3>
   <p>Call a low-voltage cabling installer or an electrician. Ethernet is low-voltage cabling, so in most places it doesn't need a licensed electrician, but plenty of electricians do it. Say this:</p>
