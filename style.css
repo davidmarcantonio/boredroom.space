@@ -57,12 +57,13 @@ small, .small { font-size: 0.92rem; color: var(--ink-2); }
 /* Header */
 .top {
   display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; row-gap: 10px;
   padding: 18px 0;
 }
 .brand { display: flex; align-items: center; gap: 12px; font-weight: 800; text-decoration: none; color: inherit; font-size: 1.5rem; letter-spacing: -0.01em; white-space: nowrap; }
 .brand img { width: 42px; height: 42px; border-radius: 10px; display: block; }
 @media (max-width: 560px) { .brand { font-size: 1.25rem; gap: 10px; } .brand img { width: 34px; height: 34px; } }
-.nav { display: flex; gap: 22px; font-weight: 600; }
+.nav { display: flex; flex-wrap: wrap; gap: 22px; font-weight: 600; }
 .nav a { text-decoration: none; color: var(--ink-2); }
 .nav a:hover, .nav a[aria-current] { color: var(--ink); }
 .nav a { white-space: nowrap; }
@@ -235,7 +236,11 @@ pre { background: var(--midnight); color: #E6EEF5; padding: 16px 18px; border-ra
 @media print { .pdf-embed { display: none !important; } }
 
 /* Long scope URLs and IDs wrap on phones */
-.article td code, .article p code { overflow-wrap: anywhere; }
+.article td code, .article p code, .article li code { overflow-wrap: anywhere; }
+/* Phones: the setup-card heading keeps its own spacing (.article h3 would push it down),
+   and a table too wide for the screen scrolls inside itself instead of moving the whole page. */
+.article .path h3 { margin-top: 0; }
+@media (max-width: 760px) { .article table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; } }
 
 /* Hero stamp: "Certified boring" */
 .stamp {
