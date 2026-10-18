@@ -11,6 +11,7 @@
   --ocean: #0D5C8C;
   --accent: #1C8C6E;        /* buttons, price */
   --accent-ink: #146B54;
+  --price: #6EE0AE;         /* price on the dark hero: light tint of the accent, ~7:1 on midnight */
   --free: #22A35B;          /* the board's Free color, always green */
   --busy: #E24850;
   --board-a: #052A48;       /* board mock gradient */
@@ -84,12 +85,11 @@ small, .small { font-size: 0.92rem; color: var(--ink-2); }
 .hero .nav a { color: rgba(255,255,255,.7); }
 .hero .nav a:hover { color: var(--white); }
 
-.price-tag {
-  display: inline-flex; align-items: baseline; gap: 8px;
-  background: var(--midnight-2); border: 1px solid rgba(255,255,255,.12);
-  border-radius: 999px; padding: 8px 16px; margin: 6px 0 22px; font-weight: 600;
-}
-.price-tag b { font-size: 1.4rem; font-weight: 800; color: var(--accent); }
+/* Price: the number is the headline, the unit beside it, the fine print under. No box. */
+.price-tag { display: grid; grid-template-columns: auto 1fr; column-gap: 14px; align-items: end; margin: 4px 0 24px; }
+.price-tag b { grid-row: 1; font-size: clamp(3rem, 9vw, 4rem); line-height: .9; font-weight: 800; color: var(--price); letter-spacing: -0.03em; }
+.price-tag .per { grid-row: 1; font-size: 1.1rem; font-weight: 700; padding-bottom: .35em; }
+.price-tag .fine { grid-column: 1 / -1; margin-top: 8px; font-weight: 500; color: rgba(255,255,255,.75); }
 
 .cta { display: inline-flex; align-items: center; gap: 10px; background: var(--accent); color: var(--white); font-weight: 700; text-decoration: none; padding: 14px 22px; border-radius: 10px; }
 .cta:hover { background: var(--accent-ink); color: var(--white); }

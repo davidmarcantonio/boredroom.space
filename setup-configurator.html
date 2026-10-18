@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Set up with Apple Configurator — Bored Room</title>
-<meta name="description" content="Deploy Bored Room with Apple Configurator: supervise, install via Apple Business Manager, lock to Single App Mode.">
+<meta name="description" content="Deploy Bored Room with Apple Configurator: supervise, install via Apple Business, lock to Single App Mode.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600;700&display=swap" rel="stylesheet">
@@ -34,13 +34,13 @@
   <p class="print-hint">Print this page with ⌘P. Links print with their addresses.</p>
 
   <h2>Before you start</h2>
-  <p>Four prerequisites, each done once. The slowest is Apple Business Manager approval, so start with that. Nothing below touches an iPad.</p>
+  <p>Four prerequisites, each done once. The slowest is Apple Business approval, so start with that. Nothing below touches an iPad.</p>
 
-  <h3>A. Apple Business Manager</h3>
+  <h3>A. Apple Business</h3>
   <ol>
-    <li>Enroll at <a href="https://business.apple.com">business.apple.com</a> (Apple now calls the service "Apple Business"; MDM consoles still say Apple Business Manager). Free. Needs your D-U-N-S number matching your legal name and address, and a verification phone call to a second person at your company (not whoever fills in the form). Apple doesn't promise a turnaround; answer their call promptly.</li>
+    <li>Enroll at <a href="https://business.apple.com">business.apple.com</a>. Apple Business is the 2026 name for Apple Business Manager; some MDM consoles and older versions of Apple Configurator still show the old name. Free. Needs your D-U-N-S number matching your legal name and address, and a verification phone call to a second person at your company (not whoever fills in the form). Apple doesn't promise a turnaround; answer their call promptly.</li>
     <li>Once approved: accept the Apps and Books terms when prompted, and add a payment method (Settings › Payment Information). Required even for free apps.</li>
-    <li><strong>Apps and Books</strong> › search <strong>Bored Room</strong> › pick the location (the default is fine; remember which) › quantity = number of iPads › <strong>Buy</strong>. 99¢ per copy.</li>
+    <li><strong>Apps &amp; Services</strong> › <strong>Apps and Books</strong> › search <strong>Bored Room</strong> › pick the location (the default is fine; remember which) › quantity = number of iPads › <strong>Buy</strong>. 99¢ per copy; each iPad needs its own.</li>
   </ol>
 
   <h3>B. Google: how the iPads connect</h3>
@@ -53,9 +53,9 @@
   <h3>C. Apple Configurator with an organization</h3>
   <ol>
     <li>Install <a href="https://apps.apple.com/app/apple-configurator/id1037126344">Apple Configurator</a> from the Mac App Store (free). Have a USB-C cable; a direct port works better than a hub.</li>
-    <li>Configurator › Settings (⌘,) › <strong>Organizations</strong> › <strong>+</strong>. If it offers to sign in to Apple Business Manager, you can sign in or skip; this sign-in is only for adding devices to Business Manager, not for app licenses. Enter the organization name; the rest is optional. Choose <strong>Generate a new supervision identity</strong> › Done.</li>
+    <li>Configurator › Settings (⌘,) › <strong>Organizations</strong> › <strong>+</strong>. If it offers to sign in to Apple Business (it may still say Apple Business Manager), you can sign in or skip; this sign-in is only for adding devices to Apple Business, not for app licenses. Enter the organization name; the rest is optional. Choose <strong>Generate a new supervision identity</strong> › Done.</li>
     <li>Still in Organizations: select yours › the action menu (gear or <strong>…</strong>) › <strong>Export Supervision Identity</strong> › choose a passphrase. You get an encrypted .p12 file. Save it and the passphrase with your other IT passwords. (A replacement Mac gets it back via Organizations › … › <strong>Import Organization</strong>.)</li>
-    <li>Menu bar › <strong>Account</strong> › <strong>Sign In</strong> with your Business Manager account › enter the six-digit code › pick the <strong>same location</strong> you bought the licenses for. This is the sign-in that lets Configurator install the app with no Apple ID on the iPad. Your account needs the Administrator or Content Manager role.</li>
+    <li>Menu bar › <strong>Account</strong> › <strong>Sign In</strong> with your Apple Business account › enter the six-digit code › pick the <strong>same location</strong> you bought the licenses for. This is the sign-in that lets Configurator install the app with no Apple ID on the iPad. Your account needs the Organization Administrator or Content Manager role.</li>
   </ol>
   <div class="note">
     <p><strong>The supervision identity is a certificate Configurator makes for you.</strong> Nothing to request or install beforehand. It's what ties these iPads to this Mac: starting or stopping Single App Mode later, or updating the app, needs the same identity. If it's lost, the only way back in is to erase and prepare the iPad again. That's why step 3 exports it.</p>
@@ -70,7 +70,7 @@
 
   <h3>Checklist</h3>
   <ul class="checklist">
-    <li>Business Manager approved; N copies of Bored Room bought and assigned (A)</li>
+    <li>Apple Business approved; N copies of Bored Room bought and assigned (A)</li>
     <li>Shared account with every room on its calendar, and Bored Room trusted if your Workspace requires it; or the service account key in hand with every room shared and calendar IDs listed (B)</li>
     <li>Configurator installed; organization created with a generated supervision identity; identity exported; Account › Sign In done for the right location (C)</li>
     <li>iPads, cable, power at the mount, backups done where needed (D)</li>
@@ -80,7 +80,7 @@
   <p>Do the first one end to end, then repeat. About five minutes each once you've done one.</p>
   <ol>
     <li>Plug the iPad into the Mac. In Configurator, select it › <strong>Prepare</strong>.</li>
-    <li>First screen: <strong>Manual Configuration</strong>, with four checkboxes under it. Tick <strong>Supervise devices</strong>. Leave "Add to Apple Business Manager" and "Enable Shared iPad" unticked. The remaining one is the next step.</li>
+    <li>First screen: <strong>Manual Configuration</strong>, with four checkboxes under it. Tick <strong>Supervise devices</strong>. Leave "Add to Apple Business Manager" (newer versions may say "Add to Apple Business") and "Enable Shared iPad" unticked. The remaining one is the next step.</li>
     <li><strong>Allow devices to pair with other computers</strong>: read this before choosing. Unchecked means that from now on, only a Mac holding this organization's supervision identity (the one you generated and exported in C) can connect to the iPad at all: no other Mac or PC will be able to see it, back it up, update the app, or stop Single App Mode. If this Mac dies and you never exported the identity, the only way back in is to erase the iPad with Recovery Mode and start over. That is the more locked-down choice and fine for a wall sign, as long as the exported identity is somewhere safe. Checked lets any computer pair with the iPad, which is more forgiving and slightly less secure. Next.</li>
     <li>Device management: <strong>Do not enroll in Device Management</strong>. Next.</li>
     <li>If a Managed Apple Account sign-in screen appears, click <strong>Skip</strong>.</li>
@@ -89,7 +89,7 @@
     <li>If a Wi-Fi or network profile screen appears, you can continue without one; the iPad gets its internet over the cable from the Mac during preparation. <strong>Prepare</strong>.</li>
     <li>The iPad erases, restarts, and lands on the Home screen with no Apple ID. Connect it to Wi-Fi (Settings › Wi-Fi).</li>
     <li>On the iPad: Settings › Accessibility › Display &amp; Text Size › <strong>Auto-Brightness off</strong> (so the light sensor doesn't undo the after-hours dimming), and Settings › Display &amp; Brightness › <strong>Auto-Lock › Never</strong>.</li>
-    <li>Back in Configurator, select the iPad › <strong>Add</strong> › <strong>Apps</strong> › pick <strong>Bored Room</strong> from your Business Manager apps (the number beside it is licenses left) › <strong>Add Apps</strong>. It installs without an Apple ID. If the list is empty, Account › Sign In (C) is missing or pointed at the wrong location.</li>
+    <li>Back in Configurator, select the iPad › <strong>Add</strong> › <strong>Apps</strong> › pick <strong>Bored Room</strong> from your Apple Business apps (the number beside it is licenses left) › <strong>Add Apps</strong>. It installs without an Apple ID. If the list is empty, Account › Sign In (C) is missing or pointed at the wrong location.</li>
   </ol>
 
   <h2>Set up the app</h2>
@@ -139,7 +139,7 @@
 
   <h2>If something's off</h2>
   <ul>
-    <li><strong>Configurator can't see my Business Manager apps.</strong> You're not signed in under <strong>Account › Sign In</strong>, or you picked a different location there than the one you bought the licenses in. Window › Volume Purchasing Assignments shows what Configurator can see.</li>
+    <li><strong>Configurator can't see my Apple Business apps.</strong> You're not signed in under <strong>Account › Sign In</strong>, or you picked a different location there than the one you bought the licenses in. Window › Volume Purchasing Assignments shows what Configurator can see.</li>
     <li><strong>"Prepare" fails partway.</strong> Usually the cable or a USB hub. Use a direct port and Apple's cable.</li>
     <li><strong>No rooms appear after signing in with the shared account.</strong> The rooms aren't on that account's calendar yet (<a href="setup-manual.html#room-account">by-hand guide, section B</a>).</li>
     <li><strong>No rooms appear with a service account.</strong> Expected the first time: add the room by its calendar ID. If Add says Google won't open the calendar, the room isn't shared with the service account yet, or the sharing setting hasn't applied (it can take up to 24 hours).</li>

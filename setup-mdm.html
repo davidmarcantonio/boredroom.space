@@ -44,16 +44,16 @@
     <li>A spreadsheet of serial number, room name and calendar ID is all the per-device data you need.</li>
   </ul>
 
-  <h3>B. Apple Business Manager: licenses</h3>
+  <h3>B. Apple Business: licenses</h3>
   <ol>
-    <li>Apps and Books › <strong>Bored Room</strong> › quantity › Get. 99¢ per copy.</li>
+    <li><a href="https://business.apple.com">business.apple.com</a> (formerly Apple Business Manager) › Apps &amp; Services › Apps and Books › <strong>Bored Room</strong> › quantity = number of iPads › Buy. 99¢ per copy; each iPad needs its own.</li>
     <li>Assign the licenses to the location your MDM server token belongs to.</li>
     <li>In the MDM, sync Apps and Books so the app appears in your catalog.</li>
   </ol>
 
   <h3>C. MDM: supervision and device settings</h3>
   <ol>
-    <li>Single App Mode requires supervised iPads. Use Automated Device Enrollment (devices added to Business Manager by the reseller or with Configurator for iPhone) or supervise with Apple Configurator.</li>
+    <li>Single App Mode requires supervised iPads. Use Automated Device Enrollment (devices added to Apple Business by the reseller or with Configurator for iPhone) or supervise with Apple Configurator.</li>
     <li>A Restrictions or device-settings payload that turns <strong>auto-brightness off</strong>, so iPadOS doesn't undo the after-hours dimming. Auto-Lock: Never (Single App Mode's own option covers this too).</li>
     <li>Decide your schedule policy now: always on, or days and hours. If you push none of the hours keys, the default applies: Monday to Friday, 07:00 to 17:00, dark otherwise.</li>
   </ol>
