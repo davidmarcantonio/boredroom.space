@@ -237,6 +237,11 @@ pre { background: var(--midnight); color: #E6EEF5; padding: 16px 18px; border-ra
 
 /* Long scope URLs and IDs wrap on phones */
 .article td code, .article p code, .article li code { overflow-wrap: anywhere; }
+/* Config keys and values are copied exactly into MDM consoles: never break them mid-word.
+   (overflow-wrap: anywhere above lets the browser shrink a column to ~3 letters.) */
+.article table.keys td:nth-child(-n+3) code { white-space: nowrap; overflow-wrap: normal; }
+/* Phones: the keys table swipes sideways; give it room so the last column isn't a sliver. */
+@media (max-width: 760px) { .article table.keys > tbody { display: table; width: 100%; min-width: 720px; } }
 /* Phones: the setup-card heading keeps its own spacing (.article h3 would push it down),
    and a table too wide for the screen scrolls inside itself instead of moving the whole page. */
 .article .path h3 { margin-top: 0; }
