@@ -14,12 +14,6 @@
 </head>
 <body>
 
-<!-- TEMPORARY: Google verification notice. Remove this block (and the FAQ's "in progress" sentence) once Google approves the app. -->
-<div style="background: var(--paper-2); color: var(--ink); font-size: .95rem; padding: 10px 0; border-bottom: 1px solid var(--chrome)">
-  <div class="wrap"><strong>Heads-up:</strong> Google's standard review of Bored Room is in progress. The app works fully today; until the review is done, Google's sign-in shows an extra "unverified app" screen. It isn't a security finding, and it doesn't change what the app can access. <a href="#faq-google">What this means for your IT team</a></div>
-</div>
-<!-- /TEMPORARY -->
-
 <header class="hero">
   <div class="wrap" style="display:block">
     <div class="top">
@@ -204,11 +198,10 @@
       <p>Two permissions: the list of calendars on the account, so you can pick the room, and access to events, so it can show the room's meetings and let people book it from the door. Once set up, it reads one calendar: the room you picked. Admins can see <a href="privacy.html#google-permissions">the exact Google scopes</a> before approving.</p>
     </details>
     <details id="faq-google">
-      <summary>Why does Google say the app is "unverified" when I sign in?</summary>
-      <p>Google reviews every app that asks for calendar access, and the review takes weeks. Ours is submitted and in progress. It's a standard step for any calendar app, not a security finding.</p>
-      <p>In the meantime nothing about the app is limited: same features, same permissions, and the iPad still talks only to Google, never to us. The only difference is one extra screen at sign-in: tap Advanced, then continue to Bored Room.</p>
-      <p>For a security-minded organization: your Google admin can review <a href="privacy.html#google-permissions">the exact scopes the app asks for</a> and mark Bored Room as trusted by its client ID in the admin console, before anyone signs in. That skips the warning and keeps your other Google settings as they are. Once Google approves the app, the extra screen goes away on its own.</p>
-      <p>Zero-touch MDM fleets use a <a href="setup-service-account.html">Google service account</a> instead, which never sees this screen. It's the right tool for that job, but it means loosening two Google settings; the guide lists both up front so your security team can decide.</p>
+      <summary>Does my Google admin need to approve anything?</summary>
+      <p>Usually not. Google has reviewed and verified Bored Room's access to Google Calendar, so sign-in is the standard Google screen.</p>
+      <p>If your Workspace only lets approved apps sign in, your Google admin can review <a href="privacy.html#google-permissions">the exact scopes the app asks for</a> and mark Bored Room as trusted by its client ID in the admin console. One-time step, and it keeps your other Google settings as they are.</p>
+      <p>Zero-touch MDM fleets use a <a href="setup-service-account.html">Google service account</a> instead. It's the right tool for that job, but it means loosening two Google settings; the guide lists both up front so your security team can decide.</p>
     </details>
     <details>
       <summary>What happens at night and on weekends?</summary>
