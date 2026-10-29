@@ -277,3 +277,15 @@ pre { background: var(--midnight); color: #E6EEF5; padding: 16px 18px; border-ra
 /* Not on the App Store yet. */
 .soon { display: inline-flex; align-items: center; gap: 10px; font-weight: 700; padding: 14px 22px; border-radius: 10px;
   border: 1.5px dashed rgba(255,255,255,.55); color: var(--white); }
+
+/* Mobile: tap targets at least ~44px tall, no text inflation in landscape */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+@media (max-width: 860px) {
+  .nav a { padding: 11px 0; }
+  .top { padding: 8px 0; }
+  .brand { padding: 4px 0; }
+  footer a { display: inline-block; padding: 12px 0; }
+  details { padding: 4px 0; }
+  summary { padding: 12px 0; }
+  .cta, .soon { min-height: 48px; }
+}
