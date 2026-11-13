@@ -9,6 +9,7 @@
   <dict>
     <string keyName="roomName"/>
     <string keyName="calendarId"/>
+    <string keyName="calendarIds"/>
     <string keyName="serviceAccountKey"/>
     <string keyName="background">
       <defaultValue><value>midnight</value></defaultValue>
@@ -67,6 +68,10 @@
     <field keyName="calendarId" type="input">
       <label><language value="en-US">Google calendar ID</language></label>
       <description><language value="en-US">The room resource's calendar ID, e.g. c_abc123@resource.calendar.google.com. Found in Google Admin console under Buildings and resources.</language></description>
+    </field>
+    <field keyName="calendarIds" type="input">
+      <label><language value="en-US">Rooms to choose from</language></label>
+      <description><language value="en-US">Calendar IDs separated by commas. Send the same list to every iPad: the room picker shows only these rooms, and with a service account nobody has to add them by ID. Leave out calendarId to let whoever mounts the iPad pick its room. Bored Room 1.1 and later.</language></description>
     </field>
     <field keyName="serviceAccountKey" type="input">
       <label><language value="en-US">Service account key (JSON)</language></label>

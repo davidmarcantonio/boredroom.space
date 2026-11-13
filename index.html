@@ -149,18 +149,19 @@
 <section id="mdm">
   <div class="wrap">
     <h2>“Boring” to buy. Built for IT anyway.</h2>
-    <p class="lede">We skipped the enterprise sales team, not the enterprise plumbing. The room-display platforms charge extra for "enterprise deployment." Bored Room reads Apple's Managed App Configuration out of the box, so Jamf, Mosyle, Iru (formerly Kandji), Intune, or any other MDM can configure every iPad before it's even unboxed. Ten keys, all optional.</p>
+    <p class="lede">We skipped the enterprise sales team, not the enterprise plumbing. The room-display platforms charge extra for "enterprise deployment." Bored Room reads Apple's Managed App Configuration out of the box, so Jamf, Mosyle, Iru (formerly Kandji), Intune, or any other MDM can configure every iPad before it's even unboxed. Every setting, all optional.</p>
     <div class="grid-2" style="margin-top:28px">
       <div class="card">
         <h3>What an admin can set from the MDM</h3>
         <ul class="nots" style="margin-top:8px">
           <li><strong>Service account key</strong>: the iPad reads the room with no sign-in at all.</li>
           <li><strong>Room calendar</strong>: which Google room this iPad shows.</li>
+          <li><strong>Rooms to choose from</strong>: one profile for every iPad; whoever mounts it picks the room from your list. Coming soon.</li>
           <li><strong>Room name</strong>: what's printed at the top of the board.</li>
           <li><strong>Settings PIN</strong>: the 4 digits that protect the settings.</li>
           <li><strong>Booking from the door</strong>: on or off.</li>
           <li><strong>Meeting titles</strong>: show them, or show "Meeting."</li>
-          <li><strong>Background and font</strong>: pick from the built-in sets.</li>
+          <li><strong>Background and font</strong>: pick from the built-in sets, or point every iPad at a photo on your intranet.</li>
           <li><strong>Hours</strong>: which days and hours the board is lit, or always on.</li>
         </ul>
       </div>
@@ -198,6 +199,18 @@
     <details>
       <summary>Which iPads does it run on?</summary>
       <p>Any iPad on iPadOS 17 or later. An older iPad you already own is fine; the app is light. It works in landscape and portrait.</p>
+    </details>
+    <details>
+      <summary>Can one iPad show more than one room?</summary>
+      <p>No. One iPad, one room: the one outside its door. You pick it during setup and can change it later in the PIN-protected settings, or from your MDM.</p>
+    </details>
+    <details>
+      <summary>Does every iPad need an Apple ID?</summary>
+      <p>Only to install it by hand from the App Store, and you can sign out afterward without losing the app. Buy through Apple Business and install with Apple Configurator or an MDM, and the iPads never need one. That's also how updates keep flowing with nobody signed in.</p>
+    </details>
+    <details>
+      <summary>What happens if the Wi-Fi or Google goes down?</summary>
+      <p>The board keeps showing what it last loaded, with a quiet "last updated" time. If updates keep failing, it says so on the board instead of quietly going stale. When the connection comes back it catches up on its own; nobody has to touch it.</p>
     </details>
     <details>
       <summary>Does it work with Microsoft 365 or Outlook?</summary>

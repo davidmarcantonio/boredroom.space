@@ -38,7 +38,7 @@
 
 <main class="wrap article">
   <h1>Privacy policy</h1>
-  <p class="updated">Last updated October 16, 2026. Applies to the Bored Room iPad app and to boredroom.space.</p>
+  <p class="updated">Last updated November 13, 2026. Applies to the Bored Room iPad app and to boredroom.space.</p>
 
   <p>Bored Room is made by BACS Tech, Inc. ("BACS Tech", "we", "us"). This policy explains what the app and this website do with your data, which is as little as possible.</p>
 
@@ -62,7 +62,7 @@
   <table>
     <tr><th>Scope</th><th>Why Bored Room needs it</th></tr>
     <tr><td><code>https://www.googleapis.com/auth/calendar.events</code></td><td>Reading the room's meetings, and booking from the iPad. It only reaches calendars your admin has shared with the service account.</td></tr>
-    <tr><td><code>https://www.googleapis.com/auth/calendar.calendarlist</code></td><td>Adding a shared room to the service account's own calendar list by its ID during setup. A shared room doesn't appear there on its own, because nobody accepts the share for a service account.</td></tr>
+    <tr><td><code>https://www.googleapis.com/auth/calendar.calendarlist</code></td><td>Adding a shared room to the service account's own calendar list by its ID: during setup, or automatically for the rooms your organization's MDM lists. A shared room doesn't appear there on its own, because nobody accepts the share for a service account.</td></tr>
   </table>
   <p>What it doesn't ask for: Gmail, Drive, Contacts, your directory, or admin access. No access is granted to us; the token stays on the iPad and is used only by the iPad.</p>
   <p><strong>Approving it in Google Workspace:</strong> in the admin console, Security › Access and data control › API controls › Manage third-party app access, the app appears as Bored Room. You can also add it by its OAuth client ID: <code>208417003492-18onkd8uk3jlrq8ejn0760h3hcp6ls1p.apps.googleusercontent.com</code></p>
@@ -95,7 +95,7 @@
   <p>boredroom.space is a static site. It sets no cookies and runs no analytics. If you email us, we keep the email so we can reply.</p>
 
   <h2>Managed deployments</h2>
-  <p>If your organization deploys Bored Room through an MDM, the organization may push settings (service account key, room name, calendar, PIN, theme, background image address) to the iPad. Those settings are handled by your organization's MDM under its own privacy terms; Bored Room only reads them from the device. If a background image address is set, the iPad downloads that image about once a day with a plain request: no cookies, no account, and nothing about the room or its calendar. Like any web request, it reveals the network's IP address to whoever runs that server, which is your organization or a host it chose.</p>
+  <p>If your organization deploys Bored Room through an MDM, the organization may push settings (service account key, room name, calendar or list of rooms, PIN, theme, hours, background image address) to the iPad. Those settings are handled by your organization's MDM under its own privacy terms; Bored Room only reads them from the device. If a background image address is set, the iPad downloads that image about once a day with a plain request: no cookies, no account, and nothing about the room or its calendar. Like any web request, it reveals the network's IP address to whoever runs that server, which is your organization or a host it chose.</p>
 
   <h2>Children</h2>
   <p>Bored Room is a business tool and is not directed at children.</p>

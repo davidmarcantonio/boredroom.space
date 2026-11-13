@@ -50,7 +50,8 @@
   <ul>
     <li>Sharing can be done with the Calendar API's <code>acl.insert</code>: role <code>reader</code> for the board, <code>writer</code> for booking (<code>writerWithoutPrivateAccess</code> also works for booking).</li>
     <li>The calendar ID is the resource's email in the Admin console, e.g. <code>c_1882c…@resource.calendar.google.com</code>. Push it as <code>calendarId</code> and the iPad skips the room picker.</li>
-    <li>A spreadsheet of serial number, room name and calendar ID is all the per-device data you need.</li>
+    <li>A service account can't discover rooms on its own: Google never lists a room shared with one until it's added by ID. So the iPads learn the rooms from you, either one ID per iPad (<code>calendarId</code>) or the whole list for every iPad (<code>calendarIds</code>, Bored Room 1.1 and later). See <a href="#scoping">Two ways to scope it</a>.</li>
+    <li>For the per-iPad route, a spreadsheet of serial number, room name and calendar ID is all the per-device data you need. For the list route, you need only the list of calendar IDs.</li>
   </ul>
 
   <h3>B. Apple Business: licenses</h3>
@@ -59,6 +60,10 @@
     <li>Assign the licenses to the location your MDM server token belongs to.</li>
     <li>In the MDM, sync Apps and Books so the app appears in your catalog.</li>
   </ol>
+  <div class="note">
+    <p><strong>The license is what makes it hands-off.</strong> Without a license assigned to the iPad, an MDM install from the App Store is treated as a re-download for whatever Apple Account is signed in on the iPad. If that account never bought Bored Room, iPadOS stops with <strong>"Redownload Unavailable with This Apple Account"</strong>, and with no account it asks someone to sign in. Assign device licenses and neither happens.</p>
+    <p>Testing on an iPad you already use? A copy someone installed by hand from the App Store can be taken over by the MDM (silently on a supervised iPad, with a prompt otherwise). A TestFlight build can't be managed at all: delete it and install the App Store version, or managed settings never reach it.</p>
+  </div>
 
   <h3>C. MDM: supervision and device settings</h3>
   <ol>
@@ -69,7 +74,7 @@
 
   <h3>Checklist</h3>
   <ul class="checklist">
-    <li>Service account key file in hand; sharing setting changed; every room shared; calendar IDs collected (A)</li>
+    <li>Service account key file in hand; sharing setting changed; every room shared; calendar IDs collected, and a scoping route picked (A)</li>
     <li>Licenses bought, assigned to the MDM's location, synced into the catalog (B)</li>
     <li>Supervision path chosen; auto-brightness-off payload ready; hours policy decided (C)</li>
   </ul>
@@ -89,8 +94,9 @@
   <table class="keys">
     <tr><th>Key</th><th>Type</th><th>Value</th><th>Where to get it</th></tr>
     <tr><td><code>serviceAccountKey</code></td><td>string</td><td>The key file's contents, raw JSON or base64.</td><td>The .json from Cloud Console › service account › Keys. Base64 it on a Mac with <code>base64 -i key.json | pbcopy</code> (one line, no wrapping). Linux's <code>base64</code> wraps lines; the app tolerates that, and missing <code>=</code> padding. Same value for every iPad.</td></tr>
-    <tr><td><code>calendarId</code></td><td>string</td><td>The room's calendar ID.</td><td>Admin console › Directory › Buildings and resources › Manage resources › the room › <strong>Resource email</strong>, e.g. <code>c_1882c…@resource.calendar.google.com</code>. Also under the room's Settings and sharing in Google Calendar › Integrate calendar › Calendar ID. One per iPad.</td></tr>
-    <tr><td><code>roomName</code></td><td>string</td><td>Text at the top of the board.</td><td>Whatever people call the room. One per iPad.</td></tr>
+    <tr><td><code>calendarId</code></td><td>string</td><td>The room's calendar ID.</td><td>Admin console › Directory › Buildings and resources › Manage resources › the room › <strong>Resource email</strong>, e.g. <code>c_1882c…@resource.calendar.google.com</code>. Also under the room's Settings and sharing in Google Calendar › Integrate calendar › Calendar ID. One per iPad, or leave it out and use <code>calendarIds</code>.</td></tr>
+    <tr><td><code>calendarIds</code><br><span class="small">1.1 and later</span></td><td>string</td><td>The rooms this iPad may show: calendar IDs separated by commas.</td><td>The same list for every iPad. The room picker shows only these rooms, and with a service account the app adds any it hasn't seen to the account's room list itself, so nobody types an ID on the iPad. Spaces and line breaks between IDs are fine; a string array works too. If <code>calendarId</code> is also set, it wins and the picker is skipped. IDs the account can't read are left out of the picker.</td></tr>
+    <tr><td><code>roomName</code></td><td>string</td><td>Text at the top of the board.</td><td>Whatever people call the room. One per iPad. Leave it out of a configuration shared by every iPad: setup then asks once, pre-filled with the room's name from Google.</td></tr>
     <tr><td><code>pin</code></td><td>string</td><td>Exactly 4 digits.</td><td>Your choice. One per fleet is fine; it only guards the app's settings.</td></tr>
     <tr><td><code>allowBooking</code></td><td>boolean</td><td>Show "Book now" when the room is free.</td><td>Requires "Make changes to events" on the share and the "can change calendars" admin setting.</td></tr>
     <tr><td><code>showMeetingTitles</code></td><td>boolean</td><td>false shows "Meeting" instead of titles. Private meetings never show their title regardless.</td><td>Your policy.</td></tr>
@@ -103,7 +109,8 @@
     <tr><td><code>backgroundDimming</code></td><td>integer</td><td>How much the photo is darkened behind the text, <code>30</code> to <code>90</code> (percent).</td><td>Your choice. 55 is the default. Bright photos need 50 or more to keep the board readable. Values outside 30–90 are clamped.</td></tr>
   </table>
   <p>If you push none of the three hours keys, the default schedule applies: Monday to Friday, 07:00 to 17:00. Any one of them locks the whole Hours section on the device. A value the app can't parse is ignored (the default stays), so check the board after the first push. All string keys must be plist strings; <code>pin</code> as an integer is ignored.</p>
-  <p>With <code>serviceAccountKey</code>, <code>calendarId</code>, <code>roomName</code>, and <code>pin</code> set, the app skips setup entirely and boots to the board. Setting only some keys is fine; the app asks for the rest on first launch and locks what you pushed.</p>
+  <p>With <code>serviceAccountKey</code>, <code>calendarId</code>, <code>roomName</code>, and <code>pin</code> set, the app skips setup entirely and boots to the board. With <code>serviceAccountKey</code>, <code>calendarIds</code>, and <code>pin</code>, it asks two things on first launch: which room (from your list) and what to call it (pre-filled). Setting only some keys is fine; the app asks for the rest on first launch and locks what you pushed.</p>
+  <p>Changes reach the iPad without a reinstall or relaunch: push a new value and the board updates as soon as the iPad receives the configuration. Push the configuration together with the app (most consoles do this by default) so the very first launch already has it.</p>
   <p>An AppConfig Community spec file for consoles that import one is at <a href="BoredRoom.appconfig.xml">BoredRoom.appconfig.xml</a>.</p>
 
   <h3>Example: property list (Jamf, Mosyle, Iru, most consoles)</h3>
@@ -152,10 +159,15 @@
     <tr><td>backgroundImageURL</td><td>String</td><td>https://intranet.example.com/lobby.jpg</td></tr>
     <tr><td>backgroundDimming</td><td>Integer</td><td>55</td></tr>
   </table>
-  <p>Intune's "Enter XML data" option accepts the <code>&lt;dict&gt;</code> above verbatim (no <code>&lt;plist&gt;</code> wrapper). Intune substitutes <code>{{serialnumber}}</code> and <code>{{deviceid}}</code> but has no device-name token, so one policy per room is the practical pattern there.</p>
+  <p>Intune's "Enter XML data" option accepts the <code>&lt;dict&gt;</code> above verbatim (no <code>&lt;plist&gt;</code> wrapper). Intune substitutes <code>{{serialnumber}}</code> and <code>{{deviceid}}</code> but has no device-name token, so for per-iPad rooms it's one policy per room. With <code>calendarIds</code> (1.1 and later) one policy covers every iPad.</p>
 
-  <h3>Scoping pattern</h3>
-  <p>One profile per room (or one profile with device variables on Jamf or Mosyle), scoped to that room's iPad by serial or device group. The service account key and the PIN are identical across rooms; only <code>calendarId</code> and <code>roomName</code> change. A spreadsheet with serial, room name, and calendar ID is all you need to onboard 40 rooms.</p>
+  <h3 id="scoping">Two ways to scope it</h3>
+  <p><strong>One configuration for every iPad</strong> (Bored Room 1.1 and later). Push the same dictionary everywhere: <code>serviceAccountKey</code>, <code>pin</code>, your look and hours, and <code>calendarIds</code> with every room. Leave out <code>calendarId</code> and <code>roomName</code>. Whoever mounts each iPad picks its room from your list once and confirms the name; the PIN and everything else is already set. Simplest on any console, and the only single-policy option on Intune and Iru.</p>
+<pre>&lt;key&gt;calendarIds&lt;/key&gt;
+&lt;string&gt;c_1882ctscth49aga2n3qo5aaud4m2e@resource.calendar.google.com,
+        c_18868lil4jul6gs1me3ht68a7ph86@resource.calendar.google.com&lt;/string&gt;</pre>
+  <p><strong>One room per iPad, nobody touches it.</strong> Push <code>calendarId</code> and <code>roomName</code> per iPad: one profile per room scoped to that iPad by serial or device group, or one profile with device variables on Jamf (an extension attribute filled from a CSV through Inventory Preload) or Mosyle. The key and the PIN are identical across rooms. A spreadsheet with serial, room name, and calendar ID is all you need to onboard 40 rooms.</p>
+  <p>The two mix: push <code>calendarIds</code> to everything and add <code>calendarId</code> to the iPads you want pinned. Moving an iPad to another room later is a one-key change, and the board switches while it's on screen.</p>
 
   <h2>Mount it</h2>
   <p>Every iPad needs power at the mount; the app keeps the screen on. For a fleet, power over Ethernet from one PoE+ switch is usually cheaper and cleaner than outlets. <a href="mounting.html">Mounting and power</a> has the gear list, what to tell the cabling installer, and mount picks.</p>
@@ -166,20 +178,27 @@
     <li>Hold the bottom-right corner › PIN › Settings. A banner reads "Some settings are managed by your organization" and managed rows are read-only.</li>
     <li>Create a test meeting in the room; it appears within 60 seconds.</li>
     <li>Push <code>activeHours</code> with an end a few minutes away. The board fades to black at that minute; a touch brings it back for a minute. Push the real hours.</li>
+    <li>Change one visible value, like <code>background</code>, while the board is on screen. It updates as soon as the iPad receives the configuration, without a relaunch. If it never changes, the app isn't managed (see below).</li>
+    <li>Using <code>calendarIds</code>: on a fresh iPad the picker lists exactly your rooms, nothing else.</li>
   </ol>
 
   <h2>Security notes</h2>
   <ul>
     <li>The service account key grants exactly what you shared: read (or write) on those room calendars, nothing else. It's stored in the iPad's keychain. Rotate it from Cloud Console (new key, delete old, push the new value); the app picks up the change within a minute while it's on screen, and on next launch otherwise.</li>
-    <li>No Bored Room servers are involved. The iPad talks to <code>oauth2.googleapis.com</code> and <code>www.googleapis.com</code> only. Allow those if you filter egress.</li>
+    <li>Why a key file and not keyless sign-in? Google's keyless options (Workload Identity Federation, attached service accounts) need the iPad to prove itself to an identity provider or run on Google Cloud, which means a server. Bored Room has none, so a key scoped to a few shared calendars is the narrow option. Google's own guidance is to use keys only where there's no workable alternative, and to guard and rotate them.</li>
+    <li>Turn key creation back off once you have the key: set both <em>Disable service account key creation</em> policies on the project back to <strong>Inherit parent's policy</strong>. The policy only blocks making new keys; the one you pushed keeps working. Lift it again when you rotate. <a href="setup-service-account.html">The service account guide</a> has the clicks.</li>
+    <li>No Bored Room servers are involved. The iPad talks to <code>oauth2.googleapis.com</code> and <code>www.googleapis.com</code> only (plus your <code>backgroundImageURL</code> host, if you set one). Allow those if you filter egress.</li>
     <li>Full details: <a href="privacy.html">privacy policy</a>.</li>
   </ul>
 
   <h2>If something's off</h2>
   <ul>
-    <li><strong>App shows setup instead of the board.</strong> One of the four core keys is missing or the dictionary isn't reaching the app. Check the profile is scoped to the device and the bundle ID matches.</li>
+    <li><strong>App shows setup instead of the board.</strong> Expected with <code>calendarIds</code>: it's asking for the room and its name. Otherwise one of the four core keys is missing or the dictionary isn't reaching the app. Check the profile is scoped to the device and the bundle ID matches.</li>
+    <li><strong>"Redownload Unavailable with This Apple Account" on the iPad, or it asks for an Apple Account.</strong> The iPad has no Bored Room license assigned. Assign device licenses in Apple Business (B) and push the app again.</li>
+    <li><strong>Managed values never show up, and Settings has no "managed by your organization" banner.</strong> The app on that iPad isn't managed: it was installed by hand or from TestFlight. Push the app from the MDM (it takes over an App Store copy) or delete a TestFlight build first.</li>
     <li><strong>"That file isn't a service account key" at launch.</strong> The <code>serviceAccountKey</code> value is truncated or not valid base64/JSON. Re-paste.</li>
-    <li><strong>No rooms / 403.</strong> The room isn't shared with the service account, or the admin sharing setting is still at free/busy.</li>
+    <li><strong>No rooms in the picker.</strong> Expected with a service account and no <code>calendarId</code> or <code>calendarIds</code>: Google never lists shared rooms for one. Push <code>calendarIds</code>, or add the room by ID on one iPad.</li>
+    <li><strong>A room is missing from the picker, or 403.</strong> That room isn't shared with the service account, the ID has a typo, or the admin sharing setting is still at free/busy.</li>
     <li><strong>Board shows "Can't read this room's calendar anymore."</strong> <code>calendarId</code> is wrong or the share was removed.</li>
     <li><strong>Board is dark during the day.</strong> <code>activeDays</code> or <code>activeHours</code> is wrong for that iPad's time zone, or the value didn't parse (check the format) and the default Mon–Fri 07:00–17:00 is in effect.</li>
     <li><strong>Someone forgot the PIN.</strong> Change the <code>pin</code> value in the profile; the app picks it up within a minute while it's on screen. The "Forgot PIN?" button on the device tells them to ask you.</li>
