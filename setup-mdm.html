@@ -194,6 +194,7 @@
   <h2>If something's off</h2>
   <ul>
     <li><strong>App shows setup instead of the board.</strong> Expected with <code>calendarIds</code>: it's asking for the room and its name. Otherwise one of the four core keys is missing or the dictionary isn't reaching the app. Check the profile is scoped to the device and the bundle ID matches.</li>
+    <li><strong>The three setup choices are back after someone tapped "Remove service account."</strong> That removes the key your MDM pushed, and the app only reinstalls it when it starts. Restart the iPad from your MDM (Restart Device), or close and reopen Bored Room. It comes back at the room picker; pick the room and the board returns. A later update hides that button when the key comes from your MDM.</li>
     <li><strong>"Redownload Unavailable with This Apple Account" on the iPad, or it asks for an Apple Account.</strong> The iPad has no Bored Room license assigned. Assign device licenses in Apple Business (B) and push the app again.</li>
     <li><strong>Managed values never show up, and Settings has no "managed by your organization" banner.</strong> The app on that iPad isn't managed: it was installed by hand or from TestFlight. Push the app from the MDM (it takes over an App Store copy) or delete a TestFlight build first.</li>
     <li><strong>"That file isn't a service account key" at launch.</strong> The <code>serviceAccountKey</code> value is truncated or not valid base64/JSON. Re-paste.</li>
