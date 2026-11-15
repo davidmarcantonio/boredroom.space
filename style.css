@@ -393,3 +393,6 @@ a.sw-item:hover { background: var(--paper); color: var(--ink); }
 .u-block { display: block !important; }
 .u-white { color: #fff !important; }
 .u-bl-midnight { border-left-color: var(--midnight) !important; }
+
+/* Version line in the footer (Bored Room 1.1 and later) */
+footer .ver { flex-basis: 100%; font-size: .85rem; opacity: .8; }
