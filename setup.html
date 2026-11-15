@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Setup — Bored Room</title>
-<meta name="description" content="Three ways to set up Bored Room: by hand with a Google sign-in, with Apple Configurator, or through your MDM.">
+<meta name="description" content="Four ways to set up Bored Room: from your iPhone, by hand on the iPad, with Apple Configurator, or through your MDM.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Bored Room">
 <meta property="og:url" content="https://boredroom.space/setup.html">
 <meta property="og:title" content="Setup — Bored Room">
-<meta property="og:description" content="Three ways to set up Bored Room: by hand with a Google sign-in, with Apple Configurator, or through your MDM.">
+<meta property="og:description" content="Four ways to set up Bored Room: from your iPhone, by hand on the iPad, with Apple Configurator, or through your MDM.">
 <meta property="og:image" content="https://boredroom.space/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="627">
@@ -55,10 +55,17 @@
 
   <h2 style="margin-top:1.4em">Then pick your guide</h2>
   <div class="paths">
+    <a class="path" href="setup-manual.html#iphone">
+      <h3>Set up with iPhone</h3>
+      <div class="who">Easiest. For anyone with an iPhone and the room's Google account</div>
+      <p>Open Bored Room on the iPad and tap "Set up with iPhone". Scan the code it shows with Bored Room on your iPhone, connect Google Calendar on the phone, and answer a few questions there. The iPad keeps the sign-in; your iPhone doesn't. Works on guest Wi-Fi, or with no shared network at all.</p>
+      <p class="fine">Your iPhone may need its own copy (99¢). See "Do you need Bored Room on your iPhone?" below.</p>
+      <div class="time">About 5 minutes per iPad, once the room is on your Google Calendar</div>
+    </a>
     <a class="path" href="setup-manual.html">
       <h3>By hand</h3>
       <div class="who">For an office admin, no IT background needed</div>
-      <p>A few rooms. Add the room to your Google Calendar, sign in on the iPad with the same account, pick the room, hang it up. No Google Cloud, no admin settings beyond creating the room.</p>
+      <p>A few rooms. Add the room to your Google Calendar, connect it on the iPad with the same account, pick the room, hang it up. No Google Cloud, no admin settings beyond creating the room.</p>
       <div class="time">About 15 minutes the first time, 5 per iPad after</div>
     </a>
     <a class="path" href="setup-configurator.html">
@@ -75,8 +82,66 @@
     </a>
   </div>
 
+  <section class="ipd" id="iphone-app">
+    <h2>Do you need Bored Room on your iPhone?</h2>
+    <p class="lede">For offices setting up iPads by hand, without an MDM. On an iPhone, Bored Room doesn't show a room board. It's a setup remote for your iPads, so it's never required. Whether it's worth it depends on how many iPads you have.</p>
+
+    <div class="ipd-what">
+      <strong><span class="ipd-dot"></span>What the iPhone app does</strong>
+      <ol>
+        <li>The iPad shows a code. You scan it with Bored Room on your iPhone.</li>
+        <li>You sign in to Google and pick the room, name, PIN and hours on your phone, not on the wall.</li>
+        <li>The iPad gets the settings and keeps the sign-in. Your phone keeps nothing.</li>
+        <li>Later, Settings › Room › "Change from iPhone" moves an iPad to another room in about a minute.</li>
+      </ol>
+    </div>
+
+    <div class="ipd-step">
+      <div class="ipd-q"><span class="ipd-n">1</span><h3>How many iPads are you setting up?</h3></div>
+      <div class="ipd-row ipd-three">
+        <div class="ipd-opt">
+          <div class="ipd-cond">1 iPad</div>
+          <span class="ipd-v ipd-skip">Skip it</span>
+          <p>Type your Google sign-in on the iPad once. About 5 minutes.</p>
+        </div>
+        <div class="ipd-opt">
+          <div class="ipd-cond">2 to 5 iPads</div>
+          <span class="ipd-v ipd-optional">Optional</span>
+          <p>Setting each one up on the iPad works fine. The phone saves you typing a Google password a few times.</p>
+          <span class="ipd-go">Want it? Go to 2 ↓</span>
+        </div>
+        <div class="ipd-opt ipd-hl">
+          <div class="ipd-cond">6 or more iPads</div>
+          <span class="ipd-v ipd-rec">Recommended</span>
+          <p>That's a lot of password typing on wall screens. With the phone it's scan, tap and done for each iPad, and moving rooms later is quick.</p>
+          <span class="ipd-go">Go to 2 ↓</span>
+        </div>
+      </div>
+    </div>
+    <div class="ipd-down" aria-hidden="true"><div></div><div></div></div>
+
+    <div class="ipd-step">
+      <div class="ipd-q"><span class="ipd-n">2</span><h3>How did the iPads get Bored Room?</h3></div>
+      <div class="ipd-row">
+        <div class="ipd-opt">
+          <div class="ipd-cond">Bought in the App Store, with the same Apple Account your iPhone uses</div>
+          <span class="ipd-v ipd-free">Free</span>
+          <p>One purchase covers your iPhone and iPad. On your iPhone, the App Store shows a download (cloud) icon instead of 99¢.</p>
+        </div>
+        <div class="ipd-opt">
+          <div class="ipd-cond">Through Apple Business or Apple Configurator, or someone else bought them</div>
+          <span class="ipd-v ipd-buy">99¢</span>
+          <p>Those copies belong to each iPad, not to you, so your phone needs its own. Buy it once and it sets up every iPad in the office.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="note" style="border-left-color: var(--midnight); margin-top:28px"><p><strong>Using Guided Access or Single App Mode?</strong> It works on a locked iPad too. The first time, both devices ask for permission to find devices on the local network; tap <strong>Allow</strong> on each.</p></div>
+    <p class="small">Have an MDM? You don't need this. The <a href="setup-mdm.html">MDM guide</a> covers setup.</p>
+  </section>
+
   <div class="note" style="margin-top:36px">
-    <p><strong>Two ways to connect to Google.</strong> By hand, the iPad signs in with a Google account that has the room on its calendar. Apple Configurator can do the same with a shared account like <code>rooms@</code>. Zero-touch MDM uses a free <a href="setup-service-account.html">Google service account</a>, so no one's account lives on the iPad; it means loosening two Google settings, which that guide lists up front. If you'd rather do it on a call, <a href="mailto:boredroom@bacstech.io?subject=Free%20setup%20session">book a free setup session</a>.</p>
+    <p><strong>Two ways to connect to Google.</strong> By hand, the iPad connects to a Google account that has the room on its calendar, typed on the iPad or passed over from your iPhone. Apple Configurator can do the same with a shared account like <code>rooms@</code>. Zero-touch MDM uses a free <a href="setup-service-account.html">Google service account</a>, so no one's account lives on the iPad; it means loosening two Google settings, which that guide lists up front. If you'd rather do it on a call, <a href="mailto:boredroom@bacstech.io?subject=Free%20setup%20session">book a free setup session</a>.</p>
   </div>
 </main>
 

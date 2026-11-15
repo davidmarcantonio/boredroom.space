@@ -92,8 +92,8 @@
         <p>99¢ on the <a href="https://apps.apple.com/app/id6822410239">App Store</a>, or through Apple Business if you deploy iPads in bulk. One copy per iPad.</p>
       </li>
       <li>
-        <h3>Sign in, pick the room</h3>
-        <p>Add the room to your Google Calendar, sign in on the iPad with the same account, pick the room, set a PIN. IT teams can use a free Google service account instead, and push everything from an MDM. You won't buy a Workspace seat for a room either way.</p>
+        <h3>Connect, pick the room</h3>
+        <p>Add the room to your Google Calendar, connect the same account on the iPad (or from your iPhone, so nobody types a password on a wall screen), pick the room, set a PIN. IT teams can use a free Google service account instead, and push everything from an MDM. You won't buy a Workspace seat for a room either way.</p>
       </li>
       <li>
         <h3>Hang it up</h3>
@@ -114,7 +114,7 @@
     <ul class="nots">
       <li>We never see your calendar. The iPad reads it from Google and shows it. That's the entire data path.</li>
       <li>Private meetings show as "Private meeting". Turn off titles entirely and every meeting shows as "Meeting".</li>
-      <li>Your Google sign-in is stored on the iPad's own keychain, nowhere else. Sign out and it's gone.</li>
+      <li>Your Google sign-in is stored on the iPad's own keychain, nowhere else. Disconnect it and it's gone. Set up from your iPhone and the phone keeps nothing.</li>
       <li>No analytics, no crash reporting, no tracking, no third-party code. The app makes network requests to Google's calendar API and to nothing else (except a background image, if your IT team sets one in its MDM).</li>
       <li>Apple may share anonymous device and OS statistics with us, only if you've opted in on the device. That's the only "metric" we'll ever have.</li>
     </ul>
@@ -156,7 +156,7 @@
         <ul class="nots" style="margin-top:8px">
           <li><strong>Service account key</strong>: the iPad reads the room with no sign-in at all.</li>
           <li><strong>Room calendar</strong>: which Google room this iPad shows.</li>
-          <li><strong>Rooms to choose from</strong>: one profile for every iPad; whoever mounts it picks the room from your list. Coming soon.</li>
+          <li><strong>Rooms to choose from</strong>: one profile for every iPad; whoever mounts it picks the room from your list.</li>
           <li><strong>Room name</strong>: what's printed at the top of the board.</li>
           <li><strong>Settings PIN</strong>: the 4 digits that protect the settings.</li>
           <li><strong>Booking from the door</strong>: on or off.</li>
@@ -179,7 +179,7 @@
   <div class="wrap grid-2">
     <div>
       <h2>Set it up yourself in ten minutes.</h2>
-      <p>Three guides, one for each way of managing iPads: <a href="setup-manual.html">by hand</a> for an office admin, <a href="setup-configurator.html">Apple Configurator</a> for the one-person IT shop, and <a href="setup-mdm.html">your MDM</a> for zero-touch fleets. Every click is written down, and each one prints.</p>
+      <p>A guide for each way of managing iPads: <a href="setup-manual.html">by hand</a> for an office admin (typed on the iPad, or <a href="setup-manual.html#iphone">from your iPhone</a>), <a href="setup-configurator.html">Apple Configurator</a> for the one-person IT shop, and <a href="setup-mdm.html">your MDM</a> for zero-touch fleets. Every click is written down, and each one prints.</p>
       <a class="cta" href="setup.html">Pick your setup guide</a>
     </div>
     <div>
@@ -199,6 +199,10 @@
     <details>
       <summary>Which iPads does it run on?</summary>
       <p>Any iPad on iPadOS 17 or later. An older iPad you already own is fine; the app is light. It works in landscape and portrait.</p>
+    </details>
+    <details id="faq-iphone">
+      <summary>Do I need Bored Room on my iPhone?</summary>
+      <p>No, it's optional. On an iPhone, Bored Room doesn't show a board: it's a setup remote. The iPad shows a code, you scan it with your phone, connect Google Calendar and answer the questions there, and the iPad keeps the sign-in. Worth it from about six iPads without an MDM; with an MDM, skip it. It's free if your iPad's copy was bought with the same Apple Account, otherwise 99¢. <a href="setup.html#iphone-app">Do you need it?</a></p>
     </details>
     <details>
       <summary>Can one iPad show more than one room?</summary>

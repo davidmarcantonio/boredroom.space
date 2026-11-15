@@ -38,11 +38,11 @@
 
 <main class="wrap article">
   <h1>Privacy policy</h1>
-  <p class="updated">Last updated November 13, 2026. Applies to the Bored Room iPad app and to boredroom.space.</p>
+  <p class="updated">Last updated November 14, 2026. Applies to the Bored Room app for iPad and iPhone and to boredroom.space.</p>
 
   <p>Bored Room is made by BACS Tech, Inc. ("BACS Tech", "we", "us"). This policy explains what the app and this website do with your data, which is as little as possible.</p>
 
-  <p class="lede">Bored Room does not collect, store, transmit, or sell any personal data. There is no Bored Room server. The app runs entirely on your iPad and talks only to Google, plus, if your organization sets one, the background image address it chose.</p>
+  <p class="lede">Bored Room does not collect, store, transmit, or sell any personal data. There is no Bored Room server. The app runs on your iPad and talks only to Google, plus, if your organization sets one, the background image address it chose. If you set the iPad up with your iPhone, the two talk to each other directly and nothing else is involved.</p>
 
   <h2>What the app does with your data</h2>
   <p>The app reads the room's calendar in one of two ways, both chosen by you. With Google sign-in, the app asks for two calendar permissions (the full list is <a href="#google-permissions">below</a>): to see the list of calendars the account is subscribed to, so you can pick the room, and to read and create events, so the board can show the room's meetings and the room can be booked from the iPad. With a service account, you load a key file your administrator created; the iPad uses it to read only the calendars your administrator shared with that account, and the key never leaves the iPad.</p>
@@ -58,6 +58,7 @@
     <tr><td><code>https://www.googleapis.com/auth/calendar.events</code></td><td>View and edit events on all your calendars</td><td>Reading the chosen room's meetings for the board, and creating the event when someone books the room from the iPad. The app only ever reads one calendar: the room you picked.</td></tr>
     <tr><td><code>openid</code>, <code>email</code></td><td>Basic sign-in: which Google account signed in, and its email address</td><td>Showing which account the iPad is signed in as, and confirming it's the same account when someone uses "Forgot PIN?". "Forgot PIN?" asks for these two and nothing else.</td></tr>
   </table>
+  <p>With Set up with iPhone, you approve these same scopes on your iPhone, but the sign-in is redeemed and kept only on the iPad (see <a href="#iphone-setup">Setting up with an iPhone</a>).</p>
   <h3>With a service account</h3>
   <table>
     <tr><th>Scope</th><th>Why Bored Room needs it</th></tr>
@@ -66,6 +67,16 @@
   </table>
   <p>What it doesn't ask for: Gmail, Drive, Contacts, your directory, or admin access. No access is granted to us; the token stays on the iPad and is used only by the iPad.</p>
   <p><strong>Approving it in Google Workspace:</strong> in the admin console, Security › Access and data control › API controls › Manage third-party app access, the app appears as Bored Room. You can also add it by its OAuth client ID: <code>208417003492-18onkd8uk3jlrq8ejn0760h3hcp6ls1p.apps.googleusercontent.com</code></p>
+
+  <h2 id="iphone-setup">Setting up with an iPhone</h2>
+  <p>The iPhone version of Bored Room does one thing: set up and change iPads. It holds no calendar and no sign-in.</p>
+  <ul>
+    <li><strong>A direct, encrypted connection.</strong> The iPhone and the iPad connect to each other over the local network or directly device to device, never through the internet or a server. The connection is encrypted with a one-time key that exists only in the code the iPad shows. The key is made fresh each time and stops working when the iPad closes that screen.</li>
+    <li><strong>The iPhone never keeps the Google sign-in.</strong> You sign in on the iPhone, but Google hands the iPhone only a one-time code, which the iPhone passes to the iPad. Only that iPad can exchange the code for a sign-in (Google's PKCE protection), and the iPad stores it in its keychain, as described above. The iPhone signs in privately, so the account doesn't stay signed in on the phone afterward.</li>
+    <li><strong>What crosses the connection:</strong> that one-time code; from the iPad, the signed-in account's email address, the list of rooms it can see, and the iPad's current room, name, hours and booking setting, so the iPhone can show them; and from the iPhone, your answers (room, name, PIN, hours, booking). The iPhone shows these only on screen while you set up and keeps none of them. Everything is stored on the iPad only.</li>
+    <li><strong>The camera</strong> is used only to read the code on the iPad's screen. No photo is taken or kept.</li>
+    <li><strong>Local Network permission</strong> is what iPadOS and iOS ask for before two devices can find each other. Bored Room uses it only during setup.</li>
+  </ul>
 
   <h2>What stays on the iPad</h2>
   <ul>
@@ -81,7 +92,7 @@
     <li>No crash reporting services.</li>
     <li>No advertising, no advertising identifiers.</li>
     <li>No third-party SDKs. The app contains only our code and Apple's frameworks.</li>
-    <li>No network connections except to Google's OAuth and Calendar APIs, and, only when your organization's MDM sets a background image address, a plain download of that image.</li>
+    <li>No network connections except to Google's OAuth and Calendar APIs; during setup with an iPhone, the direct connection between your iPhone and iPad; and, only when your organization's MDM sets a background image address, a plain download of that image.</li>
     <li>No logging of meeting titles, attendees, or any calendar content, on the device or elsewhere.</li>
   </ul>
 
@@ -89,7 +100,7 @@
   <p>If you have opted in to sharing analytics with developers in iPadOS settings, Apple provides us with aggregate, anonymous statistics such as device model, OS version, and country. We cannot see individual devices or users. We use this to decide which iPads and OS versions to support. You can turn this off under Settings › Privacy &amp; Security › Analytics &amp; Improvements.</p>
 
   <h2>Google API Services</h2>
-  <p>Bored Room's use of information received from Google APIs adheres to the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including the Limited Use requirements. Data obtained through Google APIs is used only to display and, when you choose, book the selected room's calendar on the iPad. It is never transferred to others, used for advertising, or read by humans.</p>
+  <p>Bored Room's use of information received from Google APIs adheres to the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including the Limited Use requirements. Data obtained through Google APIs is used only to display and, when you choose, book the selected room's calendar on the iPad, and, during setup with an iPhone, to show you the account's room list on your own iPhone. It is never transferred to others, used for advertising, or read by humans.</p>
 
   <h2>This website</h2>
   <p>boredroom.space is a static site. It sets no cookies and runs no analytics. If you email us, we keep the email so we can reply.</p>
