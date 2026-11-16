@@ -237,7 +237,10 @@ pre { background: var(--midnight); color: #E6EEF5; padding: 16px 18px; border-ra
 @media print { .pdf-embed { display: none !important; } }
 
 /* Long scope URLs and IDs wrap on phones */
-.article td code, .article p code, .article li code { overflow-wrap: anywhere; }
+/* Table code breaks at <wbr> points first (break-word keeps columns from collapsing to ~3 letters);
+   prose code may break anywhere. */
+.article td code { overflow-wrap: break-word; }
+.article p code, .article li code { overflow-wrap: anywhere; }
 /* Config keys and values are copied exactly into MDM consoles: never break them mid-word.
    (overflow-wrap: anywhere above lets the browser shrink a column to ~3 letters.) */
 .article table.keys td:nth-child(-n+3) code { white-space: nowrap; overflow-wrap: normal; }
@@ -247,6 +250,21 @@ pre { background: var(--midnight); color: #E6EEF5; padding: 16px 18px; border-ra
    and a table too wide for the screen scrolls inside itself instead of moving the whole page. */
 .article .path h3 { margin-top: 0; }
 @media (max-width: 760px) { .article table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; } }
+/* Phones: wide tables (.stack) become one card per row, each cell labelled from its column
+   header (data-label). No sideways scrolling, no 3-letter columns. */
+.article code { -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+@media (max-width: 760px) {
+  .article table.stack, .article table.stack > tbody, .article table.stack tr, .article table.stack td { display: block; width: 100%; min-width: 0; }
+  .article table.stack { overflow: visible; }
+  .article table.stack tr.th { display: none; }
+  .article table.stack tr { background: var(--white); border: 1px solid var(--chrome); border-radius: 10px; padding: 12px 16px; margin: 0 0 12px; }
+  .article table.stack td { border: 0; padding: 4px 0; }
+  .article table.stack td::before { content: attr(data-label); display: block; font-size: .78rem; font-weight: 600; letter-spacing: .03em; text-transform: uppercase; color: var(--steel); margin-bottom: 2px; }
+  /* First cell is the row's title: no label, a bit heavier. */
+  .article table.stack td:first-child { font-weight: 700; padding-top: 0; }
+  .article table.stack td:first-child::before { display: none; }
+  .article table.stack td:first-child code { font-weight: 600; }
+}
 
 /* Hero stamp: "Certified boring" */
 .stamp {
