@@ -19,7 +19,8 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="stylesheet" href="style.css?v=6">
+<link rel="stylesheet" href="style.css?v=7">
+<link rel="stylesheet" href="/menu.css?v=1">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
  {"@type":"WebSite","@id":"https://boredroom.space/#website","url":"https://boredroom.space/","name":"Bored Room","publisher":{"@id":"https://boredroom.space/#org"}},
@@ -47,6 +48,10 @@
         <a href="#privacy">Privacy</a>
         <a href="#faq">FAQ</a>
         <a href="https://boredsoftware.space/support/room.html">Support</a>
+        <details class="bmenu"><summary>Menu</summary><div class="bmenu-panel"><div class="bmenu-group bmenu-software"><h4><i></i>Bored Software</h4><ul><li><a href="https://boredsoftware.space/">Apps</a></li><li><a href="https://boredsoftware.space/news.html">News</a></li><li><a href="https://boredsoftware.space/support/">Support</a></li><li><a href="https://boredsoftware.space/about.html">About</a></li></ul></div><div class="bmenu-group bmenu-room"><h4><i></i>Bored Room</h4><ul><li><a href="https://boredroom.space/" aria-current="page">Home</a></li><li><a href="https://boredroom.space/setup.html">Setup guides</a></li><li><a href="https://boredroom.space/setup-manual.html">By hand / iPhone</a></li><li><a href="https://boredroom.space/setup-configurator.html">Apple Configurator</a></li><li><a href="https://boredroom.space/setup-mdm.html">MDM</a></li><li><a href="https://boredroom.space/setup-service-account.html">Service account</a></li><li><a href="https://boredroom.space/mounting.html">Mounting and power</a></li><li><a href="https://boredroom.space/privacy.html">Privacy</a></li><li><a href="https://boredsoftware.space/support/room.html">Support</a></li></ul></div><div class="bmenu-group bmenu-scanner"><h4><i></i>Bored Scanner</h4><ul><li><a href="https://boredscanner.space/">Home</a></li><li><a href="https://boredscanner.space/scanning.html">Scanning</a></li><li><a href="https://boredscanner.space/compare.html">Compare</a></li><li><a href="https://boredscanner.space/privacy.html">Privacy</a></li><li><a href="https://boredsoftware.space/support/scanner.html">Support</a></li></ul></div><div class="bmenu-group bmenu-package"><h4><i></i>Bored Package <small>Soon</small></h4><ul><li><a href="https://boredpackage.space/">Home</a></li><li><a href="https://boredsoftware.space/support/package.html">Support</a></li></ul></div><div class="bmenu-group bmenu-guest"><h4><i></i>Bored Guest <small>Soon</small></h4><ul><li><a href="https://boredguest.space/">Home</a></li><li><a href="https://boredsoftware.space/support/guest.html">Support</a></li></ul></div></div></details>
+        
+        
+        
       </nav>
     </div>
   </div>
@@ -61,6 +66,7 @@
         <a class="cta" href="https://apps.apple.com/app/id6822410239">Get it on the App Store</a>
         <a class="cta ghost" href="setup.html">Read the setup guide</a>
       </div>
+      <p class="small u-mt-14 u-o-80">Version 1.1. The board runs on iPad (iPadOS 17 or later). New in 1.1: <a class="u-inherit" href="setup-manual.html#iphone">set it up from your iPhone</a>.</p>
     </div>
     <div class="board" aria-label="Example of the Bored Room display showing the room is free">
       <div class="band"></div>
@@ -208,11 +214,11 @@
     <h2>Questions</h2>
     <details>
       <summary>When can I buy it?</summary>
-      <p>Now. Bored Room is <a href="https://apps.apple.com/app/id6822410239">on the App Store</a> for 99¢ per iPad, or through Apple Business if you deploy iPads in bulk. Plan the wall and power with the setup guides first.</p>
+      <p>Now. Bored Room 1.1 is <a href="https://apps.apple.com/app/id6822410239">on the App Store</a> for 99¢ per iPad, or through Apple Business if you deploy iPads in bulk. Plan the wall and power with the setup guides first.</p>
     </details>
     <details>
-      <summary>Which iPads does it run on?</summary>
-      <p>Any iPad on iPadOS 17 or later. An older iPad you already own is fine; the app is light. It works in landscape and portrait.</p>
+      <summary>Which iPads does it run on? And iPhone?</summary>
+      <p>The board runs on any iPad on iPadOS 17 or later. An older iPad you already own is fine; the app is light. It works in landscape and portrait. Since 1.1 the same app also installs on iPhone (iOS 17 or later), where it's a setup remote for your iPads, not a board. <a href="setup.html#iphone-app">Do you need it?</a></p>
     </details>
     <details id="faq-iphone">
       <summary>Do I need Bored Room on my iPhone?</summary>
@@ -280,6 +286,7 @@
 <footer>
   <div class="wrap">
     <div>Bored Room is a proudly “boring” product of <a href="https://www.bacstech.io">BACS Tech, Inc.</a> &middot; <a href="mailto:boredroom@bacstech.io">boredroom@bacstech.io</a></div>
+    <div class="ver">Bored Room 1.1 &middot; iPad (iPadOS 17+), set up from iPhone (iOS 17+) &middot; <a href="https://apps.apple.com/app/id6822410239">App Store</a></div>
     <div><a href="privacy.html">Privacy policy</a> &middot; <a href="setup.html">Setup guide</a></div>
   </div>
 </footer>
