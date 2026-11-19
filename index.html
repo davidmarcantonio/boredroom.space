@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Bored Room: 99¢ meeting room display for iPad and Google Calendar</title>
 <meta name="description" content="Turn any iPad into a conference room booking display for Google Calendar. Shows free or busy, today's meetings, and can book the room on the spot. 99¢ once, no subscription, no data collected. MDM-ready.">
@@ -16,12 +17,9 @@
 <meta property="og:image:height" content="627">
 <meta property="og:image:alt" content="Bored Room on an iPad showing a meeting room as Free, next to the headline The most boring room sign you'll ever buy.">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="stylesheet" href="style.css?v=5">
+<link rel="stylesheet" href="style.css?v=6">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
  {"@type":"WebSite","@id":"https://boredroom.space/#website","url":"https://boredroom.space/","name":"Bored Room","publisher":{"@id":"https://boredroom.space/#org"}},
@@ -32,7 +30,7 @@
 <body>
 
 <header class="hero">
-  <div class="wrap" style="display:block">
+  <div class="wrap u-block">
     <div class="top">
       <details class="switcher">
         <summary class="brand" aria-label="Bored Room. Switch app"><img src="mark.png" alt="" width="30" height="30"> Bored Room<span class="sw-chev" aria-hidden="true"></span></summary>
@@ -52,7 +50,7 @@
       </nav>
     </div>
   </div>
-  <div class="wrap" style="margin-top: clamp(24px, 5vw, 56px)">
+  <div class="wrap u-mt-fluid">
     <div>
       <div class="stamp" role="img" aria-label="Certified boring"><span class="stamp-top">Certified</span><span class="stamp-main">Boring</span></div>
       <h1>The most “boring” room sign you'll ever buy.</h1>
@@ -82,7 +80,7 @@
   <div class="wrap">
     <h2>Why we're “boring.”</h2>
     <p class="lede">Room-booking platforms are built and priced for enterprises with hundreds of rooms. Most offices have a handful, maybe a few dozen, and just want a sign on the door that's right. “Boring” is how we keep it that way.</p>
-    <div class="grid-3" style="margin-top:32px">
+    <div class="grid-3 u-mt-32">
       <div class="card">
         <h3>No enterprise software machine</h3>
         <p>No sprawling dev org shipping features to justify its own roadmap. One small team, one app, one job: show the room's calendar. Nothing to integrate, nothing to babysit.</p>
@@ -116,9 +114,9 @@
         <p>Lock the iPad to the app with Guided Access or Single App Mode. The screen stays on, the calendar refreshes every minute, and walk-ins can book the room from the door. Picking a mount and running power: see <a href="mounting.html">the mounting guide</a>.</p>
       </li>
     </ol>
-    <div class="note" style="margin-top:28px">
+    <div class="note u-mt-28">
       <p><strong>Before you buy: plan the wall.</strong> The app is 99¢. Getting power to an iPad next to the door is the real project: an outlet nearby, or an Ethernet cable an electrician runs so the iPad stays powered with no cord. Measure the spot, test a mount, and get a wiring quote first. <a href="mounting.html">Mounting and power</a> has the steps.</p>
-      <div class="cta-row" style="margin-top:12px"><a class="cta" href="mounting-checklist.pdf" download><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5"></path><path d="M12 12v6"></path><path d="M9 15l3 3 3-3"></path></svg> Download the room planning checklist (PDF)</a></div>
+      <div class="cta-row u-mt-12"><a class="cta" href="mounting-checklist.pdf" download><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5"></path><path d="M12 12v6"></path><path d="M9 15l3 3 3-3"></path></svg> Download the room planning checklist (PDF)</a></div>
     </div>
   </div>
 </section>
@@ -145,7 +143,7 @@
     <div class="pricing">
       <div class="big">99¢<small>per iPad, once</small></div>
       <div>
-        <h2 style="color:#fff">Everything's included. Nothing's “exciting.”</h2>
+        <h2 class="u-white">Everything's included. Nothing's “exciting.”</h2>
         <ul>
           <li>Free/busy, current meeting, the rest of the day</li>
           <li>Book the room from the door, 15 minutes to 2 hours</li>
@@ -155,7 +153,7 @@
           <li>Full MDM support: push every setting, zero-touch, no “enterprise tier”</li>
           <li>Google Workspace today; Microsoft 365 is on the list</li>
         </ul>
-        <p style="margin:18px 0 0">Buying for a lot of rooms? Apple Business lets you buy 40 copies at once and push them to iPads with no Apple ID on the device. Still 99¢ each.</p>
+        <p class="u-m-18-0-0">Buying for a lot of rooms? Apple Business lets you buy 40 copies at once and push them to iPads with no Apple ID on the device. Still 99¢ each.</p>
       </div>
     </div>
   </div>
@@ -166,10 +164,10 @@
   <div class="wrap">
     <h2>“Boring” to buy. Built for IT anyway.</h2>
     <p class="lede">We skipped the enterprise sales team, not the enterprise plumbing. The room-display platforms charge extra for "enterprise deployment." Bored Room reads Apple's Managed App Configuration out of the box, so Jamf, Mosyle, Iru (formerly Kandji), Intune, or any other MDM can configure every iPad before it's even unboxed. Every setting, all optional.</p>
-    <div class="grid-2" style="margin-top:28px">
+    <div class="grid-2 u-mt-28">
       <div class="card">
         <h3>What an admin can set from the MDM</h3>
-        <ul class="nots" style="margin-top:8px">
+        <ul class="nots u-mt-8">
           <li><strong>Service account key</strong>: the iPad reads the room with no sign-in at all.</li>
           <li><strong>Room calendar</strong>: which Google room this iPad shows.</li>
           <li><strong>Rooms to choose from</strong>: one profile for every iPad; whoever mounts it picks the room from your list.</li>

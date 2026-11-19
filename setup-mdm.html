@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Deploy through your MDM — Bored Room</title>
 <meta name="description" content="Zero-touch deployment of Bored Room with Jamf, Mosyle, Iru (formerly Kandji), Intune or any MDM: app, kiosk lock, and Managed App Configuration keys with examples.">
@@ -16,12 +17,9 @@
 <meta property="og:image:height" content="627">
 <meta property="og:image:alt" content="Bored Room on an iPad showing a meeting room as Free, next to the headline The most boring room sign you&#x27;ll ever buy.">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="stylesheet" href="style.css?v=5">
+<link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
 
@@ -216,7 +214,7 @@
     <li><strong>Someone forgot the PIN.</strong> Change the <code>pin</code> value in the profile; the app picks it up within a minute while it's on screen. The "Forgot PIN?" button on the device tells them to ask you.</li>
   </ul>
 
-  <p style="margin-top:2.5em">Questions, or a console we haven't covered? <a href="mailto:boredroom@bacstech.io">boredroom@bacstech.io</a>.</p>
+  <p class="u-mt-2-5em">Questions, or a console we haven't covered? <a href="mailto:boredroom@bacstech.io">boredroom@bacstech.io</a>.</p>
 </main>
 
 <footer>
