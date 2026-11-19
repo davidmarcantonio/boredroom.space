@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Setup — Bored Room</title>
 <meta name="description" content="Four ways to set up Bored Room: from your iPhone, by hand on the iPad, with Apple Configurator, or through your MDM.">
@@ -16,12 +17,9 @@
 <meta property="og:image:height" content="627">
 <meta property="og:image:alt" content="Bored Room on an iPad showing a meeting room as Free, next to the headline The most boring room sign you&#x27;ll ever buy.">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="stylesheet" href="style.css?v=5">
+<link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
 
@@ -50,9 +48,9 @@
   <h1>Set up Bored Room</h1>
   <p class="lede">Pick the guide that matches how you manage iPads. Each one starts with a "Before you start" section and a checklist (accounts, access, downloads), then the hands-on part. They print cleanly, so you can hand the prerequisites to the Google admin and the rest to whoever's holding the iPad.</p>
 
-  <div class="note" style="border-left-color: var(--midnight); margin: 24px 0 8px">
+  <div class="note u-bl-midnight u-m-24-0-8">
     <p><strong>Start here: the wall comes before the app.</strong> The app takes five minutes. Getting power to an iPad next to a conference room door can take weeks, and it can cost far more than 99¢. Before you set anything up (or buy iPads), work through this in order:</p>
-    <ol style="margin: 10px 0 10px; padding-left: 1.3em">
+    <ol class="u-my-10 u-pl-1-3em">
       <li>Pick the spot next to each door and measure it.</li>
       <li>Check for an outlet nearby, or plan an Ethernet cable that powers the iPad (power over Ethernet).</li>
       <li>Buy one mount and hold it in place to make sure it fits.</li>
@@ -60,10 +58,10 @@
       <li>Mount it, power it, then set up the app.</li>
     </ol>
     <p><a href="mounting.html">Mounting and power</a> walks through each step. The checklist has a sheet to print for each room and one for the office.</p>
-    <div class="cta-row" style="margin-top:12px"><a class="cta" href="mounting-checklist.pdf" download><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5"></path><path d="M12 12v6"></path><path d="M9 15l3 3 3-3"></path></svg> Download the room planning checklist (PDF)</a></div>
+    <div class="cta-row u-mt-12"><a class="cta" href="mounting-checklist.pdf" download><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5"></path><path d="M12 12v6"></path><path d="M9 15l3 3 3-3"></path></svg> Download the room planning checklist (PDF)</a></div>
   </div>
 
-  <h2 style="margin-top:1.4em">Then pick your guide</h2>
+  <h2 class="u-mt-1-4em">Then pick your guide</h2>
   <div class="paths">
     <a class="path" href="setup-manual.html#iphone">
       <h3>Set up with iPhone</h3>
@@ -146,11 +144,11 @@
       </div>
     </div>
 
-    <div class="note" style="border-left-color: var(--midnight); margin-top:28px"><p><strong>Using Guided Access or Single App Mode?</strong> It works on a locked iPad too. The first time, both devices ask for permission to find devices on the local network; tap <strong>Allow</strong> on each.</p></div>
+    <div class="note u-bl-midnight u-mt-28"><p><strong>Using Guided Access or Single App Mode?</strong> It works on a locked iPad too. The first time, both devices ask for permission to find devices on the local network; tap <strong>Allow</strong> on each.</p></div>
     <p class="small">Have an MDM? You don't need this. The <a href="setup-mdm.html">MDM guide</a> covers setup.</p>
   </section>
 
-  <div class="note" style="margin-top:36px">
+  <div class="note u-mt-36">
     <p><strong>Two ways to connect to Google.</strong> By hand, the iPad connects to a Google account that has the room on its calendar, typed on the iPad or passed over from your iPhone. Apple Configurator can do the same with a shared account like <code>rooms@</code>. Zero-touch MDM uses a free <a href="setup-service-account.html">Google service account</a>, so no one's account lives on the iPad; it means loosening two Google settings, which that guide lists up front. If you'd rather do it on a call, <a href="mailto:boredroom@bacstech.io?subject=Free%20setup%20session">book a free setup session</a>.</p>
   </div>
 </main>
